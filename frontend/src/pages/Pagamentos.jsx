@@ -29,7 +29,7 @@ export default function Pagamentos() {
     if (!selected) return;
     try {
       await api.post(`/workflow/liberar/${selected.id}`);
-      toast.success('Pagamento liberado para financeiro!');
+      toast.success('Pagamento liberado para conferência e protocolo!');
       setSelected(null);
       loadFaturas();
     } catch (err) {
@@ -88,7 +88,7 @@ export default function Pagamentos() {
           onClose={() => setSelected(null)}
           actions={
             <button className="btn btn-primary" onClick={handleLiberar}>
-              <FiCheck size={14} /> Liberar para Financeiro
+              <FiCheck size={14} /> Liberar para Protocolo
             </button>
           }
         />
