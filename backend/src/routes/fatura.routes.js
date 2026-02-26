@@ -23,6 +23,7 @@ const faturaIncludes = {
   lancadoPor: { select: { id: true, nome: true } },
   aprovadoPor: { select: { id: true, nome: true } },
   liberadoPor: { select: { id: true, nome: true } },
+  protocoladoPor: { select: { id: true, nome: true } },
   baixadoPor: { select: { id: true, nome: true } },
   estornadoPor: { select: { id: true, nome: true } },
 };

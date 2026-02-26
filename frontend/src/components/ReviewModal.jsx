@@ -103,6 +103,18 @@ export default function ReviewModal({ fatura, title, actions, onClose, extraInfo
               <span>{fatura.liberadoPor.nome} ({formatDateTime(fatura.dataLiberacao)})</span>
             </div>
           )}
+          {fatura.protocoladoPor && (
+            <div className="review-item">
+              <b>Protocolado por</b>
+              <span>{fatura.protocoladoPor.nome} ({formatDateTime(fatura.dataProtocolo)})</span>
+            </div>
+          )}
+          {fatura.numeroProtocolo && (
+            <div className="review-item">
+              <b>Nº Protocolo</b>
+              <span>{fatura.numeroProtocolo}</span>
+            </div>
+          )}
           {fatura.baixadoPor && (
             <div className="review-item">
               <b>Baixado por</b>

@@ -382,7 +382,8 @@ async function gerarCapaPDF(fatura, req) {
   }
 
   // PROTOCOLO
-  y = drawRow('N. PROTOCOLO:', `FAT-${String(fatura.id).padStart(6, '0')}`, y);
+  const protocoloLabel = fatura.numeroProtocolo || `FAT-${String(fatura.id).padStart(6, '0')}`;
+  y = drawRow('N. PROTOCOLO:', protocoloLabel, y);
   y = drawRow('DATA ENVIO:', formatDate(new Date()), y);
 
   return await pdfDoc.save();
@@ -411,6 +412,7 @@ router.get('/:id/processo-completo', async (req, res) => {
         lancadoPor: { select: { nome: true } },
         aprovadoPor: { select: { nome: true } },
         liberadoPor: { select: { nome: true } },
+        protocoladoPor: { select: { nome: true } },
         baixadoPor: { select: { nome: true } },
       },
     });

@@ -34,7 +34,7 @@ export default function Financeiro() {
   async function loadFaturas() {
     try {
       const [libRes, pagRes] = await Promise.all([
-        api.get('/faturas?status=LIBERADA'),
+        api.get('/faturas?status=PROTOCOLADA'),
         api.get('/faturas?status=PAGA'),
       ]);
       setFaturasLiberadas(libRes.data.data);
@@ -81,7 +81,7 @@ export default function Financeiro() {
     }
     try {
       await api.post(`/workflow/estornar/${confirmEstorno.id}`, { motivo: motivoEstorno.trim() });
-      toast.success(`Fatura #${confirmEstorno.id} estornada com sucesso! Retornou para "Aguardando Baixa".`);
+      toast.success(`Fatura #${confirmEstorno.id} estornada com sucesso! Retornou para "Protocolada".`);
       setConfirmEstorno(null);
       setMotivoEstorno('');
       setSelected(null);
@@ -155,7 +155,7 @@ export default function Financeiro() {
       {selected && (
         <ReviewModal
           fatura={selected}
-          title={selected.status === 'LIBERADA' ? 'Baixa de Título' : 'Detalhes do Pagamento'}
+          title={selected.status === 'PROTOCOLADA' ? 'Baixa de Título' : 'Detalhes do Pagamento'}
           onClose={() => setSelected(null)}
           extraInfo={
             selected.estornadoPor ? (
@@ -170,7 +170,7 @@ export default function Financeiro() {
           }
           actions={
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-              {selected.status === 'LIBERADA' && (
+              {selected.status === 'PROTOCOLADA' && (
                 <button className="btn btn-primary" onClick={() => { setConfirmBaixa(selected); setDataPagamento(getYesterday()); }}>
                   <FiCheck size={14} /> Confirmar Pagamento (Baixa)
                 </button>

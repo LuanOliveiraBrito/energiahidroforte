@@ -19,6 +19,7 @@ const faturaIncludes = {
   lancadoPor: { select: { id: true, nome: true } },
   aprovadoPor: { select: { id: true, nome: true } },
   liberadoPor: { select: { id: true, nome: true } },
+  protocoladoPor: { select: { id: true, nome: true } },
   baixadoPor: { select: { id: true, nome: true } },
   estornadoPor: { select: { id: true, nome: true } },
 };
@@ -188,7 +189,68 @@ router.post(
   }
 );
 
-// POST /api/workflow/baixar/:id - Confirmar pagamento/baixa (LIBERADA -> PAGA)
+// POST /api/workflow/protocolar/:id - Registrar protocolo (LIBERADA -> PROTOCOLADA)
+router.post(
+  '/protocolar/:id',
+  authorize('ADMINISTRADOR', 'ADMINISTRATIVO'),
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { numeroProtocolo } = req.body;
+
+      if (!numeroProtocolo || !numeroProtocolo.trim()) {
+        return res.status(400).json({ error: true, message: 'Número do protocolo é obrigatório' });
+      }
+
+      const faturaId = parseInt(id);
+      if (isNaN(faturaId)) {
+        return res.status(400).json({ error: true, message: 'ID inválido' });
+      }
+
+      const fatura = await prisma.fatura.findUnique({ where: { id: faturaId } });
+
+      if (!fatura) {
+        return res.status(404).json({ error: true, message: 'Fatura não encontrada' });
+      }
+
+      if (fatura.status !== 'LIBERADA') {
+        return res.status(400).json({
+          error: true,
+          message: `Fatura não pode ser protocolada. Status atual: ${fatura.status}`,
+        });
+      }
+
+      const atualizada = await prisma.fatura.update({
+        where: { id: faturaId },
+        data: {
+          status: 'PROTOCOLADA',
+          numeroProtocolo: numeroProtocolo.trim(),
+          protocoladoPorId: req.userId,
+          dataProtocolo: new Date(),
+        },
+        include: faturaIncludes,
+      });
+
+      await registrarLog({
+        userId: req.userId,
+        faturaId,
+        acao: 'PROTOCOLO',
+        descricao: `Fatura #${id} protocolada por ${req.userName}. Protocolo: ${numeroProtocolo.trim()}`,
+        ip: req.ip,
+      });
+
+      // Gerar/atualizar hash de verificação criptográfica
+      await atualizarHashVerificacao(faturaId);
+
+      res.json(atualizada);
+    } catch (err) {
+      logger.error('POST /api/workflow/protocolar', err);
+      res.status(500).json({ error: true, message: 'Erro ao protocolar fatura' });
+    }
+  }
+);
+
+// POST /api/workflow/baixar/:id - Confirmar pagamento/baixa (PROTOCOLADA -> PAGA)
 router.post(
   '/baixar/:id',
   authorize('ADMINISTRADOR', 'FINANCEIRO'),
@@ -208,7 +270,7 @@ router.post(
         return res.status(404).json({ error: true, message: 'Fatura não encontrada' });
       }
 
-      if (fatura.status !== 'LIBERADA') {
+      if (fatura.status !== 'PROTOCOLADA') {
         return res.status(400).json({
           error: true,
           message: `Fatura não pode ser baixada. Status atual: ${fatura.status}`,
@@ -280,11 +342,11 @@ router.post(
         });
       }
 
-      // Estornar: volta para LIBERADA, limpa dados de baixa, registra estorno
+      // Estornar: volta para PROTOCOLADA, limpa dados de baixa, registra estorno
       const atualizada = await prisma.fatura.update({
         where: { id: faturaId },
         data: {
-          status: 'LIBERADA',
+          status: 'PROTOCOLADA',
           // Limpa dados da baixa anterior
           baixadoPorId: null,
           dataBaixa: null,

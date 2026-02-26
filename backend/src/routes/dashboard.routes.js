@@ -246,7 +246,7 @@ router.get('/checkout', async (req, res) => {
             statusMes = 'REJEITADA';
             temAtraso = true;
           } else {
-            // PENDENTE, APROVADA, LIBERADA — verificar se venceu
+            // PENDENTE, APROVADA, LIBERADA, PROTOCOLADA — verificar se venceu
             const venc = new Date(fat.vencimento);
             if (now > venc) {
               statusMes = 'ATRASO';

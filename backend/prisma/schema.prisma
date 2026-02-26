@@ -23,6 +23,7 @@ enum FaturaStatus {
   PENDENTE
   APROVADA
   LIBERADA
+  PROTOCOLADA
   PAGA
   REJEITADA
 }
@@ -46,6 +47,7 @@ model User {
   faturasLancadas  Fatura[]   @relation("FaturaLancadaPor")
   faturasAprovadas Fatura[]   @relation("FaturaAprovadaPor")
   faturasLiberadas Fatura[]   @relation("FaturaLiberadaPor")
+  faturasProtocoladas Fatura[] @relation("FaturaProtocoladaPor")
   faturasBaixadas  Fatura[]   @relation("FaturaBaixadaPor")
   faturasEstornadas Fatura[]  @relation("FaturaEstornadaPor")
   logs             AuditLog[]
@@ -195,10 +197,14 @@ model Fatura {
   // Status e workflow
   status          FaturaStatus @default(PENDENTE)
 
+  // Número de protocolo externo (preenchido pelo lançador na conferência)
+  numeroProtocolo String?      @map("numero_protocolo")
+
   // Quem fez cada ação
   lancadoPorId    Int          @map("lancado_por_id")
   aprovadoPorId   Int?         @map("aprovado_por_id")
   liberadoPorId   Int?         @map("liberado_por_id")
+  protocoladoPorId Int?        @map("protocolado_por_id")
   baixadoPorId    Int?         @map("baixado_por_id")
   estornadoPorId  Int?         @map("estornado_por_id")
 
@@ -206,6 +212,7 @@ model Fatura {
   dataLancamento  DateTime     @default(now()) @map("data_lancamento")
   dataAprovacao   DateTime?    @map("data_aprovacao")
   dataLiberacao   DateTime?    @map("data_liberacao")
+  dataProtocolo   DateTime?    @map("data_protocolo")
   dataBaixa       DateTime?    @map("data_baixa")
   dataEstorno     DateTime?    @map("data_estorno")
 
@@ -229,6 +236,7 @@ model Fatura {
   lancadoPor    User               @relation("FaturaLancadaPor", fields: [lancadoPorId], references: [id])
   aprovadoPor   User?              @relation("FaturaAprovadaPor", fields: [aprovadoPorId], references: [id])
   liberadoPor   User?              @relation("FaturaLiberadaPor", fields: [liberadoPorId], references: [id])
+  protocoladoPor User?             @relation("FaturaProtocoladaPor", fields: [protocoladoPorId], references: [id])
   baixadoPor    User?              @relation("FaturaBaixadaPor", fields: [baixadoPorId], references: [id])
   estornadoPor  User?              @relation("FaturaEstornadaPor", fields: [estornadoPorId], references: [id])
 

@@ -121,6 +121,7 @@ router.get('/faturas', authorize(...TODOS_PERFIS), async (req, res) => {
           lancadoPor: { select: { nome: true } },
           aprovadoPor: { select: { nome: true } },
           liberadoPor: { select: { nome: true } },
+          protocoladoPor: { select: { nome: true } },
           baixadoPor: { select: { nome: true } },
           baixadoPor: { select: { nome: true } },
         },
@@ -195,6 +196,7 @@ const FATURAS_INCLUDE = {
   lancadoPor: { select: { nome: true } },
   aprovadoPor: { select: { nome: true } },
   liberadoPor: { select: { nome: true } },
+  protocoladoPor: { select: { nome: true } },
   baixadoPor: { select: { nome: true } },
 };
 

@@ -7,6 +7,7 @@ import Cadastros from './pages/Cadastros';
 import LancarFatura from './pages/LancarFatura';
 import Aprovacoes from './pages/Aprovacoes';
 import Pagamentos from './pages/Pagamentos';
+import ConferenciaProtocolo from './pages/ConferenciaProtocolo';
 import Financeiro from './pages/Financeiro';
 import Relatorios from './pages/Relatorios';
 import Usuarios from './pages/Usuarios';
@@ -61,6 +62,7 @@ export default function App() {
         <Route path="lancar-fatura" element={<PrivateRoute module="lancar-fatura"><LancarFatura /></PrivateRoute>} />
         <Route path="aprovacoes" element={<PrivateRoute module="aprovacoes"><Aprovacoes /></PrivateRoute>} />
         <Route path="pagamentos" element={<PrivateRoute module="pagamentos"><Pagamentos /></PrivateRoute>} />
+        <Route path="conferencia-protocolo" element={<PrivateRoute module="conferencia-protocolo"><ConferenciaProtocolo /></PrivateRoute>} />
         <Route path="financeiro" element={<PrivateRoute module="financeiro"><Financeiro /></PrivateRoute>} />
         <Route path="relatorios" element={<PrivateRoute module="relatorios"><Relatorios /></PrivateRoute>} />
         <Route path="usuarios" element={<PrivateRoute module="usuarios"><Usuarios /></PrivateRoute>} />
