@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import { FiX, FiLoader } from 'react-icons/fi';
+import { FiX, FiLoader, FiDownload } from 'react-icons/fi';
 import api from '../services/api';
 import '../styles/processoViewer.css';
+
+// Detecta se é mobile (iOS/Android não suportam iframe com PDF)
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 export default function ProcessoViewer({ fatura, onClose }) {
   const [pdfUrl, setPdfUrl] = useState(null);
@@ -59,15 +62,33 @@ export default function ProcessoViewer({ fatura, onClose }) {
     onClose();
   }
 
+  function handleDownload() {
+    if (!pdfUrl) return;
+    const a = document.createElement('a');
+    a.href = pdfUrl;
+    a.download = `processo-fatura-${fatura.id}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
   return (
     <div className="processo-viewer-overlay" onClick={handleClose}>
       <div className="processo-viewer-modal" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
         <div className="processo-viewer-header">
           <h3 className="processo-viewer-title">Processo Completo — Fatura #{fatura.id}</h3>
-          <button className="processo-viewer-close" onClick={handleClose}>
-            <FiX size={20} />
-          </button>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            {pdfUrl && (
+              <button className="btn btn-secondary btn-sm" onClick={handleDownload} title="Baixar PDF">
+                <FiDownload size={16} />
+                <span style={{ marginLeft: '4px' }}>Baixar</span>
+              </button>
+            )}
+            <button className="processo-viewer-close" onClick={handleClose}>
+              <FiX size={20} />
+            </button>
+          </div>
         </div>
 
         {/* Content */}
@@ -89,11 +110,24 @@ export default function ProcessoViewer({ fatura, onClose }) {
           )}
 
           {pdfUrl && !loading && (
-            <iframe
-              src={pdfUrl}
-              className="processo-viewer-iframe"
-              title="Processo Completo"
-            />
+            isMobile ? (
+              <div className="processo-viewer-mobile">
+                <FiDownload size={48} style={{ color: '#4f8ef7', marginBottom: '16px' }} />
+                <p style={{ marginBottom: '16px', textAlign: 'center', color: '#555' }}>
+                  Visualização de PDF não é suportada neste dispositivo.
+                </p>
+                <button className="btn btn-primary" onClick={handleDownload}>
+                  <FiDownload size={16} style={{ marginRight: '8px' }} />
+                  Baixar PDF do Processo
+                </button>
+              </div>
+            ) : (
+              <iframe
+                src={pdfUrl}
+                className="processo-viewer-iframe"
+                title="Processo Completo"
+              />
+            )
           )}
         </div>
       </div>
