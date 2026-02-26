@@ -49,7 +49,7 @@ export default function ConferenciaProtocolo() {
   async function handleDownloadProcesso() {
     if (!selected) return;
     try {
-      const res = await api.get(`/processo-completo/${selected.id}`, { responseType: 'blob' });
+      const res = await api.get(`/faturas/${selected.id}/processo-completo`, { responseType: 'blob' });
       const url = URL.createObjectURL(res.data);
       const a = document.createElement('a');
       a.href = url;
