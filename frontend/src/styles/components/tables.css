@@ -1,0 +1,52 @@
+/* ======================== */
+/* TABLES                   */
+/* ======================== */
+
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 0.72rem;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--bg);
+  background: #f8fafc;
+  white-space: nowrap;
+}
+
+td {
+  padding: 14px 16px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--bg);
+}
+
+tr.clickable {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+tr.clickable:hover {
+  background: #f1f5f9;
+}
+
+@media (max-width: 768px) {
+  th {
+    padding: 10px 12px;
+    font-size: 0.68rem;
+  }
+
+  td {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Energy Matrix | Executive Control</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d0e12;
+            --panel: #16171d;
+            --accent: #00e5ff;
+            --danger: #ff2d55;
+            --success: #00ffa3;
+            --border: rgba(255,255,255,0.05);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Top Bar */
+        .header-exec {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .header-exec h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; margin: 0; }
+        .header-exec span { color: var(--accent); font-family: 'JetBrains Mono'; font-size: 0.8rem; }
+
+        /* KPI Resumo */
+        .summary-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .stat-item {
+            background: var(--panel);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-item small { display: block; color: #777; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; }
+        .stat-item strong { font-size: 1.2rem; color: #fff; }
+
+        /* Container da Tabela com Scroll */
+        .matrix-wrapper {
+            flex-grow: 1;
+            overflow: auto;
+            background: var(--panel);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+        }
+
+        /* Congelar Coluna e Topo */
+        thead th {
+            position: sticky;
+            top: 0;
+            background: #1c1d24;
+            z-index: 10;
+            padding: 15px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #888;
+            border-bottom: 2px solid var(--bg);
+        }
+
+        .sticky-col {
+            position: sticky;
+            left: 0;
+            background: #16171d !important;
+            z-index: 5;
+            border-right: 2px solid var(--bg);
+            min-width: 220px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        /* Estilo dos Blocos de Fatura */
+        .cell-data {
+            border-radius: 6px;
+            padding: 6px;
+            min-height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .st-ok { 
+            background: rgba(0, 255, 163, 0.05); 
+            border: 1px solid rgba(0, 255, 163, 0.2);
+            color: var(--success);
+        }
+        
+        .st-missing { 
+            background: rgba(255, 45, 85, 0.1); 
+            border: 1px dashed var(--danger);
+            color: var(--danger);
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .st-multi {
+            background: rgba(255, 212, 0, 0.1);
+            border: 1px solid #ffd400;
+            color: #ffd400;
+        }
+
+        .val-money { display: block; font-weight: 700; font-family: 'JetBrains Mono'; font-size: 0.75rem; }
+        .nf-num { font-size: 0.6rem; opacity: 0.6; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.98); opacity: 0.7; }
+            100% { transform: scale(1); }
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="header-exec">
+        <div>
+            <h1>Energy Core Intelligence</h1>
+            <span>// MONITORAMENTO GLOBAL DE FATURAMENTO</span>
+        </div>
+        <div style="text-align: right">
+            <button style="background: var(--accent); border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer;">Exportar Omissões (CSV)</button>
+        </div>
+    </div>
+
+    <div class="summary-bar">
+        <div class="stat-item"><small>Total UCs</small><strong>350</strong></div>
+        <div class="stat-item"><small>Cobertura FEV</small><strong style="color: var(--success);">91.4%</strong></div>
+        <div class="stat-item"><small>Omissões Críticas</small><strong style="color: var(--danger);">30</strong></div>
+        <div class="stat-item"><small>Faturamento Total</small><strong>R$ 1.842.000</strong></div>
+    </div>
+
+    <div class="matrix-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th class="sticky-col">Unidade Consumidora</th>
+                    <th>Jan</th><th>Fev</th><th>Mar</th><th>Abr</th><th>Mai</th><th>Jun</th>
+                    <th>Jul</th><th>Ago</th><th>Set</th><th>Out</th><th>Nov</th><th>Dez</th>
+                </tr>
+            </thead>
+            <tbody id="gridBody">
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+        const tbody = document.getElementById('gridBody');
+
+        // Simulando a massa de dados de 350 UCs
+        for (let i = 1; i <= 350; i++) {
+            const tr = document.createElement('tr');
+            
+            // Coluna Fixa: Nome da UC
+            const tdName = document.createElement('td');
+            tdName.className = 'sticky-col';
+            tdName.innerHTML = `<div style="text-align: left;"><strong>UC-${1000 + i}</strong><br><small style="color: #666;">Filial Norte-Sertão ${i}</small></div>`;
+            tr.appendChild(tdName);
+
+            // Colunas de Meses
+            meses.forEach((mes, mIdx) => {
+                const td = document.createElement('td');
+                
+                // Lógica de Status: Simular omissões em Fev (mIdx 1)
+                let statusClass = 'st-ok';
+                let content = `<span class="val-money">R$ ${(Math.random() * 4000 + 500).toFixed(2)}</span>
+                               <span class="nf-num">NF: ${Math.floor(Math.random()*10000)}</span>`;
+
+                if (mIdx === 1 && i % 12 === 0) { // Simula falhas pontuais
+                    statusClass = 'st-missing';
+                    content = `<span>PENDENTE</span>`;
+                } else if (mIdx === 2) { // Meses futuros (vazio)
+                    statusClass = '';
+                    content = `<span style="color:#333">-</span>`;
+                } else if (i === 5 && mIdx === 0) { // Simula duplicidade
+                    statusClass = 'st-multi';
+                    content = `<span class="val-money">R$ 1.200,00</span>
+                               <span class="nf-num">(2) FATURAS</span>`;
+                }
+
+                td.innerHTML = `<div class="cell-data ${statusClass}">${content}</div>`;
+                tr.appendChild(td);
+            });
+
+            tbody.appendChild(tr);
+        }
+    </script>
+</body>
+</html>

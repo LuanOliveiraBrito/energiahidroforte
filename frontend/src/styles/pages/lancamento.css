@@ -1,0 +1,73 @@
+/* ======================== */
+/* LANÇAR FATURA            */
+/* ======================== */
+
+.split-view {
+  display: flex;
+  height: calc(100vh - 80px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: white;
+}
+
+.viewer-pane {
+  flex: 7;
+  background: #475569;
+  position: relative;
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.viewer-pane iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.drop-zone {
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+
+.drop-zone .drop-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.drop-zone p {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.form-pane {
+  flex: 3;
+  padding: 20px;
+  overflow-y: auto;
+  min-width: 360px;
+}
+
+.form-pane h3 {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .split-view {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .viewer-pane {
+    min-height: 300px;
+  }
+
+  .form-pane {
+    min-width: auto;
+  }
+}

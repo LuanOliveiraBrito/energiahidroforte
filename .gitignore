@@ -1,0 +1,11 @@
+node_modules/
+.env
+uploads/
+logs/
+dist/
+backup.dump
+voltaris.tar.gz
+voltaris-update.tar.gz
+*.log
+.DS_Store
+Thumbs.db

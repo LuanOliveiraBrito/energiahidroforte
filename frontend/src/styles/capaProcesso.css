@@ -1,0 +1,277 @@
+/* ============================================
+   CAPA DE PROCESSO — Layout com Flexbox
+   ============================================ */
+
+.capa-processo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background: #f0f0f0;
+}
+
+.capa-processo {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  padding: 10mm 12mm;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #000;
+}
+
+/* ============ CABEÇALHO ============ */
+.capa-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #999;
+  padding: 12px 16px;
+  min-height: 80px;
+  margin-bottom: -1px;
+}
+
+.capa-header-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.capa-header-logo {
+  text-align: right;
+}
+
+.logo-voltaris {
+  max-height: 65px;
+  max-width: 200px;
+  object-fit: contain;
+}
+
+/* ============ SEÇÕES ============ */
+.capa-section {
+  border: 1px solid #999;
+  margin-bottom: -1px;
+}
+
+.capa-section-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  background: #e8e8e8;
+  border: 1px solid #999;
+  padding: 6px 0;
+  margin-bottom: -1px;
+  margin-top: 4px;
+}
+
+.capa-subsection-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  background: #f0f0f0;
+  padding: 4px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+/* ============ ROWS (Label + Value lado a lado) ============ */
+.capa-row {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid #ccc;
+  min-height: 32px;
+}
+
+.capa-row:last-child {
+  border-bottom: none;
+}
+
+.capa-label {
+  flex: 0 0 170px;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 6px 10px;
+  background: #fafafa;
+  border-right: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.capa-value {
+  flex: 1;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  word-break: break-word;
+  min-height: 32px;
+}
+
+/* Valor em destaque */
+.valor-destaque {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1a5276;
+}
+
+.capa-row-valor {
+  background: #f9f9ff;
+}
+
+/* ============ ROWS DUPLAS (2 campos por linha) ============ */
+.capa-row-double {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid #ccc;
+  min-height: 32px;
+}
+
+.capa-row-double:last-child {
+  border-bottom: none;
+}
+
+.capa-row-half {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+}
+
+.capa-row-half:first-child {
+  border-right: 1px solid #999;
+}
+
+.capa-row-half .capa-label {
+  flex: 0 0 140px;
+  font-size: 11px;
+}
+
+.capa-row-half .capa-value {
+  flex: 1;
+}
+
+/* ============ CHECKBOXES ============ */
+.capa-checkboxes {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.capa-check-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.capa-check-label {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #333;
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #009242;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.checkbox.checked {
+  background: #e8f5e9;
+  border-color: #009242;
+}
+
+/* ============ ASSINATURA ============ */
+.capa-assinatura-area {
+  margin-top: 12px;
+  padding: 0 30px;
+}
+
+.capa-assinatura-espaco {
+  height: 80px;
+}
+
+.capa-assinatura-linha {
+  border-bottom: 1px solid #000;
+  margin: 0 40px;
+}
+
+.capa-assinatura-texto {
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+  padding-top: 6px;
+}
+
+/* ============ SELO ============ */
+.capa-selo {
+  text-align: center;
+  padding: 12px 0 8px;
+}
+
+.selo-img {
+  max-height: 40px;
+  object-fit: contain;
+}
+
+/* ============ PROTOCOLO ============ */
+.capa-protocolo {
+  margin-top: 8px;
+}
+
+.capa-protocol-field {
+  min-height: 28px;
+  border-bottom: 1px dashed #999;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  /* Esconder tudo menos a capa */
+  body * {
+    visibility: hidden;
+  }
+
+  .capa-processo-container,
+  .capa-processo-container * {
+    visibility: visible;
+  }
+
+  .capa-processo-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    background: #fff;
+  }
+
+  .capa-processo {
+    width: 100%;
+    box-shadow: none;
+    padding: 5mm;
+    margin: 0;
+    page-break-after: always;
+  }
+
+  /* Botões de ação não aparecem na impressão */
+  .capa-actions,
+  .btn,
+  .modal-overlay,
+  .sidebar {
+    display: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+}

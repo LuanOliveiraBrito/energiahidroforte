@@ -1,0 +1,2154 @@
+[
+  {
+    "numero": "110101001",
+    "descricao": "CAIXA GERAL"
+  },
+  {
+    "numero": "110301001",
+    "descricao": "VALOR FATURADO - PARTICULARES"
+  },
+  {
+    "numero": "110301004",
+    "descricao": "VALOR FATURADO - PUBLICO"
+  },
+  {
+    "numero": "110306001",
+    "descricao": "(-) PEC - AGUA E ESGOTO"
+  },
+  {
+    "numero": "110307001",
+    "descricao": "VALOR A FATURAR - PARTICULARES AGUA"
+  },
+  {
+    "numero": "111001001",
+    "descricao": "ARRECADACAO A LIBERAR"
+  },
+  {
+    "numero": "110304001",
+    "descricao": "ARRECADACAO A DISCRIMINAR"
+  },
+  {
+    "numero": "110402002",
+    "descricao": "OUTROS ADIANTAMENTOS A TERCEIROS"
+  },
+  {
+    "numero": "110402001",
+    "descricao": "ADIANTAMENTOS A FORNECEDORES"
+  },
+  {
+    "numero": "110401001",
+    "descricao": "ADIANTAMENTOS DE VIAGENS "
+  },
+  {
+    "numero": "110401002",
+    "descricao": "ADIANTAMENTOS DE SALARIOS"
+  },
+  {
+    "numero": "110401003",
+    "descricao": "ADIANTAMENTOS DE 13º. SALARIOS"
+  },
+  {
+    "numero": "110401004",
+    "descricao": "ADIANTAMENTOS DE FERIAS"
+  },
+  {
+    "numero": "110402001",
+    "descricao": "ADIANTAMENTOS A FORNECEDORES"
+  },
+  {
+    "numero": "110402002",
+    "descricao": "OUTROS ADIANTAMENTOS A TERCEIROS"
+  },
+  {
+    "numero": "110402002",
+    "descricao": "OUTROS ADIANTAMENTOS A TERCEIROS"
+  },
+  {
+    "numero": "110601008",
+    "descricao": "OUTROS IMPOSTOS A RECUPERAR"
+  },
+  {
+    "numero": "110601005",
+    "descricao": "IRRF A RECUPERAR"
+  },
+  {
+    "numero": "110601001",
+    "descricao": "PIS A RECUPERAR"
+  },
+  {
+    "numero": "110601002",
+    "descricao": "COFINS A RECUPERAR"
+  },
+  {
+    "numero": "110701020",
+    "descricao": "CREDITOS - NORTE SANEAMENTO"
+  },
+  {
+    "numero": "110501001",
+    "descricao": "ESTOQUE REGULATÓRIO OPERACIONAL"
+  },
+  {
+    "numero": "120403001",
+    "descricao": "ESTOQUES"
+  },
+  {
+    "numero": "110901001",
+    "descricao": "SEGUROS A APROPRIAR"
+  },
+  {
+    "numero": "120503001",
+    "descricao": "OUTORGA FIXA"
+  },
+  {
+    "numero": "120601003",
+    "descricao": "DIREITO DE USO - VEÍCULOS"
+  },
+  {
+    "numero": "120602003",
+    "descricao": "AMORTIZ DIREITO DE USO - VEÍCULOS"
+  },
+  {
+    "numero": "120105003",
+    "descricao": "DEP JUDICIAL - TRABALHISTA E PREVIDENCIARIO"
+  },
+  {
+    "numero": "120104003",
+    "descricao": "IR S/ PREJUIZO FISCAL"
+  },
+  {
+    "numero": "120104004",
+    "descricao": "CSLL S/ PREJUIZO FISCAL"
+  },
+  {
+    "numero": "120104003",
+    "descricao": "IR S/ PREJUIZO FISCAL"
+  },
+  {
+    "numero": "120104004",
+    "descricao": "CSLL S/ PREJUIZO FISCAL"
+  },
+  {
+    "numero": "120301001",
+    "descricao": "TERRENOS"
+  },
+  {
+    "numero": "120301002",
+    "descricao": "EDIFICACOES"
+  },
+  {
+    "numero": "120301004",
+    "descricao": "MAQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "120301005",
+    "descricao": "MOVEIS E UTENSILIOS"
+  },
+  {
+    "numero": "120301006",
+    "descricao": "EQUIPAMENTOS DE INFORMATICA"
+  },
+  {
+    "numero": "120301007",
+    "descricao": "VEICULOS"
+  },
+  {
+    "numero": "120302001",
+    "descricao": "(-)DEPRECIACAO EDIFICACOES E INSTALAÇÕES"
+  },
+  {
+    "numero": "120302003",
+    "descricao": "(-)DEPRECIACAO MAQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "120302004",
+    "descricao": "(-)DEPRECIACAO MOVEIS E UTENSILIOS"
+  },
+  {
+    "numero": "120302005",
+    "descricao": "(-)DEPRECIACAO EQUIP DE INFORMATICA"
+  },
+  {
+    "numero": "120302006",
+    "descricao": "(-)DEPRECIACAO VEICULOS"
+  },
+  {
+    "numero": "120501001",
+    "descricao": "TERRENOS"
+  },
+  {
+    "numero": "120501002",
+    "descricao": "POÇOS"
+  },
+  {
+    "numero": "120501003",
+    "descricao": "EDIFICAÇÕES E INSTALAÇÕES"
+  },
+  {
+    "numero": "120501004",
+    "descricao": "EQUIPAMENTOS ELETROMECANICOS"
+  },
+  {
+    "numero": "120501005",
+    "descricao": "EQUIPAMENTOS EM GERAL"
+  },
+  {
+    "numero": "120401003",
+    "descricao": "OBRAS ANDAMENTO AGUA - EDIFICACOES E INSTALACOES"
+  },
+  {
+    "numero": "120501006",
+    "descricao": "HIDROMETROS"
+  },
+  {
+    "numero": "120501007",
+    "descricao": "REDES DE DISTRIBUIÇÃO"
+  },
+  {
+    "numero": "120501003",
+    "descricao": "EDIFICAÇÕES E INSTALAÇÕES"
+  },
+  {
+    "numero": "120401003",
+    "descricao": "OBRAS ANDAMENTO AGUA - EDIFICACOES E INSTALACOES"
+  },
+  {
+    "numero": "120501001",
+    "descricao": "TERRENOS"
+  },
+  {
+    "numero": "120501008",
+    "descricao": "CONSTRUÇÕES CIVIS"
+  },
+  {
+    "numero": "120501003",
+    "descricao": "EDIFICAÇÕES E INSTALAÇÕES"
+  },
+  {
+    "numero": "120501004",
+    "descricao": "EQUIPAMENTOS ELETROMECANICOS"
+  },
+  {
+    "numero": "120501012",
+    "descricao": "FERRAMENTAS E APARELHOS"
+  },
+  {
+    "numero": "120501005",
+    "descricao": "EQUIPAMENTOS EM GERAL"
+  },
+  {
+    "numero": "120401003",
+    "descricao": "OBRAS ANDAMENTO AGUA - EDIFICACOES E INSTALACOES"
+  },
+  {
+    "numero": "120501007",
+    "descricao": "REDES DE DISTRIBUIÇÃO"
+  },
+  {
+    "numero": "120501005",
+    "descricao": "EQUIPAMENTOS EM GERAL"
+  },
+  {
+    "numero": "120501003",
+    "descricao": "EDIFICAÇÕES E INSTALAÇÕES"
+  },
+  {
+    "numero": "120401003",
+    "descricao": "OBRAS ANDAMENTO AGUA - EDIFICACOES E INSTALACOES"
+  },
+  {
+    "numero": "120501004",
+    "descricao": "EQUIPAMENTOS ELETROMECANICOS"
+  },
+  {
+    "numero": "120401003",
+    "descricao": "OBRAS ANDAMENTO AGUA - EDIFICACOES E INSTALACOES"
+  },
+  {
+    "numero": "120501001",
+    "descricao": "TERRENOS"
+  },
+  {
+    "numero": "120501008",
+    "descricao": "CONSTRUÇÕES CIVIS"
+  },
+  {
+    "numero": "120501003",
+    "descricao": "EDIFICAÇÕES E INSTALAÇÕES"
+  },
+  {
+    "numero": "120501004",
+    "descricao": "EQUIPAMENTOS ELETROMECANICOS"
+  },
+  {
+    "numero": "120501006",
+    "descricao": "HIDROMETROS"
+  },
+  {
+    "numero": "120501010",
+    "descricao": "LIGAÇÕES PREDIAIS"
+  },
+  {
+    "numero": "120501007",
+    "descricao": "REDES DE DISTRIBUIÇÃO"
+  },
+  {
+    "numero": "120501005",
+    "descricao": "EQUIPAMENTOS EM GERAL"
+  },
+  {
+    "numero": "120401003",
+    "descricao": "OBRAS ANDAMENTO AGUA - EDIFICACOES E INSTALACOES"
+  },
+  {
+    "numero": "120501003",
+    "descricao": "EDIFICAÇÕES E INSTALAÇÕES"
+  },
+  {
+    "numero": "120502007",
+    "descricao": "LIGAÇÕES PREDIAIS"
+  },
+  {
+    "numero": "120502005",
+    "descricao": "REDES COLETORAS"
+  },
+  {
+    "numero": "120502005",
+    "descricao": "REDES COLETORAS"
+  },
+  {
+    "numero": "120502003",
+    "descricao": "EQUIPAMENTOS ELETROMECANICOS"
+  },
+  {
+    "numero": "120402002",
+    "descricao": "OBRAS ANDAMENTO ESGOTO - INSTALACOES"
+  },
+  {
+    "numero": "120502002",
+    "descricao": "INSTALAÇÕES"
+  },
+  {
+    "numero": "120502004",
+    "descricao": "EQUIPAMENTOS EM GERAL"
+  },
+  {
+    "numero": "120402002",
+    "descricao": "OBRAS ANDAMENTO ESGOTO - INSTALACOES"
+  },
+  {
+    "numero": "120502001",
+    "descricao": "TERRENOS"
+  },
+  {
+    "numero": "120502006",
+    "descricao": "CONSTRUÇÕES CIVIS"
+  },
+  {
+    "numero": "120502003",
+    "descricao": "EQUIPAMENTOS ELETROMECANICOS"
+  },
+  {
+    "numero": "120502004",
+    "descricao": "EQUIPAMENTOS EM GERAL"
+  },
+  {
+    "numero": "120502004",
+    "descricao": "EQUIPAMENTOS EM GERAL"
+  },
+  {
+    "numero": "120502002",
+    "descricao": "INSTALAÇÕES"
+  },
+  {
+    "numero": "120502005",
+    "descricao": "REDES COLETORAS"
+  },
+  {
+    "numero": "120506001",
+    "descricao": "SOFTWARE OPERACIOANAL"
+  },
+  {
+    "numero": "120506002",
+    "descricao": "MARCAS E PATENTES"
+  },
+  {
+    "numero": "120503001",
+    "descricao": "OUTORGA FIXA"
+  },
+  {
+    "numero": "120202021",
+    "descricao": "MAIS VALIA - HIDROFORTE"
+  },
+  {
+    "numero": "120202021",
+    "descricao": "MAIS VALIA - HIDROFORTE"
+  },
+  {
+    "numero": "120202021",
+    "descricao": "MAIS VALIA - HIDROFORTE"
+  },
+  {
+    "numero": "120202021",
+    "descricao": "MAIS VALIA - HIDROFORTE"
+  },
+  {
+    "numero": "120202021",
+    "descricao": "MAIS VALIA - HIDROFORTE"
+  },
+  {
+    "numero": "120202021",
+    "descricao": "MAIS VALIA - HIDROFORTE"
+  },
+  {
+    "numero": "120510001",
+    "descricao": "(-) AMORTIZAÇÃO MAIS VALIA - CONTRATO DE CONCESSÃO"
+  },
+  {
+    "numero": "120509001",
+    "descricao": "(-)AMORTIZACÃO - OUTORGA MIRANORTE"
+  },
+  {
+    "numero": "120510001",
+    "descricao": "(-) AMORTIZAÇÃO MAIS VALIA - CONTRATO DE CONCESSÃO"
+  },
+  {
+    "numero": "120401003",
+    "descricao": "OBRAS ANDAMENTO AGUA - EDIFICACOES E INSTALACOES"
+  },
+  {
+    "numero": "120401003",
+    "descricao": "OBRAS ANDAMENTO AGUA - EDIFICACOES E INSTALACOES"
+  },
+  {
+    "numero": "120401003",
+    "descricao": "OBRAS ANDAMENTO AGUA - EDIFICACOES E INSTALACOES"
+  },
+  {
+    "numero": "120401003",
+    "descricao": "OBRAS ANDAMENTO AGUA - EDIFICACOES E INSTALACOES"
+  },
+  {
+    "numero": "120401003",
+    "descricao": "OBRAS ANDAMENTO AGUA - EDIFICACOES E INSTALACOES"
+  },
+  {
+    "numero": "120401003",
+    "descricao": "OBRAS ANDAMENTO AGUA - EDIFICACOES E INSTALACOES"
+  },
+  {
+    "numero": "120402002",
+    "descricao": "OBRAS ANDAMENTO ESGOTO - INSTALACOES"
+  },
+  {
+    "numero": "120402002",
+    "descricao": "OBRAS ANDAMENTO ESGOTO - INSTALACOES"
+  },
+  {
+    "numero": "120402002",
+    "descricao": "OBRAS ANDAMENTO ESGOTO - INSTALACOES"
+  },
+  {
+    "numero": "210203003",
+    "descricao": "JUROS SOBRE DEBENTURES"
+  },
+  {
+    "numero": "210101001",
+    "descricao": "FORNECEDORES"
+  },
+  {
+    "numero": "210101001",
+    "descricao": "FORNECEDORES"
+  },
+  {
+    "numero": "210101001",
+    "descricao": "FORNECEDORES"
+  },
+  {
+    "numero": "210101002",
+    "descricao": "FORNECEDORES - PROVISÕES"
+  },
+  {
+    "numero": "210101002",
+    "descricao": "FORNECEDORES - PROVISÕES"
+  },
+  {
+    "numero": "210202002",
+    "descricao": "EMPRÉSTIMOS  CONSIGNADOS - FOLHA"
+  },
+  {
+    "numero": "210702001",
+    "descricao": "OUTORGA VARIÁVEL A PAGAR"
+  },
+  {
+    "numero": "210801001",
+    "descricao": "OUTROS PASSIVOS"
+  },
+  {
+    "numero": "210503001",
+    "descricao": "ISS A RECOLHER"
+  },
+  {
+    "numero": "210503003",
+    "descricao": "OUTROS TRIBUTOS A RECOLHER - MUNICIPAIS"
+  },
+  {
+    "numero": "210501005",
+    "descricao": "OUTROS TRIBUTOS A RECOLHER - FEDERAIS"
+  },
+  {
+    "numero": "210501007",
+    "descricao": "IRRF A RECOLHER"
+  },
+  {
+    "numero": "210501003",
+    "descricao": "INSS A RECOLHER"
+  },
+  {
+    "numero": "210401006",
+    "descricao": "IRRF S/ FOPAG A RECOLHER"
+  },
+  {
+    "numero": "210401004",
+    "descricao": "INSS A RECOLHER"
+  },
+  {
+    "numero": "210501001",
+    "descricao": "PIS A RECOLHER"
+  },
+  {
+    "numero": "210401005",
+    "descricao": "FGTS A RECOLHER"
+  },
+  {
+    "numero": "210502001",
+    "descricao": "ICMS A RECOLHER"
+  },
+  {
+    "numero": "210501002",
+    "descricao": "COFINS A RECOLHER"
+  },
+  {
+    "numero": "210505001",
+    "descricao": "PARCEL SIMPLIFICADO SRF PIS"
+  },
+  {
+    "numero": "210505002",
+    "descricao": "PARCEL SIMPLIFICADO SRF COFINS"
+  },
+  {
+    "numero": "210505003",
+    "descricao": "PARCEL SIMPLIFICADO SRF IRPJ"
+  },
+  {
+    "numero": "210505004",
+    "descricao": "PARCEL SIMPLIFICADO SRF CSLL"
+  },
+  {
+    "numero": "210505006",
+    "descricao": "PARCEL SIMPLIFICADO FEDERAL"
+  },
+  {
+    "numero": "210401001",
+    "descricao": "SALARIOS A PAGAR"
+  },
+  {
+    "numero": "210401002",
+    "descricao": "13° A PAGAR"
+  },
+  {
+    "numero": "210401009",
+    "descricao": "RESCISOES A PAGAR"
+  },
+  {
+    "numero": "210401010",
+    "descricao": "PENSAO ALIMENTICIA A PAGAR"
+  },
+  {
+    "numero": "220101001",
+    "descricao": "EMPRÉSTIMOS BANCÁRIOS"
+  },
+  {
+    "numero": "220201001",
+    "descricao": "ARRENDAMENTOS A PAGAR"
+  },
+  {
+    "numero": "220201002",
+    "descricao": "(-) AJUSTE A VALOR PRESENTE"
+  },
+  {
+    "numero": "220103001",
+    "descricao": "DEBENTURES A PAGAR"
+  },
+  {
+    "numero": "220103002",
+    "descricao": "(-) CUSTOS DE TRANSACAO"
+  },
+  {
+    "numero": "210402001",
+    "descricao": "PROVISÃO DE FÉRIAS"
+  },
+  {
+    "numero": "210402004",
+    "descricao": "PROVISÃO DE 13° SALARIO"
+  },
+  {
+    "numero": "210402006",
+    "descricao": "PROVISÃO DE FGTS S/ 13° SALARIO  "
+  },
+  {
+    "numero": "210402003",
+    "descricao": "PROVISÃO DE FGTS S/ FÉRIAS  "
+  },
+  {
+    "numero": "210402002",
+    "descricao": "PROVISÃO DE INSS S/ FÉRIAS"
+  },
+  {
+    "numero": "210402005",
+    "descricao": "PROVISÃO DE INSS S/ 13° SALARIO"
+  },
+  {
+    "numero": "210402010",
+    "descricao": "OUTRAS PROVISOES TRABALHISTAS"
+  },
+  {
+    "numero": "220201001",
+    "descricao": "ARRENDAMENTOS A PAGAR"
+  },
+  {
+    "numero": "220201002",
+    "descricao": "(-) AJUSTE A VALOR PRESENTE"
+  },
+  {
+    "numero": "220101001",
+    "descricao": "EMPRÉSTIMOS BANCÁRIOS"
+  },
+  {
+    "numero": "220102001",
+    "descricao": "(TRAZER POR INSTITUIÇÃO BANCÁRIA)"
+  },
+  {
+    "numero": "220102001",
+    "descricao": "(TRAZER POR INSTITUIÇÃO BANCÁRIA)"
+  },
+  {
+    "numero": "220102001",
+    "descricao": "(TRAZER POR INSTITUIÇÃO BANCÁRIA)"
+  },
+  {
+    "numero": "220103001",
+    "descricao": "DEBENTURES A PAGAR"
+  },
+  {
+    "numero": "220103002",
+    "descricao": "(-) CUSTOS DE TRANSACAO"
+  },
+  {
+    "numero": "220103001",
+    "descricao": "DEBENTURES A PAGAR"
+  },
+  {
+    "numero": "220103002",
+    "descricao": "(-) CUSTOS DE TRANSACAO"
+  },
+  {
+    "numero": "220602001",
+    "descricao": "PARCEL SIMPLIFICADO SRF PIS"
+  },
+  {
+    "numero": "220602002",
+    "descricao": "PARCEL SIMPLIFICADO SRF COFINS"
+  },
+  {
+    "numero": "220602003",
+    "descricao": "PARCEL SIMPLIFICADO SRF IRPJ"
+  },
+  {
+    "numero": "220602004",
+    "descricao": "PARCEL SIMPLIFICADO SRF CSLL"
+  },
+  {
+    "numero": "220602006",
+    "descricao": "PARCEL SIMPLIFICADO FEDERAL"
+  },
+  {
+    "numero": "220701003",
+    "descricao": "IR S/ GANHO COMPRA VANTAJOSA"
+  },
+  {
+    "numero": "220701004",
+    "descricao": "CS S/ GANHO COMPRA VANTAJOSA"
+  },
+  {
+    "numero": "220701005",
+    "descricao": "IMPOSTO DE RENDA - OUTROS"
+  },
+  {
+    "numero": "220701005",
+    "descricao": "IMPOSTO DE RENDA - OUTROS"
+  },
+  {
+    "numero": "220701001",
+    "descricao": "IR S/ OUTRAS DIFERENÇAS TEMPORÁRIAS"
+  },
+  {
+    "numero": "220701002",
+    "descricao": "CSL S/ OUTRAS DIFERENÇAS TEMPORÁRIAS"
+  },
+  {
+    "numero": "220701001",
+    "descricao": "IR S/ OUTRAS DIFERENÇAS TEMPORÁRIAS"
+  },
+  {
+    "numero": "220701002",
+    "descricao": "CSL S/ OUTRAS DIFERENÇAS TEMPORÁRIAS"
+  },
+  {
+    "numero": "220701005",
+    "descricao": "IMPOSTO DE RENDA - OUTROS"
+  },
+  {
+    "numero": "220701005",
+    "descricao": "IMPOSTO DE RENDA - OUTROS"
+  },
+  {
+    "numero": "220701005",
+    "descricao": "IMPOSTO DE RENDA - OUTROS"
+  },
+  {
+    "numero": "220701005",
+    "descricao": "IMPOSTO DE RENDA - OUTROS"
+  },
+  {
+    "numero": "210601020",
+    "descricao": "OUTROS PASSIVOS - NORTE SANEAMENTO"
+  },
+  {
+    "numero": "230101001",
+    "descricao": "CAPITAL SOCIAL SUBSCRITO"
+  },
+  {
+    "numero": "230101001",
+    "descricao": "CAPITAL SOCIAL SUBSCRITO"
+  },
+  {
+    "numero": "230201001",
+    "descricao": "ÁGIO NA EMISSÃO DE AÇÕES"
+  },
+  {
+    "numero": "230301001",
+    "descricao": "RESERVA LEGAL"
+  },
+  {
+    "numero": "230301002",
+    "descricao": "RESERVA DE LUCROS A REALIZAR"
+  },
+  {
+    "numero": "230501001",
+    "descricao": "LUCROS (PREJUÍZOS) ACUMULADOS"
+  },
+  {
+    "numero": "230501001",
+    "descricao": "LUCROS (PREJUÍZOS) ACUMULADOS"
+  },
+  {
+    "numero": "310101001",
+    "descricao": "VALOR FATURADO - PARTICULAR"
+  },
+  {
+    "numero": "310101002",
+    "descricao": "(-) DESCONTOS INCONDICIONAIS - PARTICULAR"
+  },
+  {
+    "numero": "310102001",
+    "descricao": "VALOR FATURADO - PUBLICO"
+  },
+  {
+    "numero": "310102002",
+    "descricao": "(-) DESCONTOS INCONDICIONAIS - PUBLICO"
+  },
+  {
+    "numero": "310106001",
+    "descricao": "LIGACOES"
+  },
+  {
+    "numero": "310106002",
+    "descricao": "RELIGACOES"
+  },
+  {
+    "numero": "310106003",
+    "descricao": "MANUTENÇÃO KIT CAVALETE"
+  },
+  {
+    "numero": "310106001",
+    "descricao": "LIGACOES"
+  },
+  {
+    "numero": "310106004",
+    "descricao": "INSTALAÇÃO KIT CAVALETE"
+  },
+  {
+    "numero": "310103001",
+    "descricao": "VALOR FATURADO - PARTICULAR"
+  },
+  {
+    "numero": "310104001",
+    "descricao": "VALOR FATURADO - PUBLICO"
+  },
+  {
+    "numero": "310106001",
+    "descricao": "LIGACOES"
+  },
+  {
+    "numero": "310103002",
+    "descricao": "(-) DESCONTOS INCONDICIONAIS - PARTICULAR"
+  },
+  {
+    "numero": "310202001",
+    "descricao": "ESGOTAMENTO SANITÁRIO A FATURAR - PARTICULAR"
+  },
+  {
+    "numero": "310106005",
+    "descricao": "ANALISE AGUA"
+  },
+  {
+    "numero": "310106006",
+    "descricao": "SEGUNDA VIA "
+  },
+  {
+    "numero": "310106007",
+    "descricao": "REAVISO"
+  },
+  {
+    "numero": "310106011",
+    "descricao": "OUTRAS RECEITAS AGUA"
+  },
+  {
+    "numero": "310106011",
+    "descricao": "OUTRAS RECEITAS AGUA"
+  },
+  {
+    "numero": "310106008",
+    "descricao": "MULTAS POR INFRAÇÃO"
+  },
+  {
+    "numero": "310106008",
+    "descricao": "MULTAS POR INFRAÇÃO"
+  },
+  {
+    "numero": "510101003",
+    "descricao": "JUROS E CORR. MONETARIA -  CONTAS A RECEBER "
+  },
+  {
+    "numero": "310106009",
+    "descricao": "DISPONIBILIDADE DE REDE AGUA"
+  },
+  {
+    "numero": "310106011",
+    "descricao": "OUTRAS RECEITAS AGUA"
+  },
+  {
+    "numero": "310106011",
+    "descricao": "OUTRAS RECEITAS AGUA"
+  },
+  {
+    "numero": "310201001",
+    "descricao": "ABASTECIMENTO DE ÁGUA A FATURAR - PARTICULAR"
+  },
+  {
+    "numero": "310202001",
+    "descricao": "ESGOTAMENTO SANITÁRIO A FATURAR - PARTICULAR"
+  },
+  {
+    "numero": "310101003",
+    "descricao": "(-) CANCELAMENTO DE VENDAS PARTICULAR"
+  },
+  {
+    "numero": "310103003",
+    "descricao": "(-) CANCELAMENTO DE VENDAS PARTICULAR"
+  },
+  {
+    "numero": "310102003",
+    "descricao": "(-) CANCELAMENTO DE VENDAS PUBLICO"
+  },
+  {
+    "numero": "310104003",
+    "descricao": "(-) CANCELAMENTO DE VENDAS PUBLICO"
+  },
+  {
+    "numero": "510101005",
+    "descricao": "JUROS - OUTROS"
+  },
+  {
+    "numero": "510101005",
+    "descricao": "JUROS - OUTROS"
+  },
+  {
+    "numero": "520101002",
+    "descricao": "DESPESA C/ JUROS - MUTUOS"
+  },
+  {
+    "numero": "510101003",
+    "descricao": "JUROS E CORR. MONETARIA -  CONTAS A RECEBER "
+  },
+  {
+    "numero": "320101001",
+    "descricao": "RECEITAS DE CONSTRUÇÃO"
+  },
+  {
+    "numero": "310301001",
+    "descricao": "PIS S/ RECEITA BRUTA "
+  },
+  {
+    "numero": "310301002",
+    "descricao": "COFINS S/ RECEITA BRUTA "
+  },
+  {
+    "numero": "310101003",
+    "descricao": "(-) CANCELAMENTO DE VENDAS PARTICULAR"
+  },
+  {
+    "numero": "310103003",
+    "descricao": "(-) CANCELAMENTO DE VENDAS PARTICULAR"
+  },
+  {
+    "numero": "310102003",
+    "descricao": "(-) CANCELAMENTO DE VENDAS PUBLICO"
+  },
+  {
+    "numero": "310104003",
+    "descricao": "(-) CANCELAMENTO DE VENDAS PUBLICO"
+  },
+  {
+    "numero": "310101004",
+    "descricao": "(-) DEVOLUCOES DE VENDAS PARTICULAR"
+  },
+  {
+    "numero": "330101001",
+    "descricao": "SALÁRIOS E ORDENADOS"
+  },
+  {
+    "numero": "330101002",
+    "descricao": "HORAS EXTRAS"
+  },
+  {
+    "numero": "330101001",
+    "descricao": "SALÁRIOS E ORDENADOS"
+  },
+  {
+    "numero": "330101006",
+    "descricao": "AVISO PREVIO "
+  },
+  {
+    "numero": "330101004",
+    "descricao": "GRATIFICACÕES"
+  },
+  {
+    "numero": "330101008",
+    "descricao": "FERIAS"
+  },
+  {
+    "numero": "330101009",
+    "descricao": "13º SALARIOS"
+  },
+  {
+    "numero": "330103001",
+    "descricao": "PREVIDENCIA SOCIAL"
+  },
+  {
+    "numero": "330103002",
+    "descricao": "FGTS"
+  },
+  {
+    "numero": "330103001",
+    "descricao": "PREVIDENCIA SOCIAL"
+  },
+  {
+    "numero": "330102001",
+    "descricao": "ALIMENTACAO TRABALHADOR"
+  },
+  {
+    "numero": "330102002",
+    "descricao": "TREINAMENTO"
+  },
+  {
+    "numero": "330102003",
+    "descricao": "VALE TRANSPORTE TRABALHADOR"
+  },
+  {
+    "numero": "330102004",
+    "descricao": "ASSIST. MEDICAS AO EMPREGADO"
+  },
+  {
+    "numero": "330102006",
+    "descricao": "EXAMES MEDICOS"
+  },
+  {
+    "numero": "330101002",
+    "descricao": "HORAS EXTRAS"
+  },
+  {
+    "numero": "330201001",
+    "descricao": "MATERIAL DE EXPEDIENTE, USO E CONSUMO"
+  },
+  {
+    "numero": "330203001",
+    "descricao": "MANUTENCAO DE INSTALAÇÕES OPERAC"
+  },
+  {
+    "numero": "330201010",
+    "descricao": "MATERIAIS DE LIMPEZA E HIGIENE"
+  },
+  {
+    "numero": "330202002",
+    "descricao": "MATERIAL LABORATORIAL"
+  },
+  {
+    "numero": "330202001",
+    "descricao": "MATERIAL DE TRATAMENTO"
+  },
+  {
+    "numero": "330201003",
+    "descricao": "HIDRAULICOS / HIDROMETROS"
+  },
+  {
+    "numero": "330201004",
+    "descricao": "FERRAMENTAS E ACESSÓRIOS"
+  },
+  {
+    "numero": "330201002",
+    "descricao": "COMBUSTÍVEIS E LUBRIFICANTES"
+  },
+  {
+    "numero": "330201002",
+    "descricao": "COMBUSTÍVEIS E LUBRIFICANTES"
+  },
+  {
+    "numero": "330201009",
+    "descricao": "MATERIAIS DE PROPAGANDA"
+  },
+  {
+    "numero": "330201005",
+    "descricao": "MATERIAIS DE SEGURANÇA (EPI/EPC)"
+  },
+  {
+    "numero": "330201011",
+    "descricao": "MATERIAIS DE INFORMATICA"
+  },
+  {
+    "numero": "330203006",
+    "descricao": "MANUTENCAO DE VEICULOS"
+  },
+  {
+    "numero": "330203004",
+    "descricao": "MANUTENCAO DE MAQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330201006",
+    "descricao": "MATERIAIS ELETRICOS"
+  },
+  {
+    "numero": "330201019",
+    "descricao": "AJUSTES DE INVENTARIOS"
+  },
+  {
+    "numero": "330201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "330201007",
+    "descricao": "UNIFORMES EM GERAL"
+  },
+  {
+    "numero": "330201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "330203005",
+    "descricao": "MANUTENCAO DE REDES"
+  },
+  {
+    "numero": "330203001",
+    "descricao": "MANUTENCAO DE INSTALAÇÕES OPERAC"
+  },
+  {
+    "numero": "330301006",
+    "descricao": "SERVICO DE LIMPEZA E HIGIENE"
+  },
+  {
+    "numero": "330301099",
+    "descricao": "OUTROS SERVIÇOS DE TERCEIROS"
+  },
+  {
+    "numero": "330203004",
+    "descricao": "MANUTENCAO DE MAQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330303001",
+    "descricao": "ANUNCIOS E PUBLICACOES"
+  },
+  {
+    "numero": "330401001",
+    "descricao": "ENERGIAS ELETRICAS-FORCA"
+  },
+  {
+    "numero": "330301002",
+    "descricao": "FRETES E CARRETOS "
+  },
+  {
+    "numero": "330302001",
+    "descricao": "ALUGUEL DE MÁQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330301001",
+    "descricao": "SERVIÇOS DE LABORATÓRIOS"
+  },
+  {
+    "numero": "330301008",
+    "descricao": "SERVICOS GRAFICOS"
+  },
+  {
+    "numero": "330203003",
+    "descricao": "MANUTENCAO DE INFORMATICA E TELEFONIA"
+  },
+  {
+    "numero": "330203006",
+    "descricao": "MANUTENCAO DE VEICULOS"
+  },
+  {
+    "numero": "330203004",
+    "descricao": "MANUTENCAO DE MAQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330203004",
+    "descricao": "MANUTENCAO DE MAQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330302002",
+    "descricao": "LOCACOES DE VEICULOS "
+  },
+  {
+    "numero": "330302003",
+    "descricao": "ALUGUEL DE IMOVEIS"
+  },
+  {
+    "numero": "330302001",
+    "descricao": "ALUGUEL DE MÁQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330301003",
+    "descricao": "SEGUROS"
+  },
+  {
+    "numero": "330301099",
+    "descricao": "OUTROS SERVIÇOS DE TERCEIROS"
+  },
+  {
+    "numero": "330501001",
+    "descricao": "SEGUROS"
+  },
+  {
+    "numero": "330501002",
+    "descricao": "VIAGENS"
+  },
+  {
+    "numero": "330501003",
+    "descricao": "REFEIÇÕES/ESTADIAS"
+  },
+  {
+    "numero": "330501004",
+    "descricao": "EMOLUMENTOS E CARTORIOS"
+  },
+  {
+    "numero": "330501005",
+    "descricao": "CUSTOS C/ REG. E FISCALIZACOES"
+  },
+  {
+    "numero": "330501003",
+    "descricao": "REFEIÇÕES/ESTADIAS"
+  },
+  {
+    "numero": "330801001",
+    "descricao": "DEPRECIACOES"
+  },
+  {
+    "numero": "330801002",
+    "descricao": "AMORTIZACOES - INTANGÍVEL"
+  },
+  {
+    "numero": "330101001",
+    "descricao": "SALÁRIOS E ORDENADOS"
+  },
+  {
+    "numero": "330101002",
+    "descricao": "HORAS EXTRAS"
+  },
+  {
+    "numero": "330101001",
+    "descricao": "SALÁRIOS E ORDENADOS"
+  },
+  {
+    "numero": "330101006",
+    "descricao": "AVISO PREVIO "
+  },
+  {
+    "numero": "330101004",
+    "descricao": "GRATIFICACÕES"
+  },
+  {
+    "numero": "330101008",
+    "descricao": "FERIAS"
+  },
+  {
+    "numero": "330101009",
+    "descricao": "13º SALARIOS"
+  },
+  {
+    "numero": "330103001",
+    "descricao": "PREVIDENCIA SOCIAL"
+  },
+  {
+    "numero": "330103002",
+    "descricao": "FGTS"
+  },
+  {
+    "numero": "330103001",
+    "descricao": "PREVIDENCIA SOCIAL"
+  },
+  {
+    "numero": "330101007",
+    "descricao": "INDENIZAÇÕES"
+  },
+  {
+    "numero": "330102001",
+    "descricao": "ALIMENTACAO TRABALHADOR"
+  },
+  {
+    "numero": "330102002",
+    "descricao": "TREINAMENTO"
+  },
+  {
+    "numero": "330102003",
+    "descricao": "VALE TRANSPORTE TRABALHADOR"
+  },
+  {
+    "numero": "330102004",
+    "descricao": "ASSIST. MEDICAS AO EMPREGADO"
+  },
+  {
+    "numero": "330102006",
+    "descricao": "EXAMES MEDICOS"
+  },
+  {
+    "numero": "330101002",
+    "descricao": "HORAS EXTRAS"
+  },
+  {
+    "numero": "330101010",
+    "descricao": "ESTAGIÁRIOS"
+  },
+  {
+    "numero": "330201001",
+    "descricao": "MATERIAL DE EXPEDIENTE, USO E CONSUMO"
+  },
+  {
+    "numero": "330203001",
+    "descricao": "MANUTENCAO DE INSTALAÇÕES OPERAC"
+  },
+  {
+    "numero": "330201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "330201010",
+    "descricao": "MATERIAIS DE LIMPEZA E HIGIENE"
+  },
+  {
+    "numero": "330203004",
+    "descricao": "MANUTENCAO DE MAQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330202002",
+    "descricao": "MATERIAL LABORATORIAL"
+  },
+  {
+    "numero": "330202001",
+    "descricao": "MATERIAL DE TRATAMENTO"
+  },
+  {
+    "numero": "330201003",
+    "descricao": "HIDRAULICOS / HIDROMETROS"
+  },
+  {
+    "numero": "330201003",
+    "descricao": "HIDRAULICOS / HIDROMETROS"
+  },
+  {
+    "numero": "330201004",
+    "descricao": "FERRAMENTAS E ACESSÓRIOS"
+  },
+  {
+    "numero": "330201002",
+    "descricao": "COMBUSTÍVEIS E LUBRIFICANTES"
+  },
+  {
+    "numero": "330201002",
+    "descricao": "COMBUSTÍVEIS E LUBRIFICANTES"
+  },
+  {
+    "numero": "330201009",
+    "descricao": "MATERIAIS DE PROPAGANDA"
+  },
+  {
+    "numero": "330201005",
+    "descricao": "MATERIAIS DE SEGURANÇA (EPI/EPC)"
+  },
+  {
+    "numero": "330201011",
+    "descricao": "MATERIAIS DE INFORMATICA"
+  },
+  {
+    "numero": "330201011",
+    "descricao": "MATERIAIS DE INFORMATICA"
+  },
+  {
+    "numero": "330203006",
+    "descricao": "MANUTENCAO DE VEICULOS"
+  },
+  {
+    "numero": "330203004",
+    "descricao": "MANUTENCAO DE MAQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330201006",
+    "descricao": "MATERIAIS ELETRICOS"
+  },
+  {
+    "numero": "330201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "330201019",
+    "descricao": "AJUSTES DE INVENTARIOS"
+  },
+  {
+    "numero": "330201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "330201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "330201007",
+    "descricao": "UNIFORMES EM GERAL"
+  },
+  {
+    "numero": "330203005",
+    "descricao": "MANUTENCAO DE REDES"
+  },
+  {
+    "numero": "330203001",
+    "descricao": "MANUTENCAO DE INSTALAÇÕES OPERAC"
+  },
+  {
+    "numero": "330301006",
+    "descricao": "SERVICO DE LIMPEZA E HIGIENE"
+  },
+  {
+    "numero": "330301099",
+    "descricao": "OUTROS SERVIÇOS DE TERCEIROS"
+  },
+  {
+    "numero": "330203004",
+    "descricao": "MANUTENCAO DE MAQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330303001",
+    "descricao": "ANUNCIOS E PUBLICACOES"
+  },
+  {
+    "numero": "330401001",
+    "descricao": "ENERGIAS ELETRICAS-FORCA"
+  },
+  {
+    "numero": "330301002",
+    "descricao": "FRETES E CARRETOS "
+  },
+  {
+    "numero": "330302001",
+    "descricao": "ALUGUEL DE MÁQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330302001",
+    "descricao": "ALUGUEL DE MÁQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330301001",
+    "descricao": "SERVIÇOS DE LABORATÓRIOS"
+  },
+  {
+    "numero": "330301008",
+    "descricao": "SERVICOS GRAFICOS"
+  },
+  {
+    "numero": "330302003",
+    "descricao": "ALUGUEL DE IMOVEIS"
+  },
+  {
+    "numero": "330203003",
+    "descricao": "MANUTENCAO DE INFORMATICA E TELEFONIA"
+  },
+  {
+    "numero": "330203006",
+    "descricao": "MANUTENCAO DE VEICULOS"
+  },
+  {
+    "numero": "330203004",
+    "descricao": "MANUTENCAO DE MAQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330203004",
+    "descricao": "MANUTENCAO DE MAQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330301011",
+    "descricao": "SERVICOS DE EXECUÇAO DE OBRAS CIVIS"
+  },
+  {
+    "numero": "330302002",
+    "descricao": "LOCACOES DE VEICULOS "
+  },
+  {
+    "numero": "330302003",
+    "descricao": "ALUGUEL DE IMOVEIS"
+  },
+  {
+    "numero": "330302001",
+    "descricao": "ALUGUEL DE MÁQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "330301003",
+    "descricao": "SEGUROS"
+  },
+  {
+    "numero": "330301003",
+    "descricao": "SEGUROS"
+  },
+  {
+    "numero": "330301099",
+    "descricao": "OUTROS SERVIÇOS DE TERCEIROS"
+  },
+  {
+    "numero": "330301011",
+    "descricao": "SERVICOS DE EXECUÇAO DE OBRAS CIVIS"
+  },
+  {
+    "numero": "330501001",
+    "descricao": "SEGUROS"
+  },
+  {
+    "numero": "330501002",
+    "descricao": "VIAGENS"
+  },
+  {
+    "numero": "330501003",
+    "descricao": "REFEIÇÕES/ESTADIAS"
+  },
+  {
+    "numero": "330501001",
+    "descricao": "SEGUROS"
+  },
+  {
+    "numero": "330501004",
+    "descricao": "EMOLUMENTOS E CARTORIOS"
+  },
+  {
+    "numero": "330501005",
+    "descricao": "CUSTOS C/ REG. E FISCALIZACOES"
+  },
+  {
+    "numero": "330501006",
+    "descricao": "ANUIDADE DE CONSELHO DE CLASSE"
+  },
+  {
+    "numero": "330501003",
+    "descricao": "REFEIÇÕES/ESTADIAS"
+  },
+  {
+    "numero": "350103001",
+    "descricao": "INDENIZ/RESSARC. DESPESAS"
+  },
+  {
+    "numero": "330801001",
+    "descricao": "DEPRECIACOES"
+  },
+  {
+    "numero": "330801002",
+    "descricao": "AMORTIZACOES - INTANGÍVEL"
+  },
+  {
+    "numero": "330801002",
+    "descricao": "AMORTIZACOES - INTANGÍVEL"
+  },
+  {
+    "numero": "330901001",
+    "descricao": "CUSTOS DE CONSTRUCAO"
+  },
+  {
+    "numero": "330502009",
+    "descricao": "(-) CREDITO DE PIS E COFINS - CUSTO"
+  },
+  {
+    "numero": "330502009",
+    "descricao": "(-) CREDITO DE PIS E COFINS - CUSTO"
+  },
+  {
+    "numero": "340101001",
+    "descricao": "SALÁRIOS E ORDENADOS"
+  },
+  {
+    "numero": "340101002",
+    "descricao": "HORAS EXTRAS"
+  },
+  {
+    "numero": "340101001",
+    "descricao": "SALÁRIOS E ORDENADOS"
+  },
+  {
+    "numero": "340101006",
+    "descricao": "AVISO PREVIO "
+  },
+  {
+    "numero": "340101004",
+    "descricao": "GRATIFICACÕES"
+  },
+  {
+    "numero": "340101008",
+    "descricao": "FERIAS"
+  },
+  {
+    "numero": "340101009",
+    "descricao": "13º SALARIOS"
+  },
+  {
+    "numero": "340103001",
+    "descricao": "PREVIDENCIA SOCIAL"
+  },
+  {
+    "numero": "340103002",
+    "descricao": "FGTS"
+  },
+  {
+    "numero": "340103001",
+    "descricao": "PREVIDENCIA SOCIAL"
+  },
+  {
+    "numero": "340101006",
+    "descricao": "AVISO PREVIO "
+  },
+  {
+    "numero": "340102001",
+    "descricao": "ALIMENTACAO TRABALHADOR"
+  },
+  {
+    "numero": "340102002",
+    "descricao": "TREINAMENTO"
+  },
+  {
+    "numero": "340101010",
+    "descricao": "PARTICIPAÇÃO NOS LUCROS E RESULTADOS"
+  },
+  {
+    "numero": "340102003",
+    "descricao": "VALE TRANSPORTE TRABALHADOR"
+  },
+  {
+    "numero": "340102004",
+    "descricao": "ASSIST. MEDICAS AO EMPREGADO"
+  },
+  {
+    "numero": "340102004",
+    "descricao": "ASSIST. MEDICAS AO EMPREGADO"
+  },
+  {
+    "numero": "340102006",
+    "descricao": "EXAMES MEDICOS"
+  },
+  {
+    "numero": "340101002",
+    "descricao": "HORAS EXTRAS"
+  },
+  {
+    "numero": "340101011",
+    "descricao": "ESTAGIÁRIOS"
+  },
+  {
+    "numero": "340201001",
+    "descricao": "MATERIAL DE EXPEDIENTE, USO E CONSUMO"
+  },
+  {
+    "numero": "340202099",
+    "descricao": "OUTRAS MANUTENCOES"
+  },
+  {
+    "numero": "340201008",
+    "descricao": "MATERIAIS DE LIMPEZA E HIGIENE"
+  },
+  {
+    "numero": "340201003",
+    "descricao": "COMBUSTÍVEIS E LUBRIFICANTES"
+  },
+  {
+    "numero": "340201007",
+    "descricao": "MATERIAIS DE PROPAGANDA"
+  },
+  {
+    "numero": "340201006",
+    "descricao": "MATERIAIS DE SEGURANÇA (EPI/EPC)"
+  },
+  {
+    "numero": "340201009",
+    "descricao": "MATERIAIS DE INFORMATICA"
+  },
+  {
+    "numero": "340201009",
+    "descricao": "MATERIAIS DE INFORMATICA"
+  },
+  {
+    "numero": "340202004",
+    "descricao": "MANUTENCAO DE VEICULOS"
+  },
+  {
+    "numero": "340201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "340201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "340201005",
+    "descricao": "UNIFORMES EM GERAL"
+  },
+  {
+    "numero": "340201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "340202099",
+    "descricao": "OUTRAS MANUTENCOES"
+  },
+  {
+    "numero": "340302004",
+    "descricao": "SERVICO DE LIMPEZA E HIGIENE"
+  },
+  {
+    "numero": "340302099",
+    "descricao": "OUTROS SERVIÇOS DE TERCEIROS"
+  },
+  {
+    "numero": "340302007",
+    "descricao": "TECNOLOGIA DA INFORMAÇÃO"
+  },
+  {
+    "numero": "340302006",
+    "descricao": "SERVICOS GRAFICOS"
+  },
+  {
+    "numero": "340303001",
+    "descricao": "ANUNCIOS E PUBLICACOES"
+  },
+  {
+    "numero": "340401001",
+    "descricao": "ENERGIAS ELETRICAS-FORCA"
+  },
+  {
+    "numero": "340302001",
+    "descricao": "FRETES E CARRETOS "
+  },
+  {
+    "numero": "340301001",
+    "descricao": "LOCAÇÕES E MÁQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "340302006",
+    "descricao": "SERVICOS GRAFICOS"
+  },
+  {
+    "numero": "340301003",
+    "descricao": "ALUGUEL DE IMOVEIS"
+  },
+  {
+    "numero": "340202002",
+    "descricao": "MANUTENCAO DE INFORMATICA E TELEFONIA"
+  },
+  {
+    "numero": "340202004",
+    "descricao": "MANUTENCAO DE VEICULOS"
+  },
+  {
+    "numero": "340301002",
+    "descricao": "LOCACOES DE VEICULOS "
+  },
+  {
+    "numero": "340301003",
+    "descricao": "ALUGUEL DE IMOVEIS"
+  },
+  {
+    "numero": "340302002",
+    "descricao": "SEGUROS"
+  },
+  {
+    "numero": "340302099",
+    "descricao": "OUTROS SERVIÇOS DE TERCEIROS"
+  },
+  {
+    "numero": "340302099",
+    "descricao": "OUTROS SERVIÇOS DE TERCEIROS"
+  },
+  {
+    "numero": "340501001",
+    "descricao": "SEGUROS"
+  },
+  {
+    "numero": "340501002",
+    "descricao": "VIAGENS"
+  },
+  {
+    "numero": "340501003",
+    "descricao": "REFEIÇÕES/ESTADIAS"
+  },
+  {
+    "numero": "340501004",
+    "descricao": "EMOLUMENTOS E CARTORIOS"
+  },
+  {
+    "numero": "340101011",
+    "descricao": "ESTAGIÁRIOS"
+  },
+  {
+    "numero": "340501003",
+    "descricao": "REFEIÇÕES/ESTADIAS"
+  },
+  {
+    "numero": "340101001",
+    "descricao": "SALÁRIOS E ORDENADOS"
+  },
+  {
+    "numero": "340601001",
+    "descricao": "DEPRECIAÇÃO"
+  },
+  {
+    "numero": "340601002",
+    "descricao": "AMORTIZAÇÃO"
+  },
+  {
+    "numero": "340901001",
+    "descricao": "PARTICULARES - CONTÁBIL"
+  },
+  {
+    "numero": "340901002",
+    "descricao": "PÚBLICO - CONTÁBIL"
+  },
+  {
+    "numero": "340101001",
+    "descricao": "SALÁRIOS E ORDENADOS"
+  },
+  {
+    "numero": "340101002",
+    "descricao": "HORAS EXTRAS"
+  },
+  {
+    "numero": "340101001",
+    "descricao": "SALÁRIOS E ORDENADOS"
+  },
+  {
+    "numero": "340101006",
+    "descricao": "AVISO PREVIO "
+  },
+  {
+    "numero": "340101004",
+    "descricao": "GRATIFICACÕES"
+  },
+  {
+    "numero": "340101005",
+    "descricao": "HONORÁRIOS DA DIRETORIA"
+  },
+  {
+    "numero": "340101008",
+    "descricao": "FERIAS"
+  },
+  {
+    "numero": "340101009",
+    "descricao": "13º SALARIOS"
+  },
+  {
+    "numero": "340103001",
+    "descricao": "PREVIDENCIA SOCIAL"
+  },
+  {
+    "numero": "340103002",
+    "descricao": "FGTS"
+  },
+  {
+    "numero": "340103001",
+    "descricao": "PREVIDENCIA SOCIAL"
+  },
+  {
+    "numero": "340101006",
+    "descricao": "AVISO PREVIO "
+  },
+  {
+    "numero": "340102001",
+    "descricao": "ALIMENTACAO TRABALHADOR"
+  },
+  {
+    "numero": "340102002",
+    "descricao": "TREINAMENTO"
+  },
+  {
+    "numero": "340102003",
+    "descricao": "VALE TRANSPORTE TRABALHADOR"
+  },
+  {
+    "numero": "340102004",
+    "descricao": "ASSIST. MEDICAS AO EMPREGADO"
+  },
+  {
+    "numero": "340102004",
+    "descricao": "ASSIST. MEDICAS AO EMPREGADO"
+  },
+  {
+    "numero": "340102006",
+    "descricao": "EXAMES MEDICOS"
+  },
+  {
+    "numero": "340101002",
+    "descricao": "HORAS EXTRAS"
+  },
+  {
+    "numero": "340101011",
+    "descricao": "ESTAGIÁRIOS"
+  },
+  {
+    "numero": "340101001",
+    "descricao": "SALÁRIOS E ORDENADOS"
+  },
+  {
+    "numero": "340201001",
+    "descricao": "MATERIAL DE EXPEDIENTE, USO E CONSUMO"
+  },
+  {
+    "numero": "340202099",
+    "descricao": "OUTRAS MANUTENCOES"
+  },
+  {
+    "numero": "340201008",
+    "descricao": "MATERIAIS DE LIMPEZA E HIGIENE"
+  },
+  {
+    "numero": "340201004",
+    "descricao": "FERRAMENTAS E ACESSÓRIOS"
+  },
+  {
+    "numero": "340201003",
+    "descricao": "COMBUSTÍVEIS E LUBRIFICANTES"
+  },
+  {
+    "numero": "340201007",
+    "descricao": "MATERIAIS DE PROPAGANDA"
+  },
+  {
+    "numero": "340201006",
+    "descricao": "MATERIAIS DE SEGURANÇA (EPI/EPC)"
+  },
+  {
+    "numero": "340201009",
+    "descricao": "MATERIAIS DE INFORMATICA"
+  },
+  {
+    "numero": "340201009",
+    "descricao": "MATERIAIS DE INFORMATICA"
+  },
+  {
+    "numero": "340202004",
+    "descricao": "MANUTENCAO DE VEICULOS"
+  },
+  {
+    "numero": "340201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "340201019",
+    "descricao": "AJUSTES DE INVENTARIOS"
+  },
+  {
+    "numero": "340201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "340201005",
+    "descricao": "UNIFORMES EM GERAL"
+  },
+  {
+    "numero": "340201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "340201099",
+    "descricao": "OUTROS MATERIAIS"
+  },
+  {
+    "numero": "340202099",
+    "descricao": "OUTRAS MANUTENCOES"
+  },
+  {
+    "numero": "340302004",
+    "descricao": "SERVICO DE LIMPEZA E HIGIENE"
+  },
+  {
+    "numero": "340302099",
+    "descricao": "OUTROS SERVIÇOS DE TERCEIROS"
+  },
+  {
+    "numero": "340302007",
+    "descricao": "TECNOLOGIA DA INFORMAÇÃO"
+  },
+  {
+    "numero": "340302006",
+    "descricao": "SERVICOS GRAFICOS"
+  },
+  {
+    "numero": "340303001",
+    "descricao": "ANUNCIOS E PUBLICACOES"
+  },
+  {
+    "numero": "340401001",
+    "descricao": "ENERGIAS ELETRICAS-FORCA"
+  },
+  {
+    "numero": "340302001",
+    "descricao": "FRETES E CARRETOS "
+  },
+  {
+    "numero": "340301001",
+    "descricao": "LOCAÇÕES E MÁQUINAS E EQUIPAMENTOS"
+  },
+  {
+    "numero": "340303001",
+    "descricao": "ANUNCIOS E PUBLICACOES"
+  },
+  {
+    "numero": "340302006",
+    "descricao": "SERVICOS GRAFICOS"
+  },
+  {
+    "numero": "340301003",
+    "descricao": "ALUGUEL DE IMOVEIS"
+  },
+  {
+    "numero": "340202002",
+    "descricao": "MANUTENCAO DE INFORMATICA E TELEFONIA"
+  },
+  {
+    "numero": "340202004",
+    "descricao": "MANUTENCAO DE VEICULOS"
+  },
+  {
+    "numero": "340202099",
+    "descricao": "OUTRAS MANUTENCOES"
+  },
+  {
+    "numero": "340202099",
+    "descricao": "OUTRAS MANUTENCOES"
+  },
+  {
+    "numero": "340301002",
+    "descricao": "LOCACOES DE VEICULOS "
+  },
+  {
+    "numero": "340301003",
+    "descricao": "ALUGUEL DE IMOVEIS"
+  },
+  {
+    "numero": "340202004",
+    "descricao": "MANUTENCAO DE VEICULOS"
+  },
+  {
+    "numero": "340302002",
+    "descricao": "SEGUROS"
+  },
+  {
+    "numero": "340302099",
+    "descricao": "OUTROS SERVIÇOS DE TERCEIROS"
+  },
+  {
+    "numero": "340302099",
+    "descricao": "OUTROS SERVIÇOS DE TERCEIROS"
+  },
+  {
+    "numero": "340302099",
+    "descricao": "OUTROS SERVIÇOS DE TERCEIROS"
+  },
+  {
+    "numero": "340501001",
+    "descricao": "SEGUROS"
+  },
+  {
+    "numero": "340501002",
+    "descricao": "VIAGENS"
+  },
+  {
+    "numero": "340501003",
+    "descricao": "REFEIÇÕES/ESTADIAS"
+  },
+  {
+    "numero": "340501006",
+    "descricao": "ANUIDADE DE CONSELHO DE CLASSE"
+  },
+  {
+    "numero": "340501099",
+    "descricao": "OUTRAS DESPESAS"
+  },
+  {
+    "numero": "340501099",
+    "descricao": "OUTRAS DESPESAS"
+  },
+  {
+    "numero": "340501004",
+    "descricao": "EMOLUMENTOS E CARTORIOS"
+  },
+  {
+    "numero": "340101011",
+    "descricao": "ESTAGIÁRIOS"
+  },
+  {
+    "numero": "340101007",
+    "descricao": "INDENIZAÇÕES"
+  },
+  {
+    "numero": "340101007",
+    "descricao": "INDENIZAÇÕES"
+  },
+  {
+    "numero": "340501003",
+    "descricao": "REFEIÇÕES/ESTADIAS"
+  },
+  {
+    "numero": "340101001",
+    "descricao": "SALÁRIOS E ORDENADOS"
+  },
+  {
+    "numero": "340601001",
+    "descricao": "DEPRECIAÇÃO"
+  },
+  {
+    "numero": "340601002",
+    "descricao": "AMORTIZAÇÃO"
+  },
+  {
+    "numero": "349901002",
+    "descricao": "TAXA DE OPERAÇÃO"
+  },
+  {
+    "numero": "349901001",
+    "descricao": "REPASSE ENTRE EMPRESAS DO GRUPO"
+  },
+  {
+    "numero": "340502006",
+    "descricao": "IPTU"
+  },
+  {
+    "numero": "340502002",
+    "descricao": "IPVA"
+  },
+  {
+    "numero": "610101002",
+    "descricao": "CSLL - CORRENTE"
+  },
+  {
+    "numero": "610101001",
+    "descricao": "IRPJ - CORRENTE"
+  },
+  {
+    "numero": "340502003",
+    "descricao": "MULTAS FISCAIS"
+  },
+  {
+    "numero": "340502001",
+    "descricao": "ICMS DIFERENCIAL"
+  },
+  {
+    "numero": "340502008",
+    "descricao": "TAXAS DIVERSAS MUNICIPAIS"
+  },
+  {
+    "numero": "340502099",
+    "descricao": "OUTRAS TAXAS"
+  },
+  {
+    "numero": "330502007",
+    "descricao": "TAXA AGENCIA REGULADORA"
+  },
+  {
+    "numero": "610102001",
+    "descricao": "IRPJ - DIFERIDO"
+  },
+  {
+    "numero": "610102002",
+    "descricao": "CSLL - DIFERIDO"
+  },
+  {
+    "numero": "340101007",
+    "descricao": "INDENIZAÇÕES"
+  },
+  {
+    "numero": "520101005",
+    "descricao": "TARIFAS BANCARIAS"
+  },
+  {
+    "numero": "520101001",
+    "descricao": "JUROS DE EMPREST/ FINANCIAM/DEBENTURES"
+  },
+  {
+    "numero": "520101006",
+    "descricao": "IOF"
+  },
+  {
+    "numero": "520101007",
+    "descricao": "DESCONTOS CONCEDIDOS"
+  },
+  {
+    "numero": "520101001",
+    "descricao": "JUROS DE EMPREST/ FINANCIAM/DEBENTURES"
+  },
+  {
+    "numero": "520101003",
+    "descricao": "JUROS DE CONTRATOS DE ARRENDAMENTO"
+  },
+  {
+    "numero": "520101010",
+    "descricao": "COMISSOES BANCARIAS"
+  },
+  {
+    "numero": "520101005",
+    "descricao": "TARIFAS BANCARIAS"
+  },
+  {
+    "numero": "520101008",
+    "descricao": "AMORTIZAÇÃO DE CUSTOS DE TRANSAÇÃO"
+  },
+  {
+    "numero": "360203001",
+    "descricao": "MULTAS FISCAIS"
+  },
+  {
+    "numero": "360203002",
+    "descricao": "MULTAS DE TRANSITO"
+  },
+  {
+    "numero": "810101001",
+    "descricao": "RESULTADO DO EXERCICIO"
+  }
+]

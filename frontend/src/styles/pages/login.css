@@ -1,0 +1,48 @@
+/* ======================== */
+/* LOGIN                    */
+/* ======================== */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  width: 400px;
+  max-width: 90vw;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.login-card .logo {
+  text-align: center;
+  margin-bottom: 32px;
+  background: var(--primary);
+  margin: -40px -40px 32px -40px;
+  padding: 32px 40px;
+  border-radius: 16px 16px 0 0;
+}
+
+.login-card .logo .login-logo-img {
+  max-width: 220px;
+  max-height: 80px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.login-card .logo h1 {
+  color: var(--accent);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.login-card .logo p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}

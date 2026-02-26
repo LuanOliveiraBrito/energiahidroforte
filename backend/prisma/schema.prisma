@@ -1,0 +1,254 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ========================
+// ENUMS
+// ========================
+
+enum Role {
+  ADMINISTRADOR
+  ADMINISTRATIVO
+  GERENTE_ADM
+  DIRETOR
+  FINANCEIRO
+}
+
+enum FaturaStatus {
+  PENDENTE
+  APROVADA
+  LIBERADA
+  PAGA
+  REJEITADA
+}
+
+// ========================
+// MODELS
+// ========================
+
+model User {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  cpf       String?
+  email     String   @unique
+  senha     String
+  role      Role     @default(ADMINISTRATIVO)
+  ativo     Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  faturasLancadas  Fatura[]   @relation("FaturaLancadaPor")
+  faturasAprovadas Fatura[]   @relation("FaturaAprovadaPor")
+  faturasLiberadas Fatura[]   @relation("FaturaLiberadaPor")
+  faturasBaixadas  Fatura[]   @relation("FaturaBaixadaPor")
+  faturasEstornadas Fatura[]  @relation("FaturaEstornadaPor")
+  logs             AuditLog[]
+
+  @@map("users")
+}
+
+model Filial {
+  id         Int      @id @default(autoincrement())
+  razaoSocial String  @map("razao_social")
+  cnpj       String   @unique
+  estado     String
+  cidade     String
+  ativo      Boolean  @default(true)
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  unidades     UnidadeConsumidora[]
+  faturas      Fatura[]
+  centrosCusto CentroCusto[]
+
+  @@map("filiais")
+}
+
+model Fornecedor {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  cnpj      String   @unique
+
+  // Tipo de pagamento preferencial
+  tipoPagamento String? @map("tipo_pagamento") // "TED" | "PIX" | "BOLETO"
+
+  // Dados bancários (TED)
+  banco       String?
+  agencia     String?
+  conta       String?
+  tipoConta   String?  @map("tipo_conta")   // "Corrente" | "Poupança"
+  op          String?
+
+  // Dados PIX
+  chavePix    String?  @map("chave_pix")
+  tipoChavePix String? @map("tipo_chave_pix") // "CNPJ/CPF" | "Telefone" | "E-mail" | "Aleatória" | "Copia e Cola"
+
+  ativo     Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  unidades UnidadeConsumidora[]
+  faturas  Fatura[]
+
+  @@map("fornecedores")
+}
+
+model UnidadeConsumidora {
+  id            Int      @id @default(autoincrement())
+  uc            String   @unique @map("unidade_consumidora")
+  numInstalacao String   @map("num_instalacao")
+  filialId      Int      @map("filial_id")
+  fornecedorId  Int      @map("fornecedor_id")
+  diaVencimento Int?     @map("dia_vencimento") // Dia do mês em que vence a fatura (1-31)
+  ativo         Boolean  @default(true)
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  filial     Filial     @relation(fields: [filialId], references: [id])
+  fornecedor Fornecedor @relation(fields: [fornecedorId], references: [id])
+  faturas    Fatura[]
+
+  @@map("unidades_consumidoras")
+}
+
+model CentroCusto {
+  id        Int      @id @default(autoincrement())
+  numero    String   @unique @map("numero")
+  descricao String
+  filialId  Int      @map("filial_id")
+  ativo     Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  filial  Filial   @relation(fields: [filialId], references: [id])
+  faturas Fatura[]
+
+  @@map("centros_custo")
+}
+
+model ContaContabil {
+  id        Int      @id @default(autoincrement())
+  numero    String   @unique @map("numero")
+  descricao String
+  ativo     Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  faturas Fatura[]
+
+  @@map("contas_contabeis")
+}
+
+model Natureza {
+  id        Int      @id @default(autoincrement())
+  descricao String   @unique
+  ativo     Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  faturas Fatura[]
+
+  @@map("naturezas")
+}
+
+model Fatura {
+  id              Int          @id @default(autoincrement())
+  ucId            Int          @map("uc_id")
+  fornecedorId    Int          @map("fornecedor_id")
+  filialId        Int          @map("filial_id")
+  centroCustoId   Int          @map("centro_custo_id")
+  contaContabilId Int          @map("conta_contabil_id")
+  naturezaId      Int          @map("natureza_id")
+
+  notaFiscal      String?      @map("nota_fiscal")
+  valor           Float
+  leituraKwh      Float?       @map("leitura_kwh")
+  vencimento      DateTime
+  referencia      String       // formato: "2026-02"
+  pedidoCompras   String?      @map("pedido_compras")
+  formaPagamento  String?      @map("forma_pagamento")  // "TED" | "BOLETO" | "PIX"
+  aplicacao       String?      // "CAPEX" | "OPEX"
+
+  // Data de emissão da fatura/nota fiscal
+  dataEmissao     DateTime?    @map("data_emissao")
+
+  // Dados do boleto (extraídos automaticamente do PDF)
+  codigoBarras      String?    @map("codigo_barras")      // Linha digitável do boleto
+  vencimentoBoleto  String?    @map("vencimento_boleto")  // Data de vencimento do boleto (YYYY-MM-DD)
+
+  // Anexos (caminho dos arquivos)
+  anexoFatura        String?   @map("anexo_fatura")
+  anexoPedidoCompras String?   @map("anexo_pedido_compras")
+
+  // Status e workflow
+  status          FaturaStatus @default(PENDENTE)
+
+  // Quem fez cada ação
+  lancadoPorId    Int          @map("lancado_por_id")
+  aprovadoPorId   Int?         @map("aprovado_por_id")
+  liberadoPorId   Int?         @map("liberado_por_id")
+  baixadoPorId    Int?         @map("baixado_por_id")
+  estornadoPorId  Int?         @map("estornado_por_id")
+
+  // Datas de cada ação
+  dataLancamento  DateTime     @default(now()) @map("data_lancamento")
+  dataAprovacao   DateTime?    @map("data_aprovacao")
+  dataLiberacao   DateTime?    @map("data_liberacao")
+  dataBaixa       DateTime?    @map("data_baixa")
+  dataEstorno     DateTime?    @map("data_estorno")
+
+  motivoRejeicao  String?      @map("motivo_rejeicao")
+  motivoEstorno   String?      @map("motivo_estorno")
+
+  // Hash criptográfico para verificação de autenticidade do documento
+  hashVerificacao String?      @unique @map("hash_verificacao")
+
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+
+  // Relations
+  uc            UnidadeConsumidora @relation(fields: [ucId], references: [id])
+  fornecedor    Fornecedor         @relation(fields: [fornecedorId], references: [id])
+  filial        Filial             @relation(fields: [filialId], references: [id])
+  centroCusto   CentroCusto        @relation(fields: [centroCustoId], references: [id])
+  contaContabil ContaContabil      @relation(fields: [contaContabilId], references: [id])
+  natureza      Natureza           @relation(fields: [naturezaId], references: [id])
+
+  lancadoPor    User               @relation("FaturaLancadaPor", fields: [lancadoPorId], references: [id])
+  aprovadoPor   User?              @relation("FaturaAprovadaPor", fields: [aprovadoPorId], references: [id])
+  liberadoPor   User?              @relation("FaturaLiberadaPor", fields: [liberadoPorId], references: [id])
+  baixadoPor    User?              @relation("FaturaBaixadaPor", fields: [baixadoPorId], references: [id])
+  estornadoPor  User?              @relation("FaturaEstornadaPor", fields: [estornadoPorId], references: [id])
+
+  logs          AuditLog[]
+
+  @@map("faturas")
+}
+
+model AuditLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  faturaId  Int?     @map("fatura_id")
+  acao      String   // Ex: "LANCAMENTO", "APROVACAO", "LIBERACAO", "BAIXA", "REJEICAO"
+  descricao String
+  ip        String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user   User    @relation(fields: [userId], references: [id])
+  fatura Fatura? @relation(fields: [faturaId], references: [id])
+
+  @@map("audit_logs")
+}

@@ -1,0 +1,2998 @@
+[
+  {
+    "Classe": "311100700201",
+    "": "ABEL FIGUEIREDO - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "311100700202",
+    "": "ABEL FIGUEIREDO - ALMOXARIFADO"
+  },
+  {
+    "Classe": "311100700301",
+    "": "ABEL FIGUEIREDO - FATURAMENTO"
+  },
+  {
+    "Classe": "311100700302",
+    "": "ABEL FIGUEIREDO - COBRANCA"
+  },
+  {
+    "Classe": "311100700303",
+    "": "ABEL FIGUEIREDO - ATENDIMENTO"
+  },
+  {
+    "Classe": "311100700401",
+    "": "ABEL FIGUEIREDO - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "311100700402",
+    "": "ABEL FIGUEIREDO - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "311100700403",
+    "": "ABEL FIGUEIREDO - DISTRIBUICAO"
+  },
+  {
+    "Classe": "311100712001",
+    "": "ABEL FIGUEREDO - PTP 001"
+  },
+  {
+    "Classe": "311100712002",
+    "": "ABEL FIGUEREDO - PTP 002"
+  },
+  {
+    "Classe": "311100712003",
+    "": "ABEL FIGUEREDO - PTP 003"
+  },
+  {
+    "Classe": "311100712004",
+    "": "ABEL FIGUEREDO - PTP 004"
+  },
+  {
+    "Classe": "311100712005",
+    "": "ABEL FIGUEREDO - PTP 005"
+  },
+  {
+    "Classe": "311100712006",
+    "": "ABEL FIGUEREDO - PTP 006"
+  },
+  {
+    "Classe": "311100712007",
+    "": "ABEL FIGUEREDO - PTP 007"
+  },
+  {
+    "Classe": "311100712009",
+    "": "ABEL FIGUEREDO - PTP 009"
+  },
+  {
+    "Classe": "311100712010",
+    "": "ABEL FIGUEREDO - PTP 010"
+  },
+  {
+    "Classe": "311100712011",
+    "": "ABEL FIGUEREDO - PTP 011"
+  },
+  {
+    "Classe": "311100712012",
+    "": "ABEL FIGUEREDO - PTP 012"
+  },
+  {
+    "Classe": "311100712031",
+    "": "ABEL FIGUEREDO - TRATAMENTO"
+  },
+  {
+    "Classe": "311100712041",
+    "": "ABEL FIGUEREDO - ELEVATORIA"
+  },
+  {
+    "Classe": "311100712051",
+    "": "ABEL FIGUEREDO - RESERVACAO"
+  },
+  {
+    "Classe": "241101700201",
+    "": "ABREULANDIA - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "241101700202",
+    "": "ABREULANDIA - ALMOXARIFADO"
+  },
+  {
+    "Classe": "241101700301",
+    "": "ABREULANDIA - FATURAMENTO"
+  },
+  {
+    "Classe": "241101700302",
+    "": "ABREULANDIA - COBRANCA"
+  },
+  {
+    "Classe": "241101700303",
+    "": "ABREULANDIA - ATENDIMENTO"
+  },
+  {
+    "Classe": "241101700401",
+    "": "ABREULANDIA - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "241101700402",
+    "": "ABREULANDIA - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "241101700403",
+    "": "ABREULANDIA - DISTRIBUICAO"
+  },
+  {
+    "Classe": "241101712001",
+    "": "ABREULANDIA - PTP 001 - CHACARA ERMINIO"
+  },
+  {
+    "Classe": "241101712031",
+    "": "ABREULANDIA - TRATAMENTO"
+  },
+  {
+    "Classe": "241101712041",
+    "": "ABREULANDIA - ELEVATORIA"
+  },
+  {
+    "Classe": "241101712051",
+    "": "ABREULANDIA - RESERVACAO"
+  },
+  {
+    "Classe": "251103600201",
+    "": "ANGICO - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "251103600202",
+    "": "ANGICO - ALMOXARIFADO"
+  },
+  {
+    "Classe": "251103600301",
+    "": "ANGICO - FATURAMENTO"
+  },
+  {
+    "Classe": "251103600302",
+    "": "ANGICO - COBRANCA"
+  },
+  {
+    "Classe": "251103600303",
+    "": "ANGICO - ATENDIMENTO"
+  },
+  {
+    "Classe": "251103600401",
+    "": "ANGICO - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "251103600402",
+    "": "ANGICO - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "251103600403",
+    "": "ANGICO - DISTRIBUICAO"
+  },
+  {
+    "Classe": "251103612001",
+    "": "ANGICO - PTP 001"
+  },
+  {
+    "Classe": "251103612002",
+    "": "ANGICO - PTP 002"
+  },
+  {
+    "Classe": "251103612003",
+    "": "ANGICO - PTP 003 ."
+  },
+  {
+    "Classe": "251103612004",
+    "": "ANGICO - PTP 004"
+  },
+  {
+    "Classe": "251103612031",
+    "": "ANGICO - TRATAMENTO"
+  },
+  {
+    "Classe": "251103612041",
+    "": "ANGICO - ELEVATORIA"
+  },
+  {
+    "Classe": "251103612051",
+    "": "ANGICO - RESERVACAO"
+  },
+  {
+    "Classe": "241102900201",
+    "": "ARAGUACEMA - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "241102900202",
+    "": "ARAGUACEMA - ALMOXARIFADO"
+  },
+  {
+    "Classe": "241102900301",
+    "": "ARAGUACEMA - FATURAMENTO"
+  },
+  {
+    "Classe": "241102900302",
+    "": "ARAGUACEMA - COBRANCA"
+  },
+  {
+    "Classe": "241102900303",
+    "": "ARAGUACEMA - ATENDIMENTO"
+  },
+  {
+    "Classe": "241102900401",
+    "": "ARAGUACEMA - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "241102900402",
+    "": "ARAGUACEMA - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "241102900403",
+    "": "ARAGUACEMA - DISTRIBUICAO"
+  },
+  {
+    "Classe": "241102910101",
+    "": "ARAGUACEMA - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "241102910131",
+    "": "ARAGUACEMA - TRATAMENTO  ETA"
+  },
+  {
+    "Classe": "241102910141",
+    "": "ARAGUACEMA - ELEVATORIA  ETA"
+  },
+  {
+    "Classe": "241102910151",
+    "": "ARAGUACEMA - RESERVACAO   ETA"
+  },
+  {
+    "Classe": "241102912001",
+    "": "ARAGUACEMA - PTP 001"
+  },
+  {
+    "Classe": "241102912002",
+    "": "ARAGUACEMA - PTP 002"
+  },
+  {
+    "Classe": "241102912003",
+    "": "ARAGUACEMA - PTP 003"
+  },
+  {
+    "Classe": "241102912004",
+    "": "ARAGUACEMA - PTP 004"
+  },
+  {
+    "Classe": "241102912005",
+    "": "ARAGUACEMA - PTP 005"
+  },
+  {
+    "Classe": "241102912006",
+    "": "ARAGUACEMA - PTP 006"
+  },
+  {
+    "Classe": "241102912007",
+    "": "ARAGUACEMA - PTP 007"
+  },
+  {
+    "Classe": "241102912008",
+    "": "ARAGUACEMA - PTP 008"
+  },
+  {
+    "Classe": "241102912009",
+    "": "ARAGUACEMA - PTP 009"
+  },
+  {
+    "Classe": "241102912031",
+    "": "ARAGUACEMA - TRATAMENTO"
+  },
+  {
+    "Classe": "241102912041",
+    "": "ARAGUACEMA - ELEVATORIA"
+  },
+  {
+    "Classe": "241102912051",
+    "": "ARAGUACEMA - RESERVACAO"
+  },
+  {
+    "Classe": "421104400201",
+    "": "BOM JESUS DAS SELVAS - ADMINISTRACAO"
+  },
+  {
+    "Classe": "421104400301",
+    "": "BOM JESUS DAS SELVAS - FATURAMENTO"
+  },
+  {
+    "Classe": "421104400302",
+    "": "BOM JESUS DAS SELVAS - COBRANCA"
+  },
+  {
+    "Classe": "421104400303",
+    "": "BOM JESUS DAS SELVAS - ATENDIMENTO"
+  },
+  {
+    "Classe": "421104400401",
+    "": "BOM JESUS DAS SELVAS - ADUCAO AGUA BRUTA"
+  },
+  {
+    "Classe": "421104400402",
+    "": "BOM JESUS DAS SELVAS - ADUCAO AGUA TRATADA"
+  },
+  {
+    "Classe": "421104400403",
+    "": "BOM JESUS DAS SELVAS - DISTRIBUICAO"
+  },
+  {
+    "Classe": "421104412001",
+    "": "BOM JESUS DAS SELVAS - PTP 001"
+  },
+  {
+    "Classe": "421104412002",
+    "": "BOM JESUS DAS SELVAS - PTP 002"
+  },
+  {
+    "Classe": "421104412004",
+    "": "BOM JESUS DAS SELVAS - PTP 004"
+  },
+  {
+    "Classe": "421104412008",
+    "": "BOM JESUS DAS SELVAS - PTP 008"
+  },
+  {
+    "Classe": "421104412031",
+    "": "BOM JESUS DAS SELVAS - TRATAMENTO"
+  },
+  {
+    "Classe": "421104412041",
+    "": "BOM JESUS DAS SELVAS - ELEVATORIA"
+  },
+  {
+    "Classe": "421104412051",
+    "": "BOM JESUS DAS SELVAS - RESERVATORIO"
+  },
+  {
+    "Classe": "231102800201",
+    "": "BOM JESUS TO - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "231102800202",
+    "": "BOM JESUS TO - ALMOXARIFADO"
+  },
+  {
+    "Classe": "231102800301",
+    "": "BOM JESUS TO - FATURAMENTO"
+  },
+  {
+    "Classe": "231102800302",
+    "": "BOM JESUS TO - COBRANCA"
+  },
+  {
+    "Classe": "231102800303",
+    "": "BOM JESUS TO - ATENDIMENTO"
+  },
+  {
+    "Classe": "231102800401",
+    "": "BOM JESUS TO - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "231102800402",
+    "": "BOM JESUS TO - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "231102800403",
+    "": "BOM JESUS TO - DISTRIBUICAO"
+  },
+  {
+    "Classe": "231102812001",
+    "": "BOM JESUS TO - PTP 001"
+  },
+  {
+    "Classe": "231102812002",
+    "": "BOM JESUS TO - PTP 002"
+  },
+  {
+    "Classe": "231102812003",
+    "": "BOM JESUS TO - PTP 003"
+  },
+  {
+    "Classe": "231102812004",
+    "": "BOM JESUS TO - PTP 004"
+  },
+  {
+    "Classe": "231102812031",
+    "": "BOM JESUS TO - TRATAMENTO"
+  },
+  {
+    "Classe": "231102812041",
+    "": "BOM JESUS TO - ELEVATORIA"
+  },
+  {
+    "Classe": "231102812051",
+    "": "BOM JESUS TO - RESERVACAO"
+  },
+  {
+    "Classe": "211104100301",
+    "": "BREJINHO DE NAZARE - FATURAMENTO"
+  },
+  {
+    "Classe": "211104100302",
+    "": "BREJINHO DE NAZARE - COBRANCA"
+  },
+  {
+    "Classe": "211104100303",
+    "": "BREJINHO DE NAZARE - ATENDIMENTO"
+  },
+  {
+    "Classe": "211104100401",
+    "": "BREJINHO DE NAZARE - ADUCAO AGUA BRUTA"
+  },
+  {
+    "Classe": "211104100402",
+    "": "BREJINHO DE NAZARE - ADUCAO AGUA TRATADA"
+  },
+  {
+    "Classe": "211104100403",
+    "": "BREJINHO DE NAZARE - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211104110101",
+    "": "BREJINHO DE NAZARE - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "211104110131",
+    "": "BREJINHO DE NAZARE - TRATAMENTO ETA"
+  },
+  {
+    "Classe": "211104110141",
+    "": "BREJINHO DE NAZARE - ELEVATORIA ETA"
+  },
+  {
+    "Classe": "211104110151",
+    "": "BREJINHO DE NAZARE - RESERVACAO ETA"
+  },
+  {
+    "Classe": "211104112001",
+    "": "BREJINHO DE NAZARE - PTP 001"
+  },
+  {
+    "Classe": "211104112004",
+    "": "BREJINHO DE NAZARE - PTP 004"
+  },
+  {
+    "Classe": "211104112007",
+    "": "BREJINHO DE NAZARE - PTP 007"
+  },
+  {
+    "Classe": "211104112009",
+    "": "BREJINHO DE NAZARE - PTP 009"
+  },
+  {
+    "Classe": "211104112031",
+    "": "BREJINHO DE NAZARE - TRATAMENTO"
+  },
+  {
+    "Classe": "211104112041",
+    "": "BREJINHO DE NAZARE - ELEVATORIA"
+  },
+  {
+    "Classe": "211104112051",
+    "": "BREJINHO DE NAZARE - RESERVACAO"
+  },
+  {
+    "Classe": "221103900201",
+    "": "CARIRI - ADMINISTRATIVO/FINANCEIRO"
+  },
+  {
+    "Classe": "221103900202",
+    "": "CARIRI - ALMOXARIFADO"
+  },
+  {
+    "Classe": "221103900301",
+    "": "CARIRI - FATURAMENTO"
+  },
+  {
+    "Classe": "221103900302",
+    "": "CARIRI - COBRANCA"
+  },
+  {
+    "Classe": "221103900303",
+    "": "CARIRI - ATENDIMENTO"
+  },
+  {
+    "Classe": "221103900401",
+    "": "CARIRI  - ADUCAO AGUA BRUTA"
+  },
+  {
+    "Classe": "221103900402",
+    "": "CARIRI - ADUCAO AGUA TRATADA"
+  },
+  {
+    "Classe": "221103900403",
+    "": "CARIRI - DISTRIBUICAO"
+  },
+  {
+    "Classe": "221103912001",
+    "": "CARIRI - PTP 001"
+  },
+  {
+    "Classe": "221103912002",
+    "": "CARIRI - PTP 002"
+  },
+  {
+    "Classe": "221103912031",
+    "": "CARIRI - TRATAMENTO"
+  },
+  {
+    "Classe": "221103912041",
+    "": "CARIRI - ELEVATORIA"
+  },
+  {
+    "Classe": "221103912051",
+    "": "CARIRI - RESERVACAO"
+  },
+  {
+    "Classe": "211102000201",
+    "": "CHAPADA DA NATIVIDADE - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "211102000202",
+    "": "CHAPADA DA NATIVIDADE - ALMOXARIFADO"
+  },
+  {
+    "Classe": "211102000301",
+    "": "CHAPADA DA NATIVIDADE - FATURAMENTO"
+  },
+  {
+    "Classe": "211102000302",
+    "": "CHAPADA DA NATIVIDADE - COBRANCA"
+  },
+  {
+    "Classe": "211102000303",
+    "": "CHAPADA DA NATIVIDADE - ATENDIMENTO"
+  },
+  {
+    "Classe": "211102000401",
+    "": "CHAPADA DA NATIVIDADE - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "211102000402",
+    "": "CHAPADA DA NATIVIDADE - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "211102000403",
+    "": "CHAPADA DA NATIVIDADE - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211102012001",
+    "": "CHAPADA DA  NATIVIDADE - PTP 001"
+  },
+  {
+    "Classe": "211102012002",
+    "": "CHAPADA DA  NATIVIDADE - PTP 002"
+  },
+  {
+    "Classe": "211102012003",
+    "": "CHAPADA DA  NATIVIDADE - PTP 003"
+  },
+  {
+    "Classe": "211102012004",
+    "": "CHAPADA DA  NATIVIDADE - PTP 004"
+  },
+  {
+    "Classe": "211102012005",
+    "": "CHAPADA DA  NATIVIDADE - PTP 005"
+  },
+  {
+    "Classe": "211102012006",
+    "": "CHAPADA DA  NATIVIDADE - PTP 006"
+  },
+  {
+    "Classe": "211102012007",
+    "": "CHAPADA DA  NATIVIDADE - PTP 007"
+  },
+  {
+    "Classe": "211102012008",
+    "": "CHAPADA DA  NATIVIDADE - PTP 008 - SEM VAZAO"
+  },
+  {
+    "Classe": "211102012031",
+    "": "CHAPADA DA NATIVIDADE - TRATAMENTO"
+  },
+  {
+    "Classe": "211102012041",
+    "": "CHAPADA DA NATIVIDADE - ELEVATORIA"
+  },
+  {
+    "Classe": "211102012051",
+    "": "CHAPADA DA NATIVIDADE - RESERVATORIO"
+  },
+  {
+    "Classe": "221100600201",
+    "": "CHAPADA DE AREIA - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "221100600202",
+    "": "CHAPADA DE AREIA - ALMOXARIFADO"
+  },
+  {
+    "Classe": "221100600301",
+    "": "CHAPADA DE AREIA - FATURAMENTO"
+  },
+  {
+    "Classe": "221100600302",
+    "": "CHAPADA DE AREIA - COBRANCA"
+  },
+  {
+    "Classe": "221100600303",
+    "": "CHAPADA DE AREIA - ATENDIMENTO"
+  },
+  {
+    "Classe": "221100600401",
+    "": "CHAPADA DE AREIA - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "221100600402",
+    "": "CHAPADA DE AREIA - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "221100600403",
+    "": "CHAPADA DE AREIA - DISTRIBUICAO"
+  },
+  {
+    "Classe": "221100612001",
+    "": "CHAPADA DE AREIA - PTP 001 - DIREITA ESTRADA CHAPADA"
+  },
+  {
+    "Classe": "221100612002",
+    "": "CHAPADA DE AREIA - PTP 002"
+  },
+  {
+    "Classe": "221100612003",
+    "": "CHAPADA DE AREIA - PTP 003"
+  },
+  {
+    "Classe": "221100612004",
+    "": "CHAPADA DE AREIA - PTP 004"
+  },
+  {
+    "Classe": "221100612005",
+    "": "CHAPADA DE AREIA - PTP 005"
+  },
+  {
+    "Classe": "221100612006",
+    "": "CHAPADA DE AREIA - PTP 006"
+  },
+  {
+    "Classe": "221100612007",
+    "": "CHAPADA DE AREIA - PTP 007"
+  },
+  {
+    "Classe": "221100612031",
+    "": "CHAPADA DE AREIA - TRATAMENTO"
+  },
+  {
+    "Classe": "221100612041",
+    "": "CHAPADA DE AREIA - ELEVATORIA"
+  },
+  {
+    "Classe": "221100612051",
+    "": "CHAPADA DE AREIA - RESERVACAO"
+  },
+  {
+    "Classe": "241101300201",
+    "": "DIVINOPOLIS - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "241101300202",
+    "": "DIVINOPOLIS - ALMOXARIFADO"
+  },
+  {
+    "Classe": "241101300301",
+    "": "DIVINOPOLIS - FATURAMENTO"
+  },
+  {
+    "Classe": "241101300302",
+    "": "DIVINOPOLIS - COBRANCA"
+  },
+  {
+    "Classe": "241101300303",
+    "": "DIVINOPOLIS - ATENDIMENTO"
+  },
+  {
+    "Classe": "241101300401",
+    "": "DIVINOPOLIS - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "241101300402",
+    "": "DIVINOPOLIS - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "241101300403",
+    "": "DIVINOPOLIS - DISTRIBUICAO"
+  },
+  {
+    "Classe": "241101310101",
+    "": "DIVINOPOLIS - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "241101310131",
+    "": "DIVINOPOLIS - TRATAMENTO  ETA"
+  },
+  {
+    "Classe": "241101310141",
+    "": "DIVINOPOLIS - ELEVATORIA  ETA"
+  },
+  {
+    "Classe": "241101310151",
+    "": "DIVINOPOLIS - RESERVACAO ETA"
+  },
+  {
+    "Classe": "241101312001",
+    "": "DIVINOPOLIS - PTP 001"
+  },
+  {
+    "Classe": "241101312002",
+    "": "DIVINOPOLIS - PTP 002"
+  },
+  {
+    "Classe": "241101312004",
+    "": "DIVINOPOLIS - PTP 004"
+  },
+  {
+    "Classe": "241101312031",
+    "": "DIVINOPOLIS - TRATAMENTO"
+  },
+  {
+    "Classe": "241101312041",
+    "": "DIVINOPOLIS - ELEVATORIA"
+  },
+  {
+    "Classe": "241101312051",
+    "": "DIVINOPOLIS - RESERVACAO"
+  },
+  {
+    "Classe": "221102400201",
+    "": "DUERE - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "221102400202",
+    "": "DUERE - ALMOXARIFADO"
+  },
+  {
+    "Classe": "221102400301",
+    "": "DUERE - FATURAMENTO"
+  },
+  {
+    "Classe": "221102400302",
+    "": "DUERE - COBRANCA"
+  },
+  {
+    "Classe": "221102400303",
+    "": "DUERE - ATENDIMENTO"
+  },
+  {
+    "Classe": "221102400401",
+    "": "DUERE - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "221102400402",
+    "": "DUERE - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "221102400403",
+    "": "DUERE - DISTRIBUICAO"
+  },
+  {
+    "Classe": "221102412001",
+    "": "DUERE - PTP 001"
+  },
+  {
+    "Classe": "221102412002",
+    "": "DUERE - PTP 002"
+  },
+  {
+    "Classe": "221102412003",
+    "": "DUERE - PTP 003"
+  },
+  {
+    "Classe": "221102412004",
+    "": "DUERE - PTP 004"
+  },
+  {
+    "Classe": "221102412007",
+    "": "DUERE - PTP 005"
+  },
+  {
+    "Classe": "221102412008",
+    "": "DUERE - PTP 006"
+  },
+  {
+    "Classe": "221102412009",
+    "": "DUERE - PTP 007"
+  },
+  {
+    "Classe": "221102412031",
+    "": "DUERE - TRATAMENTO"
+  },
+  {
+    "Classe": "221102412041",
+    "": "DUERE - ELEVATORIA"
+  },
+  {
+    "Classe": "221102412051",
+    "": "DUERE - RESERVACAO"
+  },
+  {
+    "Classe": "241102100201",
+    "": "GOIANORTE - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "241102100202",
+    "": "GOIANORTE - ALMOXARIFADO"
+  },
+  {
+    "Classe": "241102100301",
+    "": "GOIANORTE - FATURAMENTO"
+  },
+  {
+    "Classe": "241102100302",
+    "": "GOIANORTE - COBRANCA"
+  },
+  {
+    "Classe": "241102100303",
+    "": "GOIANORTE - ATENDIMENTO"
+  },
+  {
+    "Classe": "241102100401",
+    "": "GOIANORTE - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "241102100402",
+    "": "GOIANORTE - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "241102100403",
+    "": "GOIANORTE - DISTRIBUICAO"
+  },
+  {
+    "Classe": "241102112001",
+    "": "GOIANORTE - PTP 001"
+  },
+  {
+    "Classe": "241102112003",
+    "": "GOIANORTE - PTP 002"
+  },
+  {
+    "Classe": "241102112004",
+    "": "GOIANORTE - PTP 003"
+  },
+  {
+    "Classe": "241102112005",
+    "": "GOIANORTE - PTP 004"
+  },
+  {
+    "Classe": "241102112006",
+    "": "GOIANORTE - PTP 006"
+  },
+  {
+    "Classe": "241102112031",
+    "": "GOIANORTE - TRATAMENTO"
+  },
+  {
+    "Classe": "241102112041",
+    "": "GOIANORTE - ELEVATORIA"
+  },
+  {
+    "Classe": "241102112051",
+    "": "GOIANORTE - RESERVACAO"
+  },
+  {
+    "Classe": "251102700201",
+    "": "ITAGUATINS - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "251102700202",
+    "": "ITAGUATINS - ALMOXARIFADO"
+  },
+  {
+    "Classe": "251102700301",
+    "": "ITAGUATINS - FATURAMENTO"
+  },
+  {
+    "Classe": "251102700302",
+    "": "ITAGUATINS - COBRANCA"
+  },
+  {
+    "Classe": "251102700303",
+    "": "ITAGUATINS - ATENDIMENTO"
+  },
+  {
+    "Classe": "251102700401",
+    "": "ITAGUATINS - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "251102700402",
+    "": "ITAGUATINS - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "251102700403",
+    "": "ITAGUATINS - DISTRIBUICAO"
+  },
+  {
+    "Classe": "251102712001",
+    "": "ITAGUATINS - PTP 001"
+  },
+  {
+    "Classe": "251102712002",
+    "": "ITAGUATINS - PTP 002"
+  },
+  {
+    "Classe": "251102712004",
+    "": "ITAGUATINS - PTP 003"
+  },
+  {
+    "Classe": "251102712005",
+    "": "ITAGUATINS - PTP 004"
+  },
+  {
+    "Classe": "251102712031",
+    "": "ITAGUATINS - TRATAMENTO"
+  },
+  {
+    "Classe": "251102712041",
+    "": "ITAGUATINS - ELEVATORIA"
+  },
+  {
+    "Classe": "251102712051",
+    "": "ITAGUATINS - RESERVACAO"
+  },
+  {
+    "Classe": "251102752001",
+    "": "ITAGUATINS - ESGOTO REDE COLETORA"
+  },
+  {
+    "Classe": "251102752031",
+    "": "ITAGUATINS - ESGOTO EMISSARIO"
+  },
+  {
+    "Classe": "251102752041",
+    "": "ITAGUATINS - ESGOTO E.E.E"
+  },
+  {
+    "Classe": "251102752061",
+    "": "ITAGUATINS - ESGOTO E.T.E"
+  },
+  {
+    "Classe": "231101900201",
+    "": "ITAPIRATINS - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "231101900202",
+    "": "ITAPIRATINS - ALMOXARIFADO"
+  },
+  {
+    "Classe": "231101900301",
+    "": "ITAPIRATINS - FATURAMENTO"
+  },
+  {
+    "Classe": "231101900302",
+    "": "ITAPIRATINS - COBRANCA"
+  },
+  {
+    "Classe": "231101900303",
+    "": "ITAPIRATINS - ATENDIMENTO"
+  },
+  {
+    "Classe": "231101900401",
+    "": "ITAPIRATINS - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "231101900402",
+    "": "ITAPIRATINS - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "231101900403",
+    "": "ITAPIRATINS - DISTRIBUICAO"
+  },
+  {
+    "Classe": "231101910101",
+    "": "ITAPIRATINS - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "231101910131",
+    "": "ITAPIRATINS - TRATAMENTO ETA"
+  },
+  {
+    "Classe": "231101910141",
+    "": "ITAPIRATINS - ELEVATORIA ETA"
+  },
+  {
+    "Classe": "231101910151",
+    "": "ITAPIRATINS - RESERVACAO ETA"
+  },
+  {
+    "Classe": "231101912003",
+    "": "ITAPIRATINS - PTP 001"
+  },
+  {
+    "Classe": "231101912004",
+    "": "ITAPIRATINS - PTP 002"
+  },
+  {
+    "Classe": "231101912005",
+    "": "ITAPIRATINS - PTP 003"
+  },
+  {
+    "Classe": "231101912031",
+    "": "ITAPIRATINS - TRATAMENTO"
+  },
+  {
+    "Classe": "231101912041",
+    "": "ITAPIRATINS - ELEVATORIA"
+  },
+  {
+    "Classe": "231101912051",
+    "": "ITAPIRATINS - RESERVACAO"
+  },
+  {
+    "Classe": "231101952001",
+    "": "ITAPIRATINS - ESGOTO REDE COLETORA"
+  },
+  {
+    "Classe": "231101952031",
+    "": "ITAPIRATINS - ESGOTO EMISSARIO"
+  },
+  {
+    "Classe": "231101952041",
+    "": "ITAPIRATINS - ESGOTO E.E.E."
+  },
+  {
+    "Classe": "231101952061",
+    "": "ITAPIRATINS - ESGOTO E.T.E."
+  },
+  {
+    "Classe": "311103400201",
+    "": "ITUPIRANGA - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "311103400202",
+    "": "ITUPIRANGA - ALMOXARIFADO"
+  },
+  {
+    "Classe": "311103400301",
+    "": "ITUPIRANGA - FATURAMENTO"
+  },
+  {
+    "Classe": "311103400302",
+    "": "ITUPIRANGA - COBRANCA"
+  },
+  {
+    "Classe": "311103400303",
+    "": "ITUPIRANGA - ATENDIMENTO"
+  },
+  {
+    "Classe": "311103400401",
+    "": "ITUPIRANGA - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "311103400402",
+    "": "ITUPIRANGA - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "311103400403",
+    "": "ITUPIRANGA - DISTRIBUICAO"
+  },
+  {
+    "Classe": "311103410101",
+    "": "ITUPIRANGA - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "311103410131",
+    "": "ITUPIRANGA - TRATAMENTO  ETA"
+  },
+  {
+    "Classe": "311103410141",
+    "": "ITUPIRANGA - ELEVATORIA  ETA"
+  },
+  {
+    "Classe": "311103410151",
+    "": "ITUPIRANGA - RESERVACAO  ETA"
+  },
+  {
+    "Classe": "311103412001",
+    "": "ITUPIRANGA - PTP 001"
+  },
+  {
+    "Classe": "311103412002",
+    "": "ITUPIRANGA - PTP 002"
+  },
+  {
+    "Classe": "311103412003",
+    "": "ITUPIRANGA - PTP 003"
+  },
+  {
+    "Classe": "311103412004",
+    "": "ITUPIRANGA - PTP 004"
+  },
+  {
+    "Classe": "311103412005",
+    "": "ITUPIRANGA - PTP 005"
+  },
+  {
+    "Classe": "311103412006",
+    "": "ITUPIRANGA - PTP 006"
+  },
+  {
+    "Classe": "311103412007",
+    "": "ITUPIRANGA - PTP 007"
+  },
+  {
+    "Classe": "311103412008",
+    "": "ITUPIRANGA - PTP 008"
+  },
+  {
+    "Classe": "311103412009",
+    "": "ITUPIRANGA - PTP 009"
+  },
+  {
+    "Classe": "311103412010",
+    "": "ITUPIRANGA - PTP 010"
+  },
+  {
+    "Classe": "311103412011",
+    "": "ITUPIRANGA - PTP 011"
+  },
+  {
+    "Classe": "311103412012",
+    "": "ITUPIRANGA - PTP 012"
+  },
+  {
+    "Classe": "311103412014",
+    "": "ITUPIRANGA - PTP 014"
+  },
+  {
+    "Classe": "311103412031",
+    "": "ITUPIRANGA - TRATAMENTO"
+  },
+  {
+    "Classe": "311103412041",
+    "": "ITUPIRANGA - ELEVATORIA"
+  },
+  {
+    "Classe": "311103412051",
+    "": "ITUPIRANGA - RESERVACAO"
+  },
+  {
+    "Classe": "311103440101",
+    "": "ITUPIRANGA - INVESTIMENTO OBRA"
+  },
+  {
+    "Classe": "311103472001",
+    "": "ITUPIRANGA - ESGOTO REDE COLETORA  POV CAJAZEIRA"
+  },
+  {
+    "Classe": "311103472031",
+    "": "ITUPIRANGA - ESGOTO EMISSARIO POV CAJAZEIRA"
+  },
+  {
+    "Classe": "311103472041",
+    "": "ITUPIRANGA - ESGOTO E.E.E POV CAJAZEIRA"
+  },
+  {
+    "Classe": "311103472061",
+    "": "ITUPIRANGA - ESGOTO E.T.E  POV CAJAZEIRA"
+  },
+  {
+    "Classe": "221100800201",
+    "": "JAU - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "221100800202",
+    "": "JAU - ALMOXARIFADO"
+  },
+  {
+    "Classe": "221100800301",
+    "": "JAU - FATURAMENTO"
+  },
+  {
+    "Classe": "221100800302",
+    "": "JAU - COBRANCA"
+  },
+  {
+    "Classe": "221100800303",
+    "": "JAU - ATENDIMENTO"
+  },
+  {
+    "Classe": "221100800401",
+    "": "JAU - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "221100800402",
+    "": "JAU - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "221100800403",
+    "": "JAU - DISTRIBUICAO"
+  },
+  {
+    "Classe": "221100812001",
+    "": "JAU - PTP 001"
+  },
+  {
+    "Classe": "221100812002",
+    "": "JAU - PTP 002"
+  },
+  {
+    "Classe": "221100812003",
+    "": "JAU - PTP 003"
+  },
+  {
+    "Classe": "221100812004",
+    "": "JAU - PTP 004"
+  },
+  {
+    "Classe": "221100812005",
+    "": "JAU - PTP 005"
+  },
+  {
+    "Classe": "221100812006",
+    "": "JAU - PTP 006"
+  },
+  {
+    "Classe": "221100812007",
+    "": "JAU - PTP 007"
+  },
+  {
+    "Classe": "221100812008",
+    "": "JAU - PTP 008"
+  },
+  {
+    "Classe": "221100812009",
+    "": "JAU - PTP 009"
+  },
+  {
+    "Classe": "221100812010",
+    "": "JAU - PTP 010"
+  },
+  {
+    "Classe": "221100812031",
+    "": "JAU - TRATAMENTO"
+  },
+  {
+    "Classe": "221100812041",
+    "": "JAU - ELEVATORIA"
+  },
+  {
+    "Classe": "221100812051",
+    "": "JAU - RESERVACAO"
+  },
+  {
+    "Classe": "231103500201",
+    "": "LIZARDA - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "231103500202",
+    "": "LIZARDA - ALMOXARIFADO"
+  },
+  {
+    "Classe": "231103500301",
+    "": "LIZARDA - FATURAMENTO"
+  },
+  {
+    "Classe": "231103500302",
+    "": "LIZARDA - COBRANCA"
+  },
+  {
+    "Classe": "231103500303",
+    "": "LIZARDA - ATENDIMENTO"
+  },
+  {
+    "Classe": "231103500401",
+    "": "LIZARDA - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "231103500402",
+    "": "LIZARDA - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "231103500403",
+    "": "LIZARDA - DISTRIBUICAO"
+  },
+  {
+    "Classe": "231103512001",
+    "": "LIZARDA - PTP 001"
+  },
+  {
+    "Classe": "231103512002",
+    "": "LIZARDA - PTP 002"
+  },
+  {
+    "Classe": "231103512003",
+    "": "LIZARDA - PTP 003"
+  },
+  {
+    "Classe": "231103512004",
+    "": "LIZARDA - PTP 004"
+  },
+  {
+    "Classe": "231103512005",
+    "": "LIZARDA - PTP 005"
+  },
+  {
+    "Classe": "231103512031",
+    "": "LIZARDA - TRATAMENTO"
+  },
+  {
+    "Classe": "231103512041",
+    "": "LIZARDA - ELEVATORIA"
+  },
+  {
+    "Classe": "231103512051",
+    "": "LIZARDA - RESERVACAO"
+  },
+  {
+    "Classe": "211103000201",
+    "": "MATEIROS - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "211103000202",
+    "": "MATEIROS - ALMOXARIFADO"
+  },
+  {
+    "Classe": "211103000301",
+    "": "MATEIROS - FATURAMENTO"
+  },
+  {
+    "Classe": "211103000302",
+    "": "MATEIROS - COBRANCA"
+  },
+  {
+    "Classe": "211103000303",
+    "": "MATEIROS - ATENDIMENTO"
+  },
+  {
+    "Classe": "211103000401",
+    "": "MATEIROS - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "211103000402",
+    "": "MATEIROS - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "211103000403",
+    "": "MATEIROS - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211103012001",
+    "": "MATEIROS - PTP 001"
+  },
+  {
+    "Classe": "211103012002",
+    "": "MATEIROS - PTP 002"
+  },
+  {
+    "Classe": "211103012003",
+    "": "MATEIROS - PTP 003"
+  },
+  {
+    "Classe": "211103012004",
+    "": "MATEIROS - PTP 004"
+  },
+  {
+    "Classe": "211103012031",
+    "": "MATEIROS - TRATAMENTO"
+  },
+  {
+    "Classe": "211103012041",
+    "": "MATEIROS - ELEVATORIA"
+  },
+  {
+    "Classe": "211103012051",
+    "": "MATEIROS - RESERVACAO"
+  },
+  {
+    "Classe": "241104500201",
+    "": "MIRANORTE - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "241104500202",
+    "": "MIRANORTE - ALMOXARIFADO"
+  },
+  {
+    "Classe": "241104500301",
+    "": "MIRANORTE - FATURAMENTO"
+  },
+  {
+    "Classe": "241104500302",
+    "": "MIRANORTE - COBRANCA"
+  },
+  {
+    "Classe": "241104500303",
+    "": "MIRANORTE - ATENDIMENTO"
+  },
+  {
+    "Classe": "211102200201",
+    "": "MONTE DO CARMO - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "211102200202",
+    "": "MONTE DO CARMO - ALMOXARIFADO"
+  },
+  {
+    "Classe": "211102200301",
+    "": "MONTE DO CARMO - FATURAMENTO"
+  },
+  {
+    "Classe": "211102200302",
+    "": "MONTE DO CARMO - COBRANCA"
+  },
+  {
+    "Classe": "211102200303",
+    "": "MONTE DO CARMO - ATENDIMENTO"
+  },
+  {
+    "Classe": "211102200401",
+    "": "MONTE DO CARMO - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "211102200402",
+    "": "MONTE DO CARMO - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "211102200403",
+    "": "MONTE DO CARMO - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211102210101",
+    "": "MONTE DO CARMO - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "211102210131",
+    "": "MONTE DO CARMO - TRATAMENTO ETA"
+  },
+  {
+    "Classe": "211102210141",
+    "": "MONTE DO CARMO - ELEVATORIA  ETA"
+  },
+  {
+    "Classe": "211102210151",
+    "": "MONTE DO CARMO - RESERVACAO ETA"
+  },
+  {
+    "Classe": "211102212001",
+    "": "MONTE DO CARMO - PTP 001"
+  },
+  {
+    "Classe": "211102212031",
+    "": "MONTE DO CARMO - TRATAMENTO"
+  },
+  {
+    "Classe": "211102212041",
+    "": "MONTE DO CARMO - ELEVATORIA"
+  },
+  {
+    "Classe": "211102212051",
+    "": "MONTE DO CARMO - RESERVACAO"
+  },
+  {
+    "Classe": "211101500201",
+    "": "NOVO ALEGRE - ADMINISTRATIVO/FINANCEIRO"
+  },
+  {
+    "Classe": "211101500202",
+    "": "NOVO ALEGRE - ALMOXARIFADO"
+  },
+  {
+    "Classe": "211101500301",
+    "": "NOVO ALEGRE - FATURAMENTO"
+  },
+  {
+    "Classe": "211101500302",
+    "": "NOVO ALEGRE - COBRANCA"
+  },
+  {
+    "Classe": "211101500303",
+    "": "NOVO ALEGRE - ATENDIMENTO"
+  },
+  {
+    "Classe": "211101500401",
+    "": "NOVO ALEGRE - ADUCAO AGUA BRUTA"
+  },
+  {
+    "Classe": "211101500402",
+    "": "NOVO ALEGRE - ADUCAO AGUA TRATADA"
+  },
+  {
+    "Classe": "211101500403",
+    "": "NOVO ALEGRE - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211101510101",
+    "": "NOVO ALEGRE - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "211101510131",
+    "": "NOVO ALEGRE - TRATAMENTO   ETA"
+  },
+  {
+    "Classe": "211101510141",
+    "": "NOVO ALEGRE - ELEVATORIA  ETA"
+  },
+  {
+    "Classe": "211101510151",
+    "": "NOVO ALEGRE - RESERVACAO ETA"
+  },
+  {
+    "Classe": "211101512001",
+    "": "NOVO ALEGRE - PTP 001"
+  },
+  {
+    "Classe": "211101512031",
+    "": "NOVO ALEGRE - TRATAMENTO"
+  },
+  {
+    "Classe": "211101512041",
+    "": "NOVO ALEGRE - ELEVATORIA"
+  },
+  {
+    "Classe": "211101512051",
+    "": "NOVO ALEGRE - RESERVACAO"
+  },
+  {
+    "Classe": "311103800201",
+    "": "NOVO REPARTIMENTO - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "311103800202",
+    "": "NOVO REPARTIMENTO - ALMOXARIFADO"
+  },
+  {
+    "Classe": "311103800301",
+    "": "NOVO REPARTIMENTO - FATURAMENTO"
+  },
+  {
+    "Classe": "311103800302",
+    "": "NOVO REPARTIMENTO - COBRANCA"
+  },
+  {
+    "Classe": "311103800303",
+    "": "NOVO REPARTIMENTO - ATENDIMENTO"
+  },
+  {
+    "Classe": "311103800401",
+    "": "NOVO REPARTIMENTO - ADUCAO AGUA BRUTA"
+  },
+  {
+    "Classe": "311103800402",
+    "": "NOVO REPARTIMENTO - ADUCAO AGUA TRATADA"
+  },
+  {
+    "Classe": "311103800403",
+    "": "NOVO REPARTIMENTO - DISTRIBUICAO"
+  },
+  {
+    "Classe": "311103810101",
+    "": "NOVO REPARTIMENTO - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "311103810131",
+    "": "NOVO REPARTIMENTO - TRATAMENTO  ETA"
+  },
+  {
+    "Classe": "311103810141",
+    "": "NOVO REPARTIMENTO - ELEVATORIA   ETA"
+  },
+  {
+    "Classe": "311103810151",
+    "": "NOVO REPARTIMENTO - RESERVACAO  ETA"
+  },
+  {
+    "Classe": "311103812001",
+    "": "NOVO REPARTIMENTO - PTP 001"
+  },
+  {
+    "Classe": "311103812002",
+    "": "NOVO REPARTIMENTO - PTP 002"
+  },
+  {
+    "Classe": "311103812003",
+    "": "NOVO REPARTIMENTO - PTP 003"
+  },
+  {
+    "Classe": "311103812004",
+    "": "NOVO REPARTIMENTO - PTP 004"
+  },
+  {
+    "Classe": "311103812005",
+    "": "NOVO REPARTIMENTO - PTP 005"
+  },
+  {
+    "Classe": "311103812006",
+    "": "NOVO REPARTIMENTO - PTP 006"
+  },
+  {
+    "Classe": "311103812007",
+    "": "NOVO REPARTIMENTO - PTP 007"
+  },
+  {
+    "Classe": "311103812031",
+    "": "NOVO REPARTIMENTO - TRATAMENTO"
+  },
+  {
+    "Classe": "311103812041",
+    "": "NOVO REPARTIMENTO - ELEVATORIA"
+  },
+  {
+    "Classe": "311103812051",
+    "": "NOVO REPARTIMENTO - RESERVACAO"
+  },
+  {
+    "Classe": "311103820001",
+    "": "NOVO REPARTIMENTO - REDE COLETORA"
+  },
+  {
+    "Classe": "311103820002",
+    "": "NOVO REPARTIMENTO - ESGOTO E.T.E."
+  },
+  {
+    "Classe": "311103840101",
+    "": "NOVO REPARTIMENTO - INVESTIMENTOS OBRA 01"
+  },
+  {
+    "Classe": "241102300201",
+    "": "PEQUIZEIRO - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "241102300202",
+    "": "PEQUIZEIRO - ALMOXARIFADO"
+  },
+  {
+    "Classe": "241102300301",
+    "": "PEQUIZEIRO - FATURAMENTO"
+  },
+  {
+    "Classe": "241102300302",
+    "": "PEQUIZEIRO - COBRANCA"
+  },
+  {
+    "Classe": "241102300303",
+    "": "PEQUIZEIRO - ATENDIMENTO"
+  },
+  {
+    "Classe": "241102300401",
+    "": "PEQUIZEIRO - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "241102300402",
+    "": "PEQUIZEIRO - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "241102300403",
+    "": "PEQUIZEIRO - DISTRIBUICAO"
+  },
+  {
+    "Classe": "241102312001",
+    "": "PEQUIZEIRO - PTP 001"
+  },
+  {
+    "Classe": "241102312002",
+    "": "PEQUIZEIRO - PTP 002"
+  },
+  {
+    "Classe": "241102312003",
+    "": "PEQUIZEIRO - PTP 003"
+  },
+  {
+    "Classe": "241102312004",
+    "": "PEQUIZEIRO - PTP 004"
+  },
+  {
+    "Classe": "241102312005",
+    "": "PEQUIZEIRO - PTP 005"
+  },
+  {
+    "Classe": "241102312006",
+    "": "PEQUIZEIRO - PTP 006"
+  },
+  {
+    "Classe": "241102312007",
+    "": "PEQUIZEIRO - PTP 007"
+  },
+  {
+    "Classe": "241102312031",
+    "": "PEQUIZEIRO - TRATAMENTO"
+  },
+  {
+    "Classe": "241102312041",
+    "": "PEQUIZEIRO - ELEVATORIA"
+  },
+  {
+    "Classe": "241102312051",
+    "": "PEQUIZEIRO - RESERVACAO"
+  },
+  {
+    "Classe": "211100500201",
+    "": "PINDORAMA - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "211100500202",
+    "": "PINDORAMA - ALMOXARIFADO"
+  },
+  {
+    "Classe": "211100500301",
+    "": "PINDORAMA - FATURAMENTO"
+  },
+  {
+    "Classe": "211100500302",
+    "": "PINDORAMA - COBRANCA"
+  },
+  {
+    "Classe": "211100500303",
+    "": "PINDORAMA - ATENDIMENTO"
+  },
+  {
+    "Classe": "211100500401",
+    "": "PINDORAMA - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "211100500402",
+    "": "PINDORAMA - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "211100500403",
+    "": "PINDORAMA - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211100510101",
+    "": "PINDORAMA - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "211100510131",
+    "": "PINDORAMA - TRATAMENTO    ETA"
+  },
+  {
+    "Classe": "211100510141",
+    "": "PINDORAMA - ELEVATORIA    ETA"
+  },
+  {
+    "Classe": "211100510151",
+    "": "PINDORAMA - RESERVACAO  ETA"
+  },
+  {
+    "Classe": "221100200201",
+    "": "PIUM - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "221100200202",
+    "": "PIUM - ALMOXARIFADO"
+  },
+  {
+    "Classe": "221100200301",
+    "": "PIUM - FATURAMENTO"
+  },
+  {
+    "Classe": "221100200302",
+    "": "PIUM - COBRANCA"
+  },
+  {
+    "Classe": "221100200303",
+    "": "PIUM - ATENDIMENTO"
+  },
+  {
+    "Classe": "221100200401",
+    "": "PIUM - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "221100200402",
+    "": "PIUM - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "221100200403",
+    "": "PIUM - DISTRIBUICAO"
+  },
+  {
+    "Classe": "221100210101",
+    "": "PIUM - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "221100210131",
+    "": "PIUM - TRATAMENTO ETA"
+  },
+  {
+    "Classe": "221100210141",
+    "": "PIUM - ELEVATORIA  ETA"
+  },
+  {
+    "Classe": "221100210151",
+    "": "PIUM - RESERVACAO  ETA"
+  },
+  {
+    "Classe": "221100212001",
+    "": "PIUM - PTP 001"
+  },
+  {
+    "Classe": "221100212002",
+    "": "PIUM - PTP 002"
+  },
+  {
+    "Classe": "221100212003",
+    "": "PIUM - PTP 003"
+  },
+  {
+    "Classe": "221100212031",
+    "": "PIUM - TRATAMENTO"
+  },
+  {
+    "Classe": "221100212041",
+    "": "PIUM - ELEVATORIA"
+  },
+  {
+    "Classe": "221100212051",
+    "": "PIUM - RESERVACAO"
+  },
+  {
+    "Classe": "211100400201",
+    "": "PONTE ALTA  TO - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "211100400202",
+    "": "PONTE ALTA  TO - ALMOXARIFADO"
+  },
+  {
+    "Classe": "211100400301",
+    "": "PONTE ALTA  TO - FATURAMENTO"
+  },
+  {
+    "Classe": "211100400302",
+    "": "PONTE ALTA  TO - COBRANCA"
+  },
+  {
+    "Classe": "211100400303",
+    "": "PONTE ALTA  TO - ATENDIMENTO"
+  },
+  {
+    "Classe": "211100400401",
+    "": "PONTE ALTA  TO - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "211100400402",
+    "": "PONTE ALTA  TO - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "211100400403",
+    "": "PONTE ALTA  TO - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211100412001",
+    "": "PONTE  ALTA TO - PTP 001"
+  },
+  {
+    "Classe": "211100412002",
+    "": "PONTE  ALTA TO - PTP 002"
+  },
+  {
+    "Classe": "211100412003",
+    "": "PONTE  ALTA TO - PTP 003"
+  },
+  {
+    "Classe": "211100412004",
+    "": "PONTE  ALTA TO - PTP 004"
+  },
+  {
+    "Classe": "211100412031",
+    "": "PONTE  ALTA TO - TRATAMENTO"
+  },
+  {
+    "Classe": "211100412041",
+    "": "PONTE  ALTA TO - ELEVATORIA"
+  },
+  {
+    "Classe": "211100412051",
+    "": "PONTE  ALTA TO - RESERVACAO"
+  },
+  {
+    "Classe": "211103300201",
+    "": "PONTE ALTA BOM JESUS - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "211103300202",
+    "": "PONTE ALTA BOM JESUS - ALMOXARIFADO"
+  },
+  {
+    "Classe": "211103300301",
+    "": "PONTE ALTA BOM JESUS - FATURAMENTO"
+  },
+  {
+    "Classe": "211103300302",
+    "": "PONTE ALTA BOM JESUS - COBRANCA"
+  },
+  {
+    "Classe": "211103300303",
+    "": "PONTE ALTA BOM JESUS - ATENDIMENTO"
+  },
+  {
+    "Classe": "211103300401",
+    "": "PONTE ALTA BOM JESUS - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "211103300402",
+    "": "PONTE ALTA BOM JESUS - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "211103300403",
+    "": "PONTE ALTA BOM JESUS - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211103310101",
+    "": "PONTE ALTA BOM JESUS - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "211103310131",
+    "": "PONTE ALTA BOM JESUS - TRATAMENTO ETA"
+  },
+  {
+    "Classe": "211103310141",
+    "": "PONTE ALTA BOM JESUS - ELEVATORIA  ETA"
+  },
+  {
+    "Classe": "211103310151",
+    "": "PONTE ALTA BOM JESUS - RESERVACAO ETA"
+  },
+  {
+    "Classe": "211103312001",
+    "": "PONTE ALTA BOM JESUS - PTP 001"
+  },
+  {
+    "Classe": "211103312002",
+    "": "PONTE ALTA BOM JESUS - PTP 002"
+  },
+  {
+    "Classe": "211103312003",
+    "": "PONTE ALTA BOM JESUS - PTP 003"
+  },
+  {
+    "Classe": "211103312031",
+    "": "PONTE ALTA BOM JESUS - TRATAMENTO"
+  },
+  {
+    "Classe": "211103312041",
+    "": "PONTE ALTA BOM JESUS - ELEVATORIA"
+  },
+  {
+    "Classe": "211103312051",
+    "": "PONTE ALTA BOM JESUS - RESERVACAO"
+  },
+  {
+    "Classe": "211100900201",
+    "": "PORTO ALEGRE - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "211100900202",
+    "": "PORTO ALEGRE - ALMOXARIFADO"
+  },
+  {
+    "Classe": "211100900301",
+    "": "PORTO ALEGRE - FATURAMENTO"
+  },
+  {
+    "Classe": "211100900302",
+    "": "PORTO ALEGRE - COBRANCA"
+  },
+  {
+    "Classe": "211100900303",
+    "": "PORTO ALEGRE - ATENDIMENTO"
+  },
+  {
+    "Classe": "211100900401",
+    "": "PORTO ALEGRE - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "211100900402",
+    "": "PORTO ALEGRE - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "211100900403",
+    "": "PORTO ALEGRE - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211100912001",
+    "": "PORTO ALEGRE - PTP 001"
+  },
+  {
+    "Classe": "211100912002",
+    "": "PORTO ALEGRE - PTP 002"
+  },
+  {
+    "Classe": "211100912031",
+    "": "PORTO ALEGRE - TRATAMENTO"
+  },
+  {
+    "Classe": "211100912041",
+    "": "PORTO ALEGRE - ELEVATORIA"
+  },
+  {
+    "Classe": "211100912051",
+    "": "PORTO ALEGRE - RESERVACAO"
+  },
+  {
+    "Classe": "251100100201",
+    "": "PRAIA NORTE - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "251100100202",
+    "": "PRAIA NORTE - ALMOXARIFADO"
+  },
+  {
+    "Classe": "251100100301",
+    "": "PRAIA NORTE - FATURAMENTO"
+  },
+  {
+    "Classe": "251100100302",
+    "": "PRAIA NORTE - COBRANCA"
+  },
+  {
+    "Classe": "251100100303",
+    "": "PRAIA NORTE - ATENDIMENTO"
+  },
+  {
+    "Classe": "251100100401",
+    "": "PRAIA NORTE - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "251100100402",
+    "": "PRAIA NORTE - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "251100100403",
+    "": "PRAIA NORTE - DISTRIBUICAO"
+  },
+  {
+    "Classe": "251100112001",
+    "": "PRAIA NORTE - PTP 001"
+  },
+  {
+    "Classe": "251100112002",
+    "": "PRAIA NORTE - PTP 002"
+  },
+  {
+    "Classe": "251100112003",
+    "": "PRAIA NORTE - PTP 003"
+  },
+  {
+    "Classe": "251100112004",
+    "": "PRAIA NORTE - PTP 004"
+  },
+  {
+    "Classe": "251100112005",
+    "": "PRAIA NORTE - PTP 005"
+  },
+  {
+    "Classe": "251100112006",
+    "": "PRAIA NORTE - PTP 006"
+  },
+  {
+    "Classe": "251100112007",
+    "": "PRAIA NORTE - PTP 007"
+  },
+  {
+    "Classe": "251100112031",
+    "": "PRAIA NORTE - TRATAMENTO"
+  },
+  {
+    "Classe": "251100112041",
+    "": "PRAIA NORTE - ELEVATORIA"
+  },
+  {
+    "Classe": "251100112051",
+    "": "PRAIA NORTE - RESERVACAO"
+  },
+  {
+    "Classe": "251100152001",
+    "": "PRAIA NORTE - ESGOTO REDE COLETORA"
+  },
+  {
+    "Classe": "251100152031",
+    "": "PRAIA NORTE - ESGOTO EMISSARIO"
+  },
+  {
+    "Classe": "251100152041",
+    "": "PRAIA NORTE - ESGOTO E.E.E."
+  },
+  {
+    "Classe": "251100152061",
+    "": "PRAIA NORTE - ESGOTO E.T.E."
+  },
+  {
+    "Classe": "241103700201",
+    "": "PRESIDENTE KENNEDY - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "241103700202",
+    "": "PRESIDENTE KENNEDY - ALMOXARIFADO"
+  },
+  {
+    "Classe": "241103700301",
+    "": "PRESIDENTE KENNEDY - FATURAMENTO"
+  },
+  {
+    "Classe": "241103700302",
+    "": "PRESIDENTE KENNEDY - COBRANCA"
+  },
+  {
+    "Classe": "241103700303",
+    "": "PRESIDENTE KENNEDY - ATENDIMENTO"
+  },
+  {
+    "Classe": "241103700401",
+    "": "PRESIDENTE KENNEDY - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "241103700402",
+    "": "PRESIDENTE KENNEDY - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "241103700403",
+    "": "PRESIDENTE KENNEDY - DISTRIBUICAO"
+  },
+  {
+    "Classe": "241103712001",
+    "": "PRESIDENTE KENNEDY - PTP 001"
+  },
+  {
+    "Classe": "241103712002",
+    "": "PRESIDENTE KENNEDY - PTP 002"
+  },
+  {
+    "Classe": "241103712003",
+    "": "PRESIDENTE KENNEDY - PTP 003"
+  },
+  {
+    "Classe": "241103712004",
+    "": "PRESIDENTE KENNEDY - PTP 004"
+  },
+  {
+    "Classe": "241103712005",
+    "": "PRESIDENTE KENNEDY - PTP 005"
+  },
+  {
+    "Classe": "241103712006",
+    "": "PRESIDENTE KENNEDY - PTP 006"
+  },
+  {
+    "Classe": "241103712007",
+    "": "PRESIDENTE KENNEDY - PTP 007"
+  },
+  {
+    "Classe": "241103712008",
+    "": "PRESIDENTE KENNEDY - PTP 008 ( NAO DEU VAZAO )"
+  },
+  {
+    "Classe": "241103712031",
+    "": "PRESIDENTE KENNEDY - TRATAMENTO"
+  },
+  {
+    "Classe": "241103712041",
+    "": "PRESIDENTE KENNEDY - ELEVATORIA"
+  },
+  {
+    "Classe": "241103712051",
+    "": "PRESIDENTE KENNEDY - RESERVACAO"
+  },
+  {
+    "Classe": "211100300201",
+    "": "RIO DA CONCEICAO - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "211100300202",
+    "": "RIO DA CONCEICAO - ALMOXARIFADO"
+  },
+  {
+    "Classe": "211100300301",
+    "": "RIO DA CONCEICAO - FATURAMENTO"
+  },
+  {
+    "Classe": "211100300302",
+    "": "RIO DA CONCEICAO - COBRANCA"
+  },
+  {
+    "Classe": "211100300303",
+    "": "RIO DA CONCEICAO - ATENDIMENTO"
+  },
+  {
+    "Classe": "211100300401",
+    "": "RIO DA CONCEICAO - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "211100300402",
+    "": "RIO DA CONCEICAO - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "211100300403",
+    "": "RIO DA CONCEICAO - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211100312001",
+    "": "RIO DA CONCEICAO - PTP 001"
+  },
+  {
+    "Classe": "211100312002",
+    "": "RIO DA CONCEICAO - PTP 002"
+  },
+  {
+    "Classe": "211100312003",
+    "": "RIO DA CONCEICAO - PTP 003"
+  },
+  {
+    "Classe": "211100312031",
+    "": "RIO DA CONCEICAO - TRATAMENTO"
+  },
+  {
+    "Classe": "211100312041",
+    "": "RIO DA CONCEICAO - ELEVATORIA"
+  },
+  {
+    "Classe": "211100312051",
+    "": "RIO DA CONCEICAO - RESERVACAO"
+  },
+  {
+    "Classe": "231101600201",
+    "": "SANTA MARIA - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "231101600202",
+    "": "SANTA MARIA - ALMOXARIFADO"
+  },
+  {
+    "Classe": "231101600301",
+    "": "SANTA MARIA - FATURAMENTO"
+  },
+  {
+    "Classe": "231101600302",
+    "": "SANTA MARIA - COBRANCA"
+  },
+  {
+    "Classe": "231101600303",
+    "": "SANTA MARIA - ATENDIMENTO"
+  },
+  {
+    "Classe": "231101600401",
+    "": "SANTA MARIA - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "231101600402",
+    "": "SANTA MARIA - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "231101600403",
+    "": "SANTA MARIA - DISTRIBUICAO"
+  },
+  {
+    "Classe": "231101612001",
+    "": "SANTA MARIA - PTP 001"
+  },
+  {
+    "Classe": "231101612002",
+    "": "SANTA MARIA - PTP 002"
+  },
+  {
+    "Classe": "231101612003",
+    "": "SANTA MARIA - PTP 003"
+  },
+  {
+    "Classe": "231101612004",
+    "": "SANTA MARIA - PTP 004"
+  },
+  {
+    "Classe": "231101612005",
+    "": "SANTA MARIA - PTP 005"
+  },
+  {
+    "Classe": "231101612031",
+    "": "SANTA MARIA - TRATAMENTO"
+  },
+  {
+    "Classe": "231101612041",
+    "": "SANTA MARIA - ELEVATORIA"
+  },
+  {
+    "Classe": "231101612051",
+    "": "SANTA MARIA - RESERVACAO"
+  },
+  {
+    "Classe": "221101100201",
+    "": "SANTA RITA - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "221101100202",
+    "": "SANTA RITA - ALMOXARIFADO"
+  },
+  {
+    "Classe": "221101100301",
+    "": "SANTA RITA - FATURAMENTO"
+  },
+  {
+    "Classe": "221101100302",
+    "": "SANTA RITA - COBRANCA"
+  },
+  {
+    "Classe": "221101100303",
+    "": "SANTA RITA - ATENDIMENTO"
+  },
+  {
+    "Classe": "221101100401",
+    "": "SANTA RITA - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "221101100402",
+    "": "SANTA RITA - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "221101100403",
+    "": "SANTA RITA - DISTRIBUICAO"
+  },
+  {
+    "Classe": "221101112001",
+    "": "SANTA RITA - PTP 001"
+  },
+  {
+    "Classe": "221101112002",
+    "": "SANTA RITA - PTP 002"
+  },
+  {
+    "Classe": "221101112003",
+    "": "SANTA RITA - PTP 003"
+  },
+  {
+    "Classe": "221101112031",
+    "": "SANTA RITA - TRATAMENTO"
+  },
+  {
+    "Classe": "221101112041",
+    "": "SANTA RITA - ELEVATORIA"
+  },
+  {
+    "Classe": "221101112051",
+    "": "SANTA RITA - RESERVACAO"
+  },
+  {
+    "Classe": "211101400201",
+    "": "SANTA ROSA - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "211101400202",
+    "": "SANTA ROSA - ALMOXARIFADO"
+  },
+  {
+    "Classe": "211101400301",
+    "": "SANTA ROSA - FATURAMENTO"
+  },
+  {
+    "Classe": "211101400302",
+    "": "SANTA ROSA - COBRANCA"
+  },
+  {
+    "Classe": "211101400303",
+    "": "SANTA ROSA - ATENDIMENTO"
+  },
+  {
+    "Classe": "211101400401",
+    "": "SANTA ROSA - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "211101400402",
+    "": "SANTA ROSA - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "211101400403",
+    "": "SANTA ROSA - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211101412001",
+    "": "SANTA ROSA - PTP 001"
+  },
+  {
+    "Classe": "211101412002",
+    "": "SANTA ROSA - PTP 002"
+  },
+  {
+    "Classe": "211101412003",
+    "": "SANTA ROSA - PTP 003"
+  },
+  {
+    "Classe": "211101412004",
+    "": "SANTA ROSA - PTP 004"
+  },
+  {
+    "Classe": "211101412005",
+    "": "SANTA ROSA - PTP 005"
+  },
+  {
+    "Classe": "211101412006",
+    "": "SANTA ROSA - PTP 006"
+  },
+  {
+    "Classe": "211101412007",
+    "": "SANTA ROSA - PTP 007"
+  },
+  {
+    "Classe": "211101412008",
+    "": "SANTA ROSA - PTP 008"
+  },
+  {
+    "Classe": "211101412009",
+    "": "SANTA ROSA - PTP 009"
+  },
+  {
+    "Classe": "211101412010",
+    "": "SANTA ROSA - PTP 010"
+  },
+  {
+    "Classe": "211101412031",
+    "": "SANTA ROSA - TRATAMENTO"
+  },
+  {
+    "Classe": "211101412041",
+    "": "SANTA ROSA - ELEVATORIA"
+  },
+  {
+    "Classe": "211101412051",
+    "": "SANTA ROSA - RESERVACAO"
+  },
+  {
+    "Classe": "311104300201",
+    "": "SAO DOMINGOS DO ARAGUAIA - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "311104300202",
+    "": "SAO DOMINGOS DO ARAGUAIA - ALMOXARIFADO"
+  },
+  {
+    "Classe": "311104300301",
+    "": "SAO DOMINGOS DO ARAGUAIA - FATURAMENTO"
+  },
+  {
+    "Classe": "311104300302",
+    "": "SAO DOMINGOS DO ARAGUAIA - COBRANCA"
+  },
+  {
+    "Classe": "311104300303",
+    "": "SAO DOMINGOS DO ARAGUAIA - ATENDIMENTO"
+  },
+  {
+    "Classe": "311104300401",
+    "": "SAO DOMINGOS DO ARAGUAIA - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "311104300402",
+    "": "SAO DOMINGOS DO ARAGUAIA - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "311104300403",
+    "": "SAO DOMINGOS DO ARAGUAIA - DISTRIBUICAO"
+  },
+  {
+    "Classe": "311104310141",
+    "": "SAO DOMINGOS DO ARAGUAIA - ELEVATORIA - ETA"
+  },
+  {
+    "Classe": "311104310151",
+    "": "SAO DOMINGOS DO ARAGUAIA - RESERVACAO - ETA"
+  },
+  {
+    "Classe": "311104312001",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 001"
+  },
+  {
+    "Classe": "311104312002",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 002"
+  },
+  {
+    "Classe": "311104312003",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 003"
+  },
+  {
+    "Classe": "311104312004",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 004"
+  },
+  {
+    "Classe": "311104312005",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 005"
+  },
+  {
+    "Classe": "311104312006",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 006"
+  },
+  {
+    "Classe": "311104312007",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 007"
+  },
+  {
+    "Classe": "311104312008",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 008"
+  },
+  {
+    "Classe": "311104312009",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 009"
+  },
+  {
+    "Classe": "311104312010",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 010"
+  },
+  {
+    "Classe": "311104312011",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 011"
+  },
+  {
+    "Classe": "311104312012",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 012"
+  },
+  {
+    "Classe": "311104312013",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 013"
+  },
+  {
+    "Classe": "311104312014",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 014"
+  },
+  {
+    "Classe": "311104312015",
+    "": "SAO DOMINGOS DO ARAGUAIA - PTP 015"
+  },
+  {
+    "Classe": "311104312031",
+    "": "SAO DOMINGOS DO ARAGUAIA - TRATAMENTO"
+  },
+  {
+    "Classe": "311104312041",
+    "": "SAO DOMINGOS DO ARAGUAIA - ELEVATORIA"
+  },
+  {
+    "Classe": "311104312051",
+    "": "SAO DOMINGOS DO ARAGUAIA - RESERVATORIO"
+  },
+  {
+    "Classe": "211104200201",
+    "": "SAO VALERIO DA NATIVIDADE - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "211104200202",
+    "": "SAO VALERIO DA NATIVIDADE - ALMOXARIFADO"
+  },
+  {
+    "Classe": "211104200301",
+    "": "SAO VALERIO DA NATIVIDADE - FATURAMENTO"
+  },
+  {
+    "Classe": "211104200302",
+    "": "SAO VALERIO DA NATIVIDADE - COBRANCA"
+  },
+  {
+    "Classe": "211104200303",
+    "": "SAO VALERIO DA NATIVIDADE - ATENDIMENTO"
+  },
+  {
+    "Classe": "211104200401",
+    "": "SAO VALERIO DA NATIVIDADE - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "211104200402",
+    "": "SAO VALERIO DA NATIVIDADE - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "211104200403",
+    "": "SAO VALERIO DA NATIVIDADE - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211104210101",
+    "": "SAO VALERIO DA NATIVIDADE - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "211104210131",
+    "": "SAO VALERIO DA NATIVIDADE - TRATAMENTO  ETA"
+  },
+  {
+    "Classe": "211104210141",
+    "": "SAO VALERIO DA NATIVIDADE - ELEVATORIA  ETA"
+  },
+  {
+    "Classe": "211104210151",
+    "": "SAO VALERIO DA NATIVIDADE - RESERVACAO  ETA"
+  },
+  {
+    "Classe": "211104212001",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 001"
+  },
+  {
+    "Classe": "211104212002",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 002"
+  },
+  {
+    "Classe": "211104212003",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 003"
+  },
+  {
+    "Classe": "211104212004",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 004"
+  },
+  {
+    "Classe": "211104212005",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 005 ( INATIVO )"
+  },
+  {
+    "Classe": "211104212006",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 006 ( INATIVO )"
+  },
+  {
+    "Classe": "211104212007",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 007 ( INATIVA )"
+  },
+  {
+    "Classe": "211104212008",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 008"
+  },
+  {
+    "Classe": "211104212009",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 009 ( INATIVO )"
+  },
+  {
+    "Classe": "211104212010",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 010"
+  },
+  {
+    "Classe": "211104212011",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 011"
+  },
+  {
+    "Classe": "211104212012",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 012"
+  },
+  {
+    "Classe": "211104212013",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 013"
+  },
+  {
+    "Classe": "211104212014",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 014"
+  },
+  {
+    "Classe": "211104212015",
+    "": "SAO VALERIO DA NATIVIDADE - PTP 015"
+  },
+  {
+    "Classe": "211101800201",
+    "": "SILVANOPOLIS - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "211101800202",
+    "": "SILVANOPOLIS - ALMOXARIFADO"
+  },
+  {
+    "Classe": "211101800301",
+    "": "SILVANOPOLIS - FATURAMENTO"
+  },
+  {
+    "Classe": "211101800302",
+    "": "SILVANOPOLIS - COBRANCA"
+  },
+  {
+    "Classe": "211101800303",
+    "": "SILVANOPOLIS - ATENDIMENTO"
+  },
+  {
+    "Classe": "211101800401",
+    "": "SILVANOPOLIS - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "211101800402",
+    "": "SILVANOPOLIS - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "211101800403",
+    "": "SILVANOPOLIS - DISTRIBUICAO"
+  },
+  {
+    "Classe": "211101810101",
+    "": "SILVANOPOLIS - CAPTACAO SUPERFICIAL"
+  },
+  {
+    "Classe": "211101810131",
+    "": "SILVANOPOLIS - TRATAMENTO ETA"
+  },
+  {
+    "Classe": "211101810141",
+    "": "SILVANOPOLIS - ELEVATORIA  ETA"
+  },
+  {
+    "Classe": "211101810151",
+    "": "SILVANOPOLIS - RESERVACAO ETA"
+  },
+  {
+    "Classe": "211101812001",
+    "": "SILVANOPOLIS - PTP 001"
+  },
+  {
+    "Classe": "211101812002",
+    "": "SILVANOPOLIS - PTP 002"
+  },
+  {
+    "Classe": "211101812031",
+    "": "SILVANOPOLIS - TRATAMENTO"
+  },
+  {
+    "Classe": "211101812041",
+    "": "SILVANOPOLIS - ELEVATORIA"
+  },
+  {
+    "Classe": "211101812051",
+    "": "SILVANOPOLIS - RESERVACAO"
+  },
+  {
+    "Classe": "251102600201",
+    "": "SITIO NOVO - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "251102600202",
+    "": "SITIO NOVO - ALMOXARIFADO"
+  },
+  {
+    "Classe": "251102600301",
+    "": "SITIO NOVO - FATURAMENTO"
+  },
+  {
+    "Classe": "251102600302",
+    "": "SITIO NOVO - COBRANCA"
+  },
+  {
+    "Classe": "251102600303",
+    "": "SITIO NOVO - ATENDIMENTO"
+  },
+  {
+    "Classe": "251102600401",
+    "": "SITIO NOVO - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "251102600402",
+    "": "SITIO NOVO - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "251102600403",
+    "": "SITIO NOVO - DISTRIBUICAO"
+  },
+  {
+    "Classe": "251102612001",
+    "": "SITIO NOVO - PTP 001"
+  },
+  {
+    "Classe": "251102612002",
+    "": "SITIO NOVO - PTP 002"
+  },
+  {
+    "Classe": "251102612003",
+    "": "SITIO NOVO - PTP 003"
+  },
+  {
+    "Classe": "251102612004",
+    "": "SITIO NOVO - PTP 004"
+  },
+  {
+    "Classe": "251102612005",
+    "": "SITIO NOVO - PTP 005"
+  },
+  {
+    "Classe": "251102612006",
+    "": "SITIO NOVO - PTP 006"
+  },
+  {
+    "Classe": "251102612007",
+    "": "SITIO NOVO - PTP 007"
+  },
+  {
+    "Classe": "251102612008",
+    "": "SITIO NOVO - PTP 008"
+  },
+  {
+    "Classe": "251102612009",
+    "": "SITIO NOVO - PTP 009"
+  },
+  {
+    "Classe": "251102612010",
+    "": "SITIO NOVO - PTP 010"
+  },
+  {
+    "Classe": "251102612011",
+    "": "SITIO NOVO - PTP 011"
+  },
+  {
+    "Classe": "251102612031",
+    "": "SITIO NOVO - TRATAMENTO"
+  },
+  {
+    "Classe": "251102612041",
+    "": "SITIO NOVO - ELEVATORIA"
+  },
+  {
+    "Classe": "251102612051",
+    "": "SITIO NOVO - RESERVACAO"
+  },
+  {
+    "Classe": "251102640101",
+    "": "SITIO NOVO - INVESTIMENTO OBRA - 01"
+  },
+  {
+    "Classe": "251102652001",
+    "": "SITIO NOVO - ESGOTO REDE COLETORA"
+  },
+  {
+    "Classe": "251102652031",
+    "": "SITIO NOVO - ESGOTO EMISSARIO"
+  },
+  {
+    "Classe": "251102652041",
+    "": "SITIO NOVO - ESGOTO E.E.E"
+  },
+  {
+    "Classe": "251102652061",
+    "": "SITIO NOVO - ESGOTO E.T.E."
+  },
+  {
+    "Classe": "241103100201",
+    "": "TABOCAO - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "241103100202",
+    "": "TABOCAO - ALMOXARIFADO"
+  },
+  {
+    "Classe": "241103100301",
+    "": "TABOCAO - FATURAMENTO"
+  },
+  {
+    "Classe": "241103100302",
+    "": "TABOCAO - COBRANCA"
+  },
+  {
+    "Classe": "241103100303",
+    "": "TABOCAO - ATENDIMENTO"
+  },
+  {
+    "Classe": "241103100401",
+    "": "TABOCAO - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "241103100402",
+    "": "TABOCAO - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "241103100403",
+    "": "TABOCAO - DISTRIBUICAO"
+  },
+  {
+    "Classe": "241103112001",
+    "": "TABOCAO - PTP 001"
+  },
+  {
+    "Classe": "241103112031",
+    "": "TABOCAO - TRATAMENTO"
+  },
+  {
+    "Classe": "241103112041",
+    "": "TABOCAO - ELEVATORIA"
+  },
+  {
+    "Classe": "241103112051",
+    "": "TABOCAO - RESERVACAO"
+  },
+  {
+    "Classe": "221103200201",
+    "": "TALISMA - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "221103200202",
+    "": "TALISMA - ALMOXARIFADO"
+  },
+  {
+    "Classe": "221103200301",
+    "": "TALISMA - FATURAMENTO"
+  },
+  {
+    "Classe": "221103200302",
+    "": "TALISMA - COBRANCA"
+  },
+  {
+    "Classe": "221103200303",
+    "": "TALISMA - ATENDIMENTO"
+  },
+  {
+    "Classe": "221103200401",
+    "": "TALISMA - ADUCAO DE AGUA BRUTA"
+  },
+  {
+    "Classe": "221103200402",
+    "": "TALISMA - ADUCAO DE AGUA TRATADA"
+  },
+  {
+    "Classe": "221103200403",
+    "": "TALISMA - DISTRIBUICAO"
+  },
+  {
+    "Classe": "221103212001",
+    "": "TALISMA - PTP 001"
+  },
+  {
+    "Classe": "221103212002",
+    "": "TALISMA - PTP 002"
+  },
+  {
+    "Classe": "221103212003",
+    "": "TALISMA - PTP 003"
+  },
+  {
+    "Classe": "221103212004",
+    "": "TALISMA - PTP 004"
+  },
+  {
+    "Classe": "221103212005",
+    "": "TALISMA - PTP 005"
+  },
+  {
+    "Classe": "221103212006",
+    "": "TALISMA - PTP 006"
+  },
+  {
+    "Classe": "221103212031",
+    "": "TALISMA - TRATAMENTO"
+  },
+  {
+    "Classe": "221103212041",
+    "": "TALISMA - ELEVATORIA"
+  },
+  {
+    "Classe": "221103212051",
+    "": "TALISMA - RESERVACAO"
+  },
+  {
+    "Classe": "221103252001",
+    "": "TALISMA - ESGOTO REDE COLETORA"
+  },
+  {
+    "Classe": "221103252031",
+    "": "TALISMA - ESGOTO EMISSARIO"
+  },
+  {
+    "Classe": "221103252061",
+    "": "TALISMA - ESGOTO E.T.E."
+  },
+  {
+    "Classe": "241104000201",
+    "": "BANDEIRANTES DO TOCANTINS - ADMINISTRATIVO / FINANCEIRO"
+  },
+  {
+    "Classe": "241104000202",
+    "": "BANDEIRANTES DO TOCANTINS  - ALMOXARIFADO"
+  },
+  {
+    "Classe": "241104000301",
+    "": "BANDEIRANTES DO TOCANTINS  - FATURAMENTO"
+  },
+  {
+    "Classe": "241104000302",
+    "": "BANDEIRANTES DO TOCANTINS  - COBRANCA"
+  },
+  {
+    "Classe": "241104000303",
+    "": "BANDEIRANTES DO TOCANTINS  - ATENDIMENTO"
+  },
+  {
+    "Classe": "241104000401",
+    "": "BANDEIRANTES DO TOCANTINS  - ADUCAO AGUA BRUTA"
+  },
+  {
+    "Classe": "241104000402",
+    "": "BANDEIRANTES DO TOCANTINS  - ADUCAO AGUA TRATADA"
+  },
+  {
+    "Classe": "241104000403",
+    "": "BANDEIRANTES DO TOCANTINS  - DISTRIBUICAO"
+  },
+  {
+    "Classe": "",
+    "": ""
+  }
+]

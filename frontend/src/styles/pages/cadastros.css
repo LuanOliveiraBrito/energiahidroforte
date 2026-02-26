@@ -1,0 +1,137 @@
+/* ======================== */
+/* CADASTROS                */
+/* ======================== */
+
+/* Data list */
+.data-list {
+  margin-top: 0;
+}
+
+.data-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  background: #fafbfc;
+  transition: all 0.15s;
+}
+
+.data-list-item:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.data-list-item .item-info {
+  flex: 1;
+}
+
+.data-list-item .item-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.data-list-item .item-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-sub);
+}
+
+.data-list-item .item-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* Compact table for C.Custo / Contas */
+.cadastro-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.cadastro-table thead th {
+  text-align: left;
+  padding: 10px 16px;
+  font-size: 0.7rem;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #f8fafc;
+  border-bottom: 1px solid var(--border);
+  font-weight: 700;
+}
+
+.cadastro-table thead th:last-child {
+  text-align: right;
+  width: 100px;
+}
+
+.cadastro-table tbody tr {
+  transition: background 0.12s;
+}
+
+.cadastro-table tbody tr:hover {
+  background: #f1f5f9;
+}
+
+.cadastro-table tbody td {
+  padding: 10px 16px;
+  font-size: 0.84rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.cadastro-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.cadastro-table tbody td:first-child {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.82rem;
+  white-space: nowrap;
+  width: 130px;
+}
+
+.cadastro-table tbody td:last-child {
+  text-align: right;
+  width: 100px;
+}
+
+.cadastro-table tbody td .table-actions {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+/* Section divider */
+.cadastro-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0 0;
+}
+
+@media (max-width: 768px) {
+  .data-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .data-list-item .item-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .cadastro-table {
+    font-size: 0.8rem;
+  }
+
+  .cadastro-table thead th,
+  .cadastro-table tbody td {
+    padding: 8px 10px;
+  }
+}
