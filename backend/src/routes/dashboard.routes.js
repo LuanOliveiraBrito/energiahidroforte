@@ -15,10 +15,10 @@ router.get('/', async (req, res) => {
 
     // Totais
     const [totalPendente, totalPago, mediaKwh, faturasMes, gastosPorMes] = await Promise.all([
-      // Total pendente (tudo que não é PAGA)
+      // Total pendente (tudo que não é PAGA nem REJEITADA)
       prisma.fatura.aggregate({
         _sum: { valor: true },
-        where: { status: { not: 'PAGA' } },
+        where: { status: { notIn: ['PAGA', 'REJEITADA'] } },
       }),
 
       // Total pago
@@ -27,21 +27,22 @@ router.get('/', async (req, res) => {
         where: { status: 'PAGA' },
       }),
 
-      // Média kWh
+      // Média kWh (excluindo REJEITADAS)
       prisma.fatura.aggregate({
         _avg: { leituraKwh: true },
-        where: { leituraKwh: { not: null } },
+        where: { leituraKwh: { not: null }, status: { not: 'REJEITADA' } },
       }),
 
-      // Faturas do mês atual
+      // Faturas do mês atual (excluindo REJEITADAS)
       prisma.fatura.count({
-        where: { referencia: mesAtual },
+        where: { referencia: mesAtual, status: { not: 'REJEITADA' } },
       }),
 
-      // Gastos por mês (últimos 12 meses)
+      // Gastos por mês (últimos 12 meses, excluindo REJEITADAS)
       prisma.$queryRaw`
         SELECT referencia, SUM(valor) as total, AVG(leitura_kwh) as media_kwh
         FROM faturas
+        WHERE status != 'REJEITADA'
         GROUP BY referencia
         ORDER BY referencia DESC
         LIMIT 12
@@ -190,13 +191,14 @@ router.get('/checkout', async (req, res) => {
     // Filtrar apenas UCs que já tiveram algum lançamento
     const ucsAtivas = todasUCs.filter(uc => ucsComFaturaIds.has(uc.id));
 
-    // 3. Buscar todas faturas do ano
+    // 3. Buscar todas faturas do ano (excluindo REJEITADAS para cálculos financeiros)
     const faturas = await prisma.fatura.findMany({
       where: {
         referencia: {
           gte: `${anoRef}-01`,
           lte: `${anoRef}-12`,
         },
+        status: { not: 'REJEITADA' },
       },
       select: {
         id: true,
@@ -360,7 +362,7 @@ router.get('/checkout', async (req, res) => {
     const inicioDia = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const fimDia = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
     const faturasHoje = await prisma.fatura.count({
-      where: { dataLancamento: { gte: inicioDia, lte: fimDia } },
+      where: { dataLancamento: { gte: inicioDia, lte: fimDia }, status: { not: 'REJEITADA' } },
     });
     if (faturasHoje > 0) {
       notificacoes.push({

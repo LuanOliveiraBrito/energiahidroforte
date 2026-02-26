@@ -129,8 +129,9 @@ router.get('/faturas', authorize(...TODOS_PERFIS), async (req, res) => {
         take: parseInt(limit),
       }),
       prisma.fatura.count({ where }),
+      // Totais excluem REJEITADAS (não representam valores reais)
       prisma.fatura.aggregate({
-        where,
+        where: { ...where, status: { not: 'REJEITADA' } },
         _sum: { valor: true },
         _avg: { valor: true, leituraKwh: true },
         _count: { id: true },
@@ -271,10 +272,10 @@ router.get('/faturas/export/excel', authorize(...TODOS_PERFIS), async (req, res)
       fornecedor: '',
       uc: '',
       notaFiscal: 'TOTAIS',
-      valor: faturas.reduce((s, f) => s + (Number(f.valor) || 0), 0),
-      kwh: faturas.reduce((s, f) => s + (Number(f.leituraKwh) || 0), 0),
+      valor: faturas.filter(f => f.status !== 'REJEITADA').reduce((s, f) => s + (Number(f.valor) || 0), 0),
+      kwh: faturas.filter(f => f.status !== 'REJEITADA').reduce((s, f) => s + (Number(f.leituraKwh) || 0), 0),
       vencimento: '',
-      status: `${faturas.length} faturas`,
+      status: `${faturas.filter(f => f.status !== 'REJEITADA').length} faturas`,
     });
     totalRow.font = { bold: true };
 
@@ -458,9 +459,10 @@ router.get('/faturas/export/pdf', authorize(...TODOS_PERFIS), async (req, res) =
       y = drawTableHeader(page, y);
     }
     page.drawRectangle({ x: MARGIN, y: y - ROW_H, width: TABLE_W, height: ROW_H, color: rgb(0.15, 0.39, 0.92) });
-    const somaValor = faturas.reduce((s, f) => s + (Number(f.valor) || 0), 0);
-    const somaKwh = faturas.reduce((s, f) => s + (Number(f.leituraKwh) || 0), 0);
-    const totaisLabels = ['', '', '', '', '', 'TOTAIS', fmtCurrency(somaValor), String(somaKwh.toFixed(1)), '', faturas.length + ' fat.'];
+    const faturasValidas = faturas.filter(f => f.status !== 'REJEITADA');
+    const somaValor = faturasValidas.reduce((s, f) => s + (Number(f.valor) || 0), 0);
+    const somaKwh = faturasValidas.reduce((s, f) => s + (Number(f.leituraKwh) || 0), 0);
+    const totaisLabels = ['', '', '', '', '', 'TOTAIS', fmtCurrency(somaValor), String(somaKwh.toFixed(1)), '', faturasValidas.length + ' fat.'];
     let x = MARGIN;
     cols.forEach((col, i) => {
       const text = sanitize(totaisLabels[i]);
