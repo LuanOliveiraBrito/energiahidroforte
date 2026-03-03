@@ -254,7 +254,7 @@ router.get('/faturas/export/excel', authorize(...TODOS_PERFIS), async (req, res)
         notaFiscal: f.notaFiscal || '',
         valor: Number(f.valor) || 0,
         kwh: f.leituraKwh ? Number(f.leituraKwh) : 0,
-        vencimento: f.vencimento ? new Date(f.vencimento).toLocaleDateString('pt-BR') : '',
+        vencimento: f.vencimento ? new Date(f.vencimento).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' }) : '',
         status: f.status,
         centroCusto: f.centroCusto ? `${f.centroCusto.numero} - ${f.centroCusto.descricao}` : '',
         contaContabil: f.contaContabil ? `${f.contaContabil.numero} - ${f.contaContabil.descricao}` : '',
@@ -360,7 +360,7 @@ router.get('/faturas/export/pdf', authorize(...TODOS_PERFIS), async (req, res) =
     }
     function fmtDate(d) {
       if (!d) return '-';
-      return new Date(d).toLocaleDateString('pt-BR');
+      return new Date(d).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
     }
     function truncate(str, maxLen) {
       const s = sanitize(str);
@@ -389,7 +389,7 @@ router.get('/faturas/export/pdf', authorize(...TODOS_PERFIS), async (req, res) =
 
     function drawTitle(pg, yPos) {
       safeDraw(pg, 'Relatorio de Faturas - Voltaris Energy', { x: MARGIN, y: yPos, size: 14, font: fontBold, color: rgb(0.15, 0.39, 0.92) });
-      safeDraw(pg, 'Gerado em: ' + new Date().toLocaleString('pt-BR'), { x: MARGIN, y: yPos - 16, size: 8, font, color: rgb(0.5, 0.5, 0.5) });
+      safeDraw(pg, 'Gerado em: ' + new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }), { x: MARGIN, y: yPos - 16, size: 8, font, color: rgb(0.5, 0.5, 0.5) });
       return yPos - 36;
     }
 

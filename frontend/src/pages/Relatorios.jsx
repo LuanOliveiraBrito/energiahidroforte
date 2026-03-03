@@ -14,7 +14,7 @@ function formatCurrency(v) {
 
 function formatDate(d) {
   if (!d) return '-';
-  return new Date(d).toLocaleDateString('pt-BR');
+  return new Date(d).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 }
 
 export default function Relatorios() {
@@ -514,7 +514,7 @@ export default function Relatorios() {
                         const isExpanded = expandedLogId === l.id;
                         return (
                           <tr key={l.id} style={{ cursor: 'pointer' }} onClick={() => setExpandedLogId(isExpanded ? null : l.id)}>
-                            <td style={{ whiteSpace: 'nowrap' }}>{new Date(l.createdAt).toLocaleString('pt-BR')}</td>
+                            <td style={{ whiteSpace: 'nowrap' }}>{new Date(l.createdAt).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })}</td>
                             <td>{l.user?.nome || '-'}</td>
                             <td>
                               <span style={{

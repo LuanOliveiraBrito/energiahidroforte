@@ -35,19 +35,19 @@ function formatCurrency(value) {
   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
 }
 
-// Formatar data
+// Formatar data (Brasília)
 function formatDate(dateStr) {
   if (!dateStr) return '';
   const d = new Date(dateStr);
-  return `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
+  return d.toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 }
 
-// Formatar data + hora
+// Formatar data + hora (Brasília)
 function formatDateTime(dateStr) {
   if (!dateStr) return '';
   const d = new Date(dateStr);
-  const dia = `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
-  const hora = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+  const dia = d.toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+  const hora = d.toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit' });
   return `${dia} às ${hora}`;
 }
 

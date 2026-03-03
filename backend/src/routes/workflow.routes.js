@@ -361,7 +361,7 @@ router.post(
       // Log detalhado para auditoria completa
       const baixadoPorNome = fatura.baixadoPor?.nome || 'N/A';
       const dataBaixaOriginal = fatura.dataBaixa
-        ? new Date(fatura.dataBaixa).toLocaleDateString('pt-BR')
+        ? new Date(fatura.dataBaixa).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' })
         : 'N/A';
 
       await registrarLog({

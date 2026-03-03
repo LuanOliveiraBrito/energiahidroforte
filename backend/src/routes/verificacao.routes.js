@@ -10,17 +10,19 @@ function fmtCurrency(v) {
   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v);
 }
 
-// Formatar data
+// Formatar data (Brasília)
 function fmtDate(d) {
   if (!d) return '-';
   const dt = new Date(d);
-  return `${String(dt.getDate()).padStart(2,'0')}/${String(dt.getMonth()+1).padStart(2,'0')}/${dt.getFullYear()}`;
+  return dt.toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 }
 
 function fmtDateTime(d) {
   if (!d) return '-';
   const dt = new Date(d);
-  return `${fmtDate(d)} às ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')}`;
+  const dia = dt.toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+  const hora = dt.toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit' });
+  return `${dia} às ${hora}`;
 }
 
 function fmtCNPJ(c) {

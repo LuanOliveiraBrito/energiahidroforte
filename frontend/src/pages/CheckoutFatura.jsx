@@ -194,7 +194,7 @@ export default function CheckoutFatura() {
                 <div><strong>Status:</strong> <span className={`mini-badge st-${fatura.status?.toLowerCase()}`}>{fatura.status}</span></div>
               </div>
               <div className="fatura-row">
-                <div><strong>Vencimento:</strong> {fatura.vencimento ? new Date(fatura.vencimento).toLocaleDateString('pt-BR') : '—'}</div>
+                <div><strong>Vencimento:</strong> {fatura.vencimento ? new Date(fatura.vencimento).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' }) : '—'}</div>
                 <div><strong>Referência:</strong> {fatura.referencia || '—'}</div>
                 <div><strong>Leitura kWh:</strong> {fatura.leituraKwh || '—'}</div>
               </div>

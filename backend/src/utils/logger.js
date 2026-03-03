@@ -23,12 +23,9 @@ if (!fs.existsSync(LOGS_DIR)) {
   fs.mkdirSync(LOGS_DIR, { recursive: true });
 }
 
-// Formatar data local como YYYY-MM-DD
+// Formatar data Brasília como YYYY-MM-DD
 function dataLocal(d = new Date()) {
-  const ano = d.getFullYear();
-  const mes = String(d.getMonth() + 1).padStart(2, '0');
-  const dia = String(d.getDate()).padStart(2, '0');
-  return `${ano}-${mes}-${dia}`;
+  return d.toLocaleDateString('sv-SE', { timeZone: 'America/Sao_Paulo' }); // sv-SE = YYYY-MM-DD
 }
 
 // Nome do arquivo baseado na data local
@@ -36,14 +33,13 @@ function getLogFile() {
   return path.join(LOGS_DIR, `${dataLocal()}.log`);
 }
 
-// Formatar timestamp legível (horário local)
+// Formatar timestamp legível (horário Brasília)
 function timestamp() {
   const d = new Date();
-  const horas = String(d.getHours()).padStart(2, '0');
-  const mins = String(d.getMinutes()).padStart(2, '0');
-  const segs = String(d.getSeconds()).padStart(2, '0');
+  const data = dataLocal(d);
+  const hora = d.toLocaleTimeString('pt-BR', { timeZone: 'America/Sao_Paulo', hour12: false });
   const ms = String(d.getMilliseconds()).padStart(3, '0');
-  return `${dataLocal(d)} ${horas}:${mins}:${segs}.${ms}`;
+  return `${data} ${hora}.${ms}`;
 }
 
 // Serializar contexto extra (objetos, errors, etc)
