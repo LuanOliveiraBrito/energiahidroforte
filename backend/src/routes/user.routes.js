@@ -131,4 +131,73 @@ router.put('/:id', authorize('ADMINISTRADOR'), async (req, res) => {
   }
 });
 
+// DELETE /api/users/:id - Excluir usuário (admin)
+router.delete('/:id', authorize('ADMINISTRADOR'), async (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+    if (isNaN(userId)) {
+      return res.status(400).json({ error: true, message: 'ID inválido' });
+    }
+
+    // Não pode deletar a si mesmo
+    if (userId === req.userId) {
+      return res.status(400).json({ error: true, message: 'Você não pode excluir seu próprio usuário' });
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { nome: true, email: true, role: true },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: true, message: 'Usuário não encontrado' });
+    }
+
+    // Verificar se tem faturas vinculadas
+    const faturaCount = await prisma.fatura.count({
+      where: {
+        OR: [
+          { lancadoPorId: userId },
+          { aprovadoPorId: userId },
+          { liberadoPorId: userId },
+          { protocoladoPorId: userId },
+          { baixadoPorId: userId },
+        ],
+      },
+    });
+
+    if (faturaCount > 0) {
+      // Tem histórico — apenas desativar em vez de deletar
+      await prisma.user.update({
+        where: { id: userId },
+        data: { ativo: false },
+      });
+
+      await registrarLog({
+        userId: req.userId,
+        acao: 'DESATIVACAO_USUARIO',
+        descricao: `Usuário "${user.nome}" (${user.email}) desativado por ${req.userName} — possui ${faturaCount} fatura(s) vinculada(s), não pode ser removido`,
+        ip: req.ip,
+      });
+
+      return res.json({ message: `Usuário desativado (possui ${faturaCount} fatura(s) vinculada(s) e não pode ser removido permanentemente)`, desativado: true });
+    }
+
+    // Sem faturas vinculadas — pode deletar audit logs e o usuário
+    await prisma.auditLog.deleteMany({ where: { userId } });
+    await prisma.user.delete({ where: { id: userId } });
+
+    await registrarLog({
+      userId: req.userId,
+      acao: 'EXCLUSAO_USUARIO',
+      descricao: `Usuário "${user.nome}" (${user.email}, ${user.role}) excluído permanentemente por ${req.userName}`,
+      ip: req.ip,
+    });
+
+    res.json({ message: `Usuário "${user.nome}" excluído com sucesso`, excluido: true });
+  } catch (err) {
+    res.status(500).json({ error: true, message: 'Erro ao excluir usuário' });
+  }
+});
+
 module.exports = router;

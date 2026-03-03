@@ -207,10 +207,122 @@ router.post(
   }
 );
 
-// DELETE /api/faturas/:id - Excluir fatura (apenas ADMINISTRADOR)
+// PUT /api/faturas/:id - Editar fatura (apenas se PENDENTE e lançada pelo próprio usuário, ou ADMIN)
+router.put(
+  '/:id',
+  authorize(...TODOS_PERFIS),
+  upload.fields([
+    { name: 'anexoFatura', maxCount: 1 },
+    { name: 'anexoPedidoCompras', maxCount: 1 },
+  ]),
+  async (req, res) => {
+    try {
+      const faturaId = parseInt(req.params.id);
+      if (isNaN(faturaId)) {
+        return res.status(400).json({ error: true, message: 'ID inválido' });
+      }
+
+      const faturaAtual = await prisma.fatura.findUnique({ where: { id: faturaId } });
+      if (!faturaAtual) {
+        return res.status(404).json({ error: true, message: 'Fatura não encontrada' });
+      }
+
+      const isAdmin = req.userRole === 'ADMINISTRADOR';
+      const isOwner = faturaAtual.lancadoPorId === req.userId;
+
+      if (!isAdmin) {
+        if (!isOwner) {
+          return res.status(403).json({ error: true, message: 'Você só pode editar faturas lançadas por você' });
+        }
+        if (faturaAtual.status !== 'PENDENTE') {
+          return res.status(403).json({ error: true, message: 'Só é possível editar faturas com status PENDENTE' });
+        }
+      }
+
+      const {
+        ucId, fornecedorId, filialId, centroCustoId, contaContabilId, naturezaId,
+        notaFiscal, valor, leituraKwh, vencimento, referencia, pedidoCompras,
+        formaPagamento, aplicacao, codigoBarras, vencimentoBoleto, dataEmissao,
+      } = req.body;
+
+      const data = {};
+      if (ucId) data.ucId = parseInt(ucId);
+      if (fornecedorId) data.fornecedorId = parseInt(fornecedorId);
+      if (filialId) data.filialId = parseInt(filialId);
+      if (centroCustoId) data.centroCustoId = parseInt(centroCustoId);
+      if (contaContabilId) data.contaContabilId = parseInt(contaContabilId);
+      if (naturezaId) data.naturezaId = parseInt(naturezaId);
+      if (notaFiscal !== undefined) data.notaFiscal = notaFiscal.trim();
+      if (valor) data.valor = parseFloat(valor);
+      if (leituraKwh !== undefined) data.leituraKwh = parseFloat(leituraKwh) || 0;
+      if (vencimento) data.vencimento = new Date(vencimento);
+      if (referencia) data.referencia = referencia;
+      if (pedidoCompras !== undefined) data.pedidoCompras = (pedidoCompras || '').trim();
+      if (formaPagamento !== undefined) data.formaPagamento = formaPagamento || null;
+      if (aplicacao !== undefined) data.aplicacao = aplicacao || null;
+      if (codigoBarras !== undefined) data.codigoBarras = codigoBarras || null;
+      if (vencimentoBoleto !== undefined) data.vencimentoBoleto = vencimentoBoleto || null;
+      if (dataEmissao) data.dataEmissao = new Date(dataEmissao);
+
+      // Validação de duplicidade de NF (se mudou)
+      if (data.notaFiscal && data.notaFiscal !== faturaAtual.notaFiscal) {
+        const nfExistente = await prisma.fatura.findFirst({
+          where: { notaFiscal: data.notaFiscal, status: { not: 'REJEITADA' }, id: { not: faturaId } },
+          select: { id: true },
+        });
+        if (nfExistente) {
+          return res.status(409).json({ error: true, message: `Nota Fiscal "${data.notaFiscal}" já cadastrada em outra fatura` });
+        }
+      }
+
+      // Novos anexos (substituem os anteriores)
+      const fs = require('fs');
+      const path = require('path');
+      const uploadsDir = path.join(__dirname, '..', '..', 'uploads');
+
+      if (req.files?.anexoFatura?.[0]) {
+        // Remove antigo
+        if (faturaAtual.anexoFatura) {
+          const old = path.join(uploadsDir, faturaAtual.anexoFatura);
+          if (fs.existsSync(old)) fs.unlinkSync(old);
+        }
+        data.anexoFatura = req.files.anexoFatura[0].filename;
+      }
+      if (req.files?.anexoPedidoCompras?.[0]) {
+        if (faturaAtual.anexoPedidoCompras) {
+          const old = path.join(uploadsDir, faturaAtual.anexoPedidoCompras);
+          if (fs.existsSync(old)) fs.unlinkSync(old);
+        }
+        data.anexoPedidoCompras = req.files.anexoPedidoCompras[0].filename;
+      }
+
+      const faturaAtualizada = await prisma.fatura.update({
+        where: { id: faturaId },
+        data,
+        include: faturaIncludes,
+      });
+
+      await registrarLog({
+        userId: req.userId,
+        faturaId: faturaId,
+        acao: 'EDICAO_FATURA',
+        descricao: `Fatura #${faturaId} editada por ${req.userName} — Valor: R$ ${(data.valor || faturaAtual.valor).toFixed(2)}, Ref: ${data.referencia || faturaAtual.referencia}`,
+        ip: req.ip,
+      });
+
+      res.json(faturaAtualizada);
+    } catch (err) {
+      logger.error('PUT /api/faturas/:id', err);
+      res.status(500).json({ error: true, message: 'Erro ao editar fatura' });
+    }
+  }
+);
+
+// DELETE /api/faturas/:id - Excluir fatura
+// Permitido: ADMINISTRADOR (qualquer fatura) ou quem lançou (apenas se PENDENTE)
 router.delete(
   '/:id',
-  authorize('ADMINISTRADOR'),
+  authorize(...TODOS_PERFIS),
   async (req, res) => {
     try {
       const { id } = req.params;
@@ -224,6 +336,19 @@ router.delete(
 
       if (!fatura) {
         return res.status(404).json({ error: true, message: 'Fatura não encontrada' });
+      }
+
+      // Se NÃO é admin, só pode deletar se for o lançador E estiver PENDENTE
+      const isAdmin = req.userRole === 'ADMINISTRADOR';
+      const isOwner = fatura.lancadoPorId === req.userId;
+
+      if (!isAdmin) {
+        if (!isOwner) {
+          return res.status(403).json({ error: true, message: 'Você só pode excluir faturas lançadas por você' });
+        }
+        if (fatura.status !== 'PENDENTE') {
+          return res.status(403).json({ error: true, message: 'Só é possível excluir faturas com status PENDENTE (antes da aprovação)' });
+        }
       }
 
       // Deletar arquivos anexos do disco

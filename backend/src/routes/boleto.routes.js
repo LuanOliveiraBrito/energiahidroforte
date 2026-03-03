@@ -207,6 +207,46 @@ function detectarConcessionaria(texto) {
 function extrairDadosEnergisa(texto) {
   console.log('🔌 [ENERGISA] Iniciando extração...');
 
+  // --- 0) UNIDADE CONSUMIDORA (UC) e Nº INSTALAÇÃO ---
+  // Energisa usa formato "8/2896310-6" como UC (campo MATRÍCULA)
+  // No OCR pode aparecer como "8/2896310-6" em vários locais
+  let unidadeConsumidora = null;
+  let numInstalacao = null;
+
+  // Padrão 1: "MATRÍCULA" ou "MATRICULA" seguido do código UC (ex: 8/2896310-6)
+  const matchMatricula = texto.match(/MATR[IÍ]CULA[:\s]*(\d+\/\d+[-–]\d)/i);
+  if (matchMatricula) {
+    unidadeConsumidora = matchMatricula[1].replace('–', '-');
+    console.log(`🏠 [ENERGISA] UC (matrícula): ${unidadeConsumidora}`);
+  }
+
+  // Padrão 2: formato X/XXXXXXX-X solto no texto (padrão Energisa)
+  if (!unidadeConsumidora) {
+    const matchUC = texto.match(/\b(\d{1,2}\/\d{5,10}[-–]\d)\b/);
+    if (matchUC) {
+      unidadeConsumidora = matchUC[1].replace('–', '-');
+      console.log(`🏠 [ENERGISA] UC (padrão X/XXXXXXX-X): ${unidadeConsumidora}`);
+    }
+  }
+
+  // Padrão 3: "Utilize o Código" seguido de número longo (ex: 0002896310-6)
+  if (!unidadeConsumidora) {
+    const matchCodigo = texto.match(/(?:Utilize\s+o\s+C[oó]digo|C[oó]digo)[:\s—-]*(\d+[-–]\d)/i);
+    if (matchCodigo) {
+      // Remover zeros à esquerda e adicionar prefixo 8/
+      const numLimpo = matchCodigo[1].replace('–', '-').replace(/^0+/, '');
+      unidadeConsumidora = `8/${numLimpo}`;
+      console.log(`🏠 [ENERGISA] UC (código): ${unidadeConsumidora}`);
+    }
+  }
+
+  // Número de instalação: "INSTALAÇÃO: XXXXX" ou "Instalação XXXXX"
+  const matchInstalacao = texto.match(/INSTALA[CÇ][ÃA]O[:\s]+([A-Z0-9]{5,15})/i);
+  if (matchInstalacao) {
+    numInstalacao = matchInstalacao[1];
+    console.log(`🏠 [ENERGISA] Nº Instalação: ${numInstalacao}`);
+  }
+
   // --- 1) CONSUMO kWh ---
   let consumoKwh = null;
 
@@ -354,6 +394,8 @@ function extrairDadosEnergisa(texto) {
     dataEmissao,
     notaFiscal,
     referencia,
+    unidadeConsumidora,
+    numInstalacao,
   };
 }
 
@@ -368,6 +410,55 @@ function extrairDadosEnergisa(texto) {
 // ==========================================
 function extrairDadosEquatorial(texto) {
   console.log('🔌 [EQUATORIAL] Iniciando extração...');
+
+  // --- 0) UNIDADE CONSUMIDORA (UC) e Nº INSTALAÇÃO ---
+  // Equatorial usa "INSTALAÇÃO: 2000411478" (numInstalacao)
+  // UC aparece no texto como número de 10 dígitos (ex: 3008246660)
+  let unidadeConsumidora = null;
+  let numInstalacao = null;
+
+  // Padrão 1: "INSTALAÇÃO: XXXXXXXX" — isso é o numInstalacao na Equatorial
+  const matchInstalacao = texto.match(/INSTALA[CÇ][ÃA]O[:\s]+(\d{5,15})/i);
+  if (matchInstalacao) {
+    numInstalacao = matchInstalacao[1];
+    console.log(`🏠 [EQUATORIAL] Nº Instalação: ${numInstalacao}`);
+  }
+
+  // Padrão 2: UC aparece como "Unidade Consumidora: XXXXXXXXXX" ou "UC: XXXXXXXXXX"
+  const matchUC = texto.match(/(?:Unidade\s+Consumidora|UC)[:\s]+(\d{5,15})/i);
+  if (matchUC) {
+    unidadeConsumidora = matchUC[1];
+    console.log(`🏠 [EQUATORIAL] UC (direto): ${unidadeConsumidora}`);
+  }
+
+  // Padrão 3: CC com percentual de 100% — ex: "3008246660(100%)" ou "3008246660(— 100%)"
+  // Esse é o padrão mais confiável quando há GD (geração distribuída)
+  if (!unidadeConsumidora) {
+    const matchCC100 = texto.match(/(\d{7,15})\s*\([—–\s]*100\s*%?\)/);
+    if (matchCC100) {
+      unidadeConsumidora = matchCC100[1];
+      console.log(`🏠 [EQUATORIAL] UC (CC 100%): ${unidadeConsumidora}`);
+    }
+  }
+
+  // Padrão 4: Número grande de 10 dígitos começando com 30 (padrão Equatorial UC)
+  if (!unidadeConsumidora) {
+    const match30 = texto.match(/\b(30\d{8})\b/);
+    if (match30) {
+      unidadeConsumidora = match30[1];
+      console.log(`🏠 [EQUATORIAL] UC (padrão 30XXXXXXXX): ${unidadeConsumidora}`);
+    }
+  }
+
+  // Padrão 5: Conta Contrato (genérico — cuidado: pode pegar a geradora)
+  // Só usar se nenhum outro padrão funcionou
+  if (!unidadeConsumidora) {
+    const matchCC = texto.match(/(?:Conta\s+Contrato)[:\s]+(\d{7,15})/i);
+    if (matchCC) {
+      unidadeConsumidora = matchCC[1];
+      console.log(`🏠 [EQUATORIAL] UC (conta contrato): ${unidadeConsumidora}`);
+    }
+  }
 
   // --- kWh: não extrair automaticamente (padrão muito variável na Equatorial) ---
   // O usuário preenche manualmente
@@ -517,6 +608,8 @@ function extrairDadosEquatorial(texto) {
     dataEmissao,
     notaFiscal,
     referencia,
+    unidadeConsumidora,
+    numInstalacao,
   };
 }
 
@@ -525,6 +618,41 @@ function extrairDadosEquatorial(texto) {
 // ==========================================
 function extrairDadosGenerica(texto) {
   console.log('🔌 [GENÉRICA] Iniciando extração (concessionária não identificada)...');
+
+  // --- UNIDADE CONSUMIDORA (UC) e Nº INSTALAÇÃO ---
+  let unidadeConsumidora = null;
+  let numInstalacao = null;
+
+  // Tentar "MATRÍCULA" ou "Matrícula" (Energisa-like)
+  const matchMatricula = texto.match(/MATR[IÍ]CULA[:\s]*(\d+\/\d+[-–]\d)/i);
+  if (matchMatricula) {
+    unidadeConsumidora = matchMatricula[1].replace('–', '-');
+  }
+
+  // Tentar formato X/XXXXXXX-X
+  if (!unidadeConsumidora) {
+    const matchUCBarra = texto.match(/\b(\d{1,2}\/\d{5,10}[-–]\d)\b/);
+    if (matchUCBarra) unidadeConsumidora = matchUCBarra[1].replace('–', '-');
+  }
+
+  // Tentar "Unidade Consumidora" / "UC"
+  if (!unidadeConsumidora) {
+    const matchUC = texto.match(/(?:Unidade\s+Consumidora|UC)[:\s]+(\d{5,15})/i);
+    if (matchUC) unidadeConsumidora = matchUC[1];
+  }
+
+  // Tentar "Conta Contrato"
+  if (!unidadeConsumidora) {
+    const matchCC = texto.match(/(?:Conta\s+Contrato|CC)[:\s]+(\d{7,15})/i);
+    if (matchCC) unidadeConsumidora = matchCC[1];
+  }
+
+  // Número de instalação
+  const matchInstalacao = texto.match(/INSTALA[CÇ][ÃA]O[:\s]+([A-Z0-9]{5,15})/i);
+  if (matchInstalacao) numInstalacao = matchInstalacao[1];
+
+  if (unidadeConsumidora) console.log(`🏠 [GENÉRICA] UC: ${unidadeConsumidora}`);
+  if (numInstalacao) console.log(`🏠 [GENÉRICA] Nº Instalação: ${numInstalacao}`);
 
   // --- CONSUMO kWh (todos os padrões) ---
   let consumoKwh = null;
@@ -637,6 +765,8 @@ function extrairDadosGenerica(texto) {
     dataEmissao,
     notaFiscal,
     referencia: null,
+    unidadeConsumidora,
+    numInstalacao,
   };
 }
 
@@ -828,7 +958,7 @@ router.post('/extrair', upload.single('arquivo'), async (req, res) => {
 
     // 4) Retornar resultado
     if (dados && (dados.valor || dados.consumoKwh)) {
-      console.log(`✅ Fatura processada: ${dados.concessionaria} | R$ ${dados.valor} | Venc: ${dados.vencimento} | kWh: ${dados.consumoKwh}${usouOCR ? ' (OCR)' : ''}`);
+      console.log(`✅ Fatura processada: ${dados.concessionaria} | R$ ${dados.valor} | Venc: ${dados.vencimento} | kWh: ${dados.consumoKwh} | UC: ${dados.unidadeConsumidora || 'N/A'} | Inst: ${dados.numInstalacao || 'N/A'}${usouOCR ? ' (OCR)' : ''}`);
       return res.json({
         encontrado: true,
         valido: true,
@@ -842,6 +972,8 @@ router.post('/extrair', upload.single('arquivo'), async (req, res) => {
         dataEmissao: dados.dataEmissao,
         notaFiscal: dados.notaFiscal,
         referencia: dados.referencia || null,
+        unidadeConsumidora: dados.unidadeConsumidora || null,
+        numInstalacao: dados.numInstalacao || null,
         ocr: usouOCR,
       });
     }

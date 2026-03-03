@@ -39,6 +39,26 @@ tr.clickable:hover {
   background: #f1f5f9;
 }
 
+/* Linha destacada — fatura lançada pelo próprio usuário */
+tr.row-mine {
+  border-left: 3px solid var(--primary);
+  background: #eef3ff;
+}
+tr.row-mine:hover {
+  background: #dce6fa;
+}
+
+.badge-mine {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+
 @media (max-width: 768px) {
   th {
     padding: 10px 12px;

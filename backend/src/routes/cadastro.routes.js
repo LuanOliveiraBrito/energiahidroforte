@@ -302,15 +302,59 @@ router.delete('/fornecedores/:id', authorize('ADMINISTRADOR'), async (req, res) 
 
 router.get('/unidades', async (req, res) => {
   try {
-    const unidades = await prisma.unidadeConsumidora.findMany({
-      where: { ativo: true },
-      include: {
-        filial: { select: { id: true, razaoSocial: true } },
-        fornecedor: { select: { id: true, nome: true, tipoPagamento: true } },
+    const { page, limit, search } = req.query;
+
+    // Se não tem paginação, retorna tudo (para selects)
+    if (!page && !limit) {
+      const unidades = await prisma.unidadeConsumidora.findMany({
+        where: { ativo: true },
+        include: {
+          filial: { select: { id: true, razaoSocial: true } },
+          fornecedor: { select: { id: true, nome: true, tipoPagamento: true } },
+        },
+        orderBy: { uc: 'asc' },
+      });
+      return res.json(unidades);
+    }
+
+    const pageNum = Math.max(1, parseInt(page) || 1);
+    const pageSize = Math.min(100, Math.max(1, parseInt(limit) || 20));
+    const skip = (pageNum - 1) * pageSize;
+
+    const where = { ativo: true };
+    if (search && search.trim()) {
+      const s = search.trim();
+      where.OR = [
+        { uc: { contains: s, mode: 'insensitive' } },
+        { numInstalacao: { contains: s, mode: 'insensitive' } },
+        { filial: { razaoSocial: { contains: s, mode: 'insensitive' } } },
+        { fornecedor: { nome: { contains: s, mode: 'insensitive' } } },
+      ];
+    }
+
+    const [dados, total] = await Promise.all([
+      prisma.unidadeConsumidora.findMany({
+        where,
+        include: {
+          filial: { select: { id: true, razaoSocial: true } },
+          fornecedor: { select: { id: true, nome: true, tipoPagamento: true } },
+        },
+        orderBy: { uc: 'asc' },
+        skip,
+        take: pageSize,
+      }),
+      prisma.unidadeConsumidora.count({ where }),
+    ]);
+
+    res.json({
+      data: dados,
+      pagination: {
+        page: pageNum,
+        limit: pageSize,
+        total,
+        totalPages: Math.ceil(total / pageSize),
       },
-      orderBy: { uc: 'asc' },
     });
-    res.json(unidades);
   } catch (err) {
     res.status(500).json({ error: true, message: 'Erro ao buscar unidades' });
   }

@@ -26,7 +26,7 @@ export default function Cadastros() {
   const PAGE_SIZE = 20;
 
   // Abas que usam paginação
-  const PAGINATED_TABS = ['filiais', 'centros-custo', 'contas-contabeis'];
+  const PAGINATED_TABS = ['filiais', 'unidades', 'centros-custo', 'contas-contabeis'];
 
   // Dados auxiliares para selects
   const [filiais, setFiliais] = useState([]);
@@ -560,7 +560,7 @@ export default function Cadastros() {
 
   function renderList() {
     const isPaginated = PAGINATED_TABS.includes(activeTab);
-    const isCompactTable = activeTab === 'filiais' || activeTab === 'centros-custo' || activeTab === 'contas-contabeis';
+    const isCompactTable = activeTab === 'filiais' || activeTab === 'unidades' || activeTab === 'centros-custo' || activeTab === 'contas-contabeis';
 
     // Para C.Custo, só mostra lista se filial estiver selecionada
     if (activeTab === 'centros-custo' && !filialFilterCC) return null;
@@ -579,7 +579,7 @@ export default function Cadastros() {
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder={activeTab === 'filiais' ? 'Buscar filial (razão social, CNPJ, cidade, UF)...' : activeTab === 'centros-custo' ? 'Buscar centro de custo...' : 'Buscar conta contábil...'}
+                placeholder={activeTab === 'filiais' ? 'Buscar filial (razão social, CNPJ, cidade, UF)...' : activeTab === 'unidades' ? 'Buscar UC (código, instalação, filial, fornecedor)...' : activeTab === 'centros-custo' ? 'Buscar centro de custo...' : 'Buscar conta contábil...'}
               />
             </div>
             {pagination && (
@@ -605,6 +605,16 @@ export default function Cadastros() {
                     <th>Cidade/UF</th>
                     <th>Ações</th>
                   </>
+                ) : activeTab === 'unidades' ? (
+                  <>
+                    <th>UC</th>
+                    <th>Nº Instalação</th>
+                    <th>Filial</th>
+                    <th>Fornecedor</th>
+                    <th>Emissão</th>
+                    <th>Prazo</th>
+                    <th>Ações</th>
+                  </>
                 ) : (
                   <>
                     <th>Número</th>
@@ -622,6 +632,15 @@ export default function Cadastros() {
                       <td>{item.razaoSocial}</td>
                       <td>{formatCNPJ(item.cnpj)}</td>
                       <td>{item.cidade}/{item.estado}</td>
+                    </>
+                  ) : activeTab === 'unidades' ? (
+                    <>
+                      <td><strong>{item.uc}</strong></td>
+                      <td>{item.numInstalacao}</td>
+                      <td style={{ fontSize: 12 }}>{item.filial?.razaoSocial || '-'}</td>
+                      <td style={{ fontSize: 12 }}>{item.fornecedor?.nome || '-'}</td>
+                      <td style={{ textAlign: 'center' }}>{item.diaEmissao ? `Dia ${item.diaEmissao}` : '-'}</td>
+                      <td style={{ textAlign: 'center' }}>{item.prazoVencimento ? `${item.prazoVencimento}d` : '-'}</td>
                     </>
                   ) : (
                     <>

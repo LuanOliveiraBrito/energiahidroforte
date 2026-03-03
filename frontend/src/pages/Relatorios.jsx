@@ -1,7 +1,10 @@
 ﻿import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
-import { FiFilter, FiSearch, FiDollarSign, FiHash, FiTrendingUp, FiZap, FiDownload, FiEye, FiInfo } from 'react-icons/fi';
+import { toast } from 'react-toastify';
+import { FiFilter, FiSearch, FiDollarSign, FiHash, FiTrendingUp, FiZap, FiDownload, FiEye, FiInfo, FiEdit, FiTrash2 } from 'react-icons/fi';
 import ReviewModal from '../components/ReviewModal';
+import { useAuth } from '../contexts/AuthContext';
 
 const STATUS_OPTIONS = ['PENDENTE', 'APROVADA', 'LIBERADA', 'PAGA', 'REJEITADA'];
 
@@ -15,6 +18,8 @@ function formatDate(d) {
 }
 
 export default function Relatorios() {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('faturas');
   const [faturas, setFaturas] = useState([]);
   const [logs, setLogs] = useState([]);
@@ -184,6 +189,7 @@ export default function Relatorios() {
       BAIXA: '💰 Baixa',
       ESTORNO: '↩️ Estorno',
       EXCLUSAO: '🗑️ Exclusão',
+      EDICAO_FATURA: '✏️ Edição Fatura',
       CADASTRO_FILIAL: '🏢 Cad. Filial',
       EDICAO_FILIAL: '🏢 Edit. Filial',
       EXCLUSAO_FILIAL: '🏢 Excl. Filial',
@@ -209,6 +215,27 @@ export default function Relatorios() {
     const map = { PENDENTE: 'warning', APROVADA: 'info', LIBERADA: 'success', PAGA: 'neutral', REJEITADA: 'danger' };
     return map[s] || '';
   };
+
+  function canEditFatura(fatura) {
+    if (!fatura || fatura.status !== 'PENDENTE') return false;
+    return user?.role === 'ADMINISTRADOR' || fatura.lancadoPorId === user?.id;
+  }
+
+  async function handleDeleteFatura(faturaId) {
+    if (!window.confirm('Tem certeza que deseja excluir esta fatura? Esta ação não pode ser desfeita.')) return;
+    try {
+      await api.delete(`/faturas/${faturaId}`);
+      toast.success('Fatura excluída com sucesso');
+      setSelected(null);
+      loadFaturas(paginationFat.page);
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Erro ao excluir fatura');
+    }
+  }
+
+  function handleEditFatura(faturaId) {
+    navigate(`/lancar-fatura?editId=${faturaId}`);
+  }
 
   function buildExportParams() {
     const params = new URLSearchParams();
@@ -347,13 +374,21 @@ export default function Relatorios() {
                         <th>kWh</th>
                         <th>Vencimento</th>
                         <th>Status</th>
+                        <th>Lançado por</th>
                       </tr>
                     </thead>
                     <tbody>
                       {faturas.length === 0 ? (
-                        <tr><td colSpan="10" style={{ textAlign: 'center' }}>Nenhuma fatura encontrada. Use os filtros e clique em Buscar.</td></tr>
-                      ) : faturas.map(f => (
-                        <tr key={f.id} className="clickable" onClick={() => setSelected(f)} style={{ cursor: 'pointer' }}>
+                        <tr><td colSpan="11" style={{ textAlign: 'center' }}>Nenhuma fatura encontrada. Use os filtros e clique em Buscar.</td></tr>
+                      ) : faturas.map(f => {
+                        const isMine = f.lancadoPorId === user?.id;
+                        return (
+                        <tr
+                          key={f.id}
+                          className={`clickable${isMine ? ' row-mine' : ''}`}
+                          onClick={() => setSelected(f)}
+                          style={{ cursor: 'pointer' }}
+                        >
                           <td>{f.id}</td>
                           <td>{f.referencia || '-'}</td>
                           <td>{f.filial?.razaoSocial || '-'}</td>
@@ -364,8 +399,16 @@ export default function Relatorios() {
                           <td>{f.leituraKwh ? `${f.leituraKwh} kWh` : '-'}</td>
                           <td>{formatDate(f.vencimento)}</td>
                           <td><span className={`badge badge-${statusClass(f.status)}`}>{f.status}</span></td>
+                          <td>
+                            {isMine ? (
+                              <span className="badge-mine">Você</span>
+                            ) : (
+                              <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>{f.lancadoPor?.nome || '-'}</span>
+                            )}
+                          </td>
                         </tr>
-                      ))}
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -385,6 +428,16 @@ export default function Relatorios() {
               fatura={selected}
               title="Detalhes da Fatura"
               onClose={() => setSelected(null)}
+              actions={canEditFatura(selected) ? (
+                <>
+                  <button className="btn btn-primary" onClick={() => handleEditFatura(selected.id)}>
+                    <FiEdit size={14} /> Editar Lançamento
+                  </button>
+                  <button className="btn btn-danger" onClick={() => handleDeleteFatura(selected.id)}>
+                    <FiTrash2 size={14} /> Excluir Fatura
+                  </button>
+                </>
+              ) : null}
             />
           )}
         </>
@@ -408,6 +461,7 @@ export default function Relatorios() {
                       <option value="BAIXA">Baixa (Pagamento)</option>
                       <option value="ESTORNO">Estorno</option>
                       <option value="EXCLUSAO">Exclusão de Fatura</option>
+                      <option value="EDICAO_FATURA">Edição de Fatura</option>
                     </optgroup>
                     <optgroup label="Cadastros">
                       <option value="CADASTRO_FILIAL">Cadastro Filial</option>

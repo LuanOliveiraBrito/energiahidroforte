@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import api from '../services/api';
-import { FiUsers, FiPlus, FiEdit2, FiUserCheck, FiUserX, FiEye, FiEyeOff, FiX } from 'react-icons/fi';
+import { FiUsers, FiPlus, FiEdit2, FiUserCheck, FiUserX, FiEye, FiEyeOff, FiX, FiTrash2 } from 'react-icons/fi';
 
 const ROLES = [
   { value: 'ADMINISTRADOR', label: 'Administrador - Acesso Total' },
@@ -109,6 +109,25 @@ export default function Usuarios() {
       loadUsers();
     } catch (err) {
       toast.error('Erro ao alterar status');
+    }
+  }
+
+  async function handleDelete(user) {
+    const confirmed = window.confirm(
+      `Tem certeza que deseja excluir o usuário "${user.nome}"?\n\nSe houver faturas vinculadas, o usuário será apenas desativado.`
+    );
+    if (!confirmed) return;
+
+    try {
+      const res = await api.delete(`/users/${user.id}`);
+      if (res.data.desativado) {
+        toast.info(res.data.message);
+      } else {
+        toast.success(res.data.message);
+      }
+      loadUsers();
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Erro ao excluir usuário');
     }
   }
 
@@ -222,6 +241,14 @@ export default function Usuarios() {
                           title={u.ativo ? 'Desativar' : 'Ativar'}
                         >
                           {u.ativo ? <FiUserX size={14} /> : <FiUserCheck size={14} />}
+                        </button>
+                        <button
+                          className="btn btn-sm"
+                          onClick={() => handleDelete(u)}
+                          title="Excluir usuário"
+                          style={{ background: '#fee2e2', color: '#dc2626', border: '1px solid #fecaca' }}
+                        >
+                          <FiTrash2 size={14} />
                         </button>
                       </div>
                     </td>

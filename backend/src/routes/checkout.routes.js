@@ -10,25 +10,24 @@ router.use(authMiddleware);
 const MONTHS_PT = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 
 /**
- * Motor de Checkout de Faturas — v2 (Prazo em dias)
+ * Motor de Checkout de Faturas — v3 (Máquina de 4 Estados)
  *
- * Conceito:
- *   diaEmissao       = Dia do mes em que a concessionaria emite a fatura
- *   prazoVencimento  = Quantidade de dias da emissao ate o vencimento
+ * Cadastro de cada UC:
+ *   diaEmissao       = Dia do mês em que a concessionária emite a fatura (ex: 05)
+ *   prazoVencimento  = Quantidade de dias da emissão até o vencimento (ex: 20)
  *
- * Calculo do ciclo para cada UC/mes:
- *   dataEmissao    = diaEmissao do mes de referencia (fallback: dia 1)
+ * Cálculo do ciclo para cada UC/mês:
+ *   dataEmissao    = diaEmissao do mês de referência (fallback: dia 1)
  *   dataVencimento = dataEmissao + prazoVencimento dias (fallback: +30 dias)
- *   meiaVida       = dataEmissao + 50% do prazo
+ *   gatilho50pct   = dataEmissao + 50% do prazoVencimento
  *
- * Regra dos 50%:
- *   - Antes da emissao -> AGUARDANDO (cinza)
- *   - Da emissao ate 50% do prazo -> AGUARDANDO (amarelo)
- *   - Apos 50% do prazo sem fatura -> CRITICO (vermelho pulsante)
- *   - Apos o vencimento sem fatura -> CRITICO (vermelho solido)
+ * Máquina de Estados (4 estados):
+ *   AGUARDANDO  → Período inicial: antes de atingir 50% do prazo (sem fatura lançada)
+ *   PENDENTE    → Atingiu 50% do prazo e nenhuma fatura foi lançada (alerta)
+ *   LANCADA     → Fatura lançada, aguardando pagamento (status != PAGA)
+ *   PAGA        → Financeiro confirmou a baixa (fatura.status == PAGA)
  *
- * O vencimento pode cair no mes seguinte (ex: emissao dia 20 + 30 dias = dia 20 do mes seguinte)
- * e o sistema calcula corretamente.
+ * Mês futuro (sem dados possíveis) → FUTURO (não conta como estado real)
  */
 
 // Ajustar dia para meses com menos dias (ex: fev 28/29)
@@ -37,38 +36,35 @@ function ajustarDia(ano, mes, dia) {
   return Math.min(dia, ultimoDia);
 }
 
-// Calcular data de emissao para um mes de referencia
+// Calcular data de emissão para um mês de referência
 function calcDataEmissao(ano, mes, diaEmissao) {
   if (!diaEmissao) return new Date(ano, mes - 1, 1);
   const dia = ajustarDia(ano, mes, diaEmissao);
   return new Date(ano, mes - 1, dia);
 }
 
-// Calcular data de vencimento = dataEmissao + prazoVencimento dias
+// Calcular data de vencimento = dataEmissão + prazoVencimento dias
 function calcDataVencimento(dataEmissao, prazoVencimento) {
-  if (!prazoVencimento) {
-    const venc = new Date(dataEmissao);
-    venc.setDate(venc.getDate() + 30);
-    return venc;
-  }
   const venc = new Date(dataEmissao);
-  venc.setDate(venc.getDate() + prazoVencimento);
+  venc.setDate(venc.getDate() + (prazoVencimento || 30));
   return venc;
 }
 
-// Calcular ponto de 50% entre emissao e vencimento
-function calcMeiaVida(dataEmissao, dataVencimento) {
-  const diffMs = dataVencimento.getTime() - dataEmissao.getTime();
-  const metade = diffMs / 2;
-  return new Date(dataEmissao.getTime() + metade);
+// Calcular gatilho de 50% do prazo
+function calcGatilho50(dataEmissao, prazoVencimento) {
+  const dias = prazoVencimento || 30;
+  const metade = Math.floor(dias / 2);
+  const gatilho = new Date(dataEmissao);
+  gatilho.setDate(gatilho.getDate() + metade);
+  return gatilho;
 }
 
 function formatDate(d) {
   return d.toISOString().split('T')[0];
 }
 
-// GET /api/checkout
-router.get('/', async (req, res) => {
+// GET /api/checkout/matriz
+router.get('/matriz', async (req, res) => {
   try {
     const now = new Date();
     const { ano, filialId, fornecedorId, soPendencias } = req.query;
@@ -111,10 +107,9 @@ router.get('/', async (req, res) => {
 
     let matriz = todasUCs.map((uc) => {
       const meses = [];
-      let statusGeral = 'EM_DIA';
-      let totalCriticos = 0;
-      let totalAtrasos = 0;
-      let totalAguardando = 0;
+      let totalPendentes = 0;
+      let totalLancadas = 0;
+      let totalPagas = 0;
       let valorTotal = 0;
 
       for (let m = 1; m <= 12; m++) {
@@ -123,40 +118,28 @@ router.get('/', async (req, res) => {
         const fats = faturaMap[key] || [];
         const fatsValidas = fats.filter(f => f.status !== 'REJEITADA');
 
-        // Ciclo: emissao + prazo = vencimento (pode cair no mes seguinte)
+        // Ciclo: emissão → gatilho 50% → vencimento
         const dataEmissao = calcDataEmissao(anoRef, m, uc.diaEmissao);
         const dataVencimento = calcDataVencimento(dataEmissao, uc.prazoVencimento);
-        const meiaVida = calcMeiaVida(dataEmissao, dataVencimento);
+        const gatilho50 = calcGatilho50(dataEmissao, uc.prazoVencimento);
 
-        let statusMes = 'SEM_LANCAMENTO';
+        let statusMes = 'AGUARDANDO';
         let detalhe = null;
 
+        // Mês futuro
         if ((anoRef === now.getFullYear() && m > mesAtualNum) || anoRef > now.getFullYear()) {
           statusMes = 'FUTURO';
         } else if (fatsValidas.length > 0) {
+          // Tem fatura lançada
           const fat = fatsValidas[0];
           valorTotal += Number(fat.valor) || 0;
 
           if (fat.status === 'PAGA') {
-            statusMes = 'OK';
-          } else if (fat.status === 'REJEITADA') {
-            statusMes = 'REJEITADA';
-            totalAtrasos++;
+            statusMes = 'PAGA';
+            totalPagas++;
           } else {
-            const venc = new Date(fat.vencimento);
-            if (now > venc) {
-              statusMes = 'ATRASO';
-              totalAtrasos++;
-            } else {
-              const diffMs = venc.getTime() - now.getTime();
-              const diffDias = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-              if (diffDias <= 5) {
-                statusMes = 'PROXIMO_VENCIMENTO';
-                totalAguardando++;
-              } else {
-                statusMes = 'EM_ANDAMENTO';
-              }
-            }
+            statusMes = 'LANCADA';
+            totalLancadas++;
           }
 
           detalhe = {
@@ -167,15 +150,9 @@ router.get('/', async (req, res) => {
           };
         } else {
           // Sem fatura — regra dos 50%
-          if (now >= dataVencimento) {
-            statusMes = 'CRITICO';
-            totalCriticos++;
-          } else if (now >= meiaVida) {
-            statusMes = 'CRITICO';
-            totalCriticos++;
-          } else if (now >= dataEmissao) {
-            statusMes = 'AGUARDANDO';
-            totalAguardando++;
+          if (now >= gatilho50) {
+            statusMes = 'PENDENTE';
+            totalPendentes++;
           } else {
             statusMes = 'AGUARDANDO';
           }
@@ -185,27 +162,29 @@ router.get('/', async (req, res) => {
           mes: m, ref, mesLabel: MONTHS_PT[m - 1], status: statusMes,
           diaEmissao: uc.diaEmissao, prazoVencimento: uc.prazoVencimento,
           dataEmissao: formatDate(dataEmissao), dataVencimento: formatDate(dataVencimento),
-          meiaVida: formatDate(meiaVida),
+          gatilho50: formatDate(gatilho50),
           valor: fatsValidas[0]?.valor || null, notaFiscal: fatsValidas[0]?.notaFiscal || null,
           faturaId: fatsValidas[0]?.id || null, qtdFaturas: fatsValidas.length,
           detalhe,
         });
       }
 
-      if (totalCriticos >= 3) {
+      // Status geral da UC
+      let statusGeral = 'EM_DIA';
+      if (totalPendentes >= 3) {
         statusGeral = 'CRITICO';
-      } else if (totalCriticos > 0 || totalAtrasos > 0) {
-        statusGeral = 'EM_ATRASO';
-      } else if (totalAguardando > 0) {
+      } else if (totalPendentes > 0) {
+        statusGeral = 'PENDENTE';
+      } else if (totalLancadas > 0) {
         statusGeral = 'AGUARDANDO';
       }
 
       return {
-        id: uc.id, uc: uc.uc, numInstalacao: uc.numInstalacao,
+        ucId: uc.id, nome: uc.uc, codigo: uc.numInstalacao || uc.uc,
         filial: uc.filial?.razaoSocial, filialId: uc.filial?.id,
         fornecedor: uc.fornecedor?.nome, fornecedorId: uc.fornecedor?.id,
         diaEmissao: uc.diaEmissao, prazoVencimento: uc.prazoVencimento,
-        meses, statusGeral, totalCriticos, totalAtrasos, totalAguardando, valorTotal,
+        meses, statusGeral, totalPendentes, totalLancadas, totalPagas, valorTotal,
       };
     });
 
@@ -219,90 +198,99 @@ router.get('/', async (req, res) => {
 
     const statusDoMesAtual = matriz.map(uc => {
       const mesDado = uc.meses.find(m => m.mes === mesAtualNum);
-      return mesDado ? mesDado.status : 'SEM_LANCAMENTO';
+      return mesDado ? mesDado.status : 'AGUARDANDO';
     });
 
-    const lancadas = statusDoMesAtual.filter(s => ['OK', 'EM_ANDAMENTO', 'PROXIMO_VENCIMENTO'].includes(s)).length;
-    const criticas = statusDoMesAtual.filter(s => s === 'CRITICO').length;
-    const emAtraso = statusDoMesAtual.filter(s => s === 'ATRASO').length;
+    const pagas = statusDoMesAtual.filter(s => s === 'PAGA').length;
+    const lancadas = statusDoMesAtual.filter(s => s === 'LANCADA').length;
+    const pendentes = statusDoMesAtual.filter(s => s === 'PENDENTE').length;
+    const aguardando = statusDoMesAtual.filter(s => s === 'AGUARDANDO').length;
 
     const faturamentoAno = faturas
       .filter(f => f.status !== 'REJEITADA')
       .reduce((s, f) => s + (Number(f.valor) || 0), 0);
 
-    const totalOmissoesCriticas = matriz.reduce(
-      (s, uc) => s + uc.meses.filter(m => m.status === 'CRITICO').length, 0
+    const totalPendentesGeral = matriz.reduce(
+      (s, uc) => s + uc.meses.filter(m => m.status === 'PENDENTE').length, 0
     );
 
-    const cobertura = totalUCs > 0 ? Math.round((lancadas / totalUCs) * 100) : 0;
+    const cobertura = totalUCs > 0 ? Math.round(((pagas + lancadas) / totalUCs) * 100) : 0;
 
     const indicadores = {
-      mesReferencia: mesAtualRef, totalUCs, cobertura,
-      lancadas: { quantidade: lancadas, percentual: totalUCs > 0 ? Math.round((lancadas / totalUCs) * 100) : 0 },
-      criticas: { quantidade: criticas },
-      emAtraso: { quantidade: emAtraso },
-      omissoesCriticas: totalOmissoesCriticas, faturamentoAno,
-      ucsCriticas: matriz.filter(uc => uc.statusGeral === 'CRITICO').length,
+      mesReferencia: mesAtualRef, totalUcs: totalUCs, cobertura,
+      pagas, lancadas, pendentes, aguardando,
+      totalPendentesGeral, faturamentoTotal: faturamentoAno,
       ucsEmDia: matriz.filter(uc => uc.statusGeral === 'EM_DIA').length,
+      ucsPendentes: matriz.filter(uc => uc.statusGeral === 'PENDENTE').length,
+      ucsCriticas: matriz.filter(uc => uc.statusGeral === 'CRITICO').length,
       ucsAguardando: matriz.filter(uc => uc.statusGeral === 'AGUARDANDO').length,
     };
 
-    // Notificacoes
+    // Notificações
     const notificacoes = [];
     const hoje = now.toISOString().split('T')[0];
 
-    const ucsCriticasList = matriz.filter(uc => uc.statusGeral === 'CRITICO');
-    if (ucsCriticasList.length > 0) {
+    const ucsPendentesList = matriz.filter(uc => uc.statusGeral === 'CRITICO');
+    if (ucsPendentesList.length > 0) {
       notificacoes.push({
         tipo: 'CRITICO', data: hoje,
-        mensagem: `${ucsCriticasList.length} UC(s) em situacao CRITICA`,
-        detalhe: ucsCriticasList.slice(0, 10).map(u => u.uc).join(', ') + (ucsCriticasList.length > 10 ? ` (+${ucsCriticasList.length - 10})` : ''),
+        mensagem: `${ucsPendentesList.length} UC(s) com 3+ meses pendentes`,
+        detalhe: ucsPendentesList.slice(0, 10).map(u => u.nome).join(', ') + (ucsPendentesList.length > 10 ? ` (+${ucsPendentesList.length - 10})` : ''),
       });
     }
 
-    const ucsMesCritico = matriz.filter(uc => {
+    const ucsMesPendente = matriz.filter(uc => {
       const mesAtual = uc.meses.find(m => m.mes === mesAtualNum);
-      return mesAtual && mesAtual.status === 'CRITICO';
+      return mesAtual && mesAtual.status === 'PENDENTE';
     });
-    if (ucsMesCritico.length > 0) {
+    if (ucsMesPendente.length > 0) {
       notificacoes.push({
         tipo: 'ALERTA', data: hoje,
-        mensagem: `${ucsMesCritico.length} fatura(s) ultrapassaram 50% do prazo sem lancamento`,
-        detalhe: ucsMesCritico.slice(0, 10).map(u => u.uc).join(', '),
+        mensagem: `${ucsMesPendente.length} fatura(s) pendentes de lançamento em ${MONTHS_PT[mesAtualNum - 1]}/${anoRef}`,
+        detalhe: ucsMesPendente.slice(0, 10).map(u => u.nome).join(', '),
       });
     }
 
-    const ucsProximas = matriz.filter(uc => {
+    const ucsMesLancada = matriz.filter(uc => {
       const mesAtual = uc.meses.find(m => m.mes === mesAtualNum);
-      return mesAtual && mesAtual.status === 'PROXIMO_VENCIMENTO';
+      return mesAtual && mesAtual.status === 'LANCADA';
     });
-    if (ucsProximas.length > 0) {
+    if (ucsMesLancada.length > 0) {
       notificacoes.push({
-        tipo: 'AVISO', data: hoje,
-        mensagem: `${ucsProximas.length} fatura(s) vencem nos proximos 5 dias`,
-        detalhe: ucsProximas.slice(0, 10).map(u => u.uc).join(', '),
+        tipo: 'INFO', data: hoje,
+        mensagem: `${ucsMesLancada.length} fatura(s) lançadas aguardando pagamento`,
+        detalhe: ucsMesLancada.slice(0, 10).map(u => u.nome).join(', '),
       });
     }
 
-    // Filtros
+    // Filtros (arrays de strings para os selects do frontend)
     const filiais = await prisma.filial.findMany({
-      where: { ativo: true }, select: { id: true, razaoSocial: true }, orderBy: { razaoSocial: 'asc' },
+      where: { ativo: true }, select: { razaoSocial: true }, orderBy: { razaoSocial: 'asc' },
     });
     const fornecedores = await prisma.fornecedor.findMany({
-      where: { ativo: true }, select: { id: true, nome: true }, orderBy: { nome: 'asc' },
+      where: { ativo: true }, select: { nome: true }, orderBy: { nome: 'asc' },
     });
 
-    res.json({ ano: anoRef, indicadores, matriz, notificacoes, filtros: { filiais, fornecedores } });
+    res.json({
+      ano: anoRef, indicadores, matriz, notificacoes,
+      filtros: {
+        filiais: filiais.map(f => f.razaoSocial),
+        fornecedores: fornecedores.map(f => f.nome),
+      },
+    });
   } catch (err) {
     logger.error('GET /api/checkout', err);
     res.status(500).json({ error: true, message: 'Erro ao gerar checkout de faturas' });
   }
 });
 
-// GET /api/checkout/detalhe/:ucId/:ref
-router.get('/detalhe/:ucId/:ref', async (req, res) => {
+// GET /api/checkout/detalhe/:ucId?ref=YYYY-MM
+router.get('/detalhe/:ucId', async (req, res) => {
   try {
-    const { ucId, ref } = req.params;
+    const { ucId } = req.params;
+    const { ref } = req.query;
+
+    if (!ref) return res.status(400).json({ error: true, message: 'Parâmetro ref é obrigatório (YYYY-MM)' });
 
     const uc = await prisma.unidadeConsumidora.findUnique({
       where: { id: parseInt(ucId) },
@@ -331,7 +319,7 @@ router.get('/detalhe/:ucId/:ref', async (req, res) => {
     const mes = parseInt(mesStr);
     const dataEmissao = calcDataEmissao(ano, mes, uc.diaEmissao);
     const dataVencimento = calcDataVencimento(dataEmissao, uc.prazoVencimento);
-    const meiaVida = calcMeiaVida(dataEmissao, dataVencimento);
+    const gatilho50 = calcGatilho50(dataEmissao, uc.prazoVencimento);
 
     res.json({
       uc: {
@@ -342,7 +330,7 @@ router.get('/detalhe/:ucId/:ref', async (req, res) => {
       referencia: ref,
       ciclo: {
         dataEmissao: formatDate(dataEmissao),
-        meiaVida: formatDate(meiaVida),
+        gatilho50: formatDate(gatilho50),
         dataVencimento: formatDate(dataVencimento),
       },
       faturas: faturas.map(f => ({

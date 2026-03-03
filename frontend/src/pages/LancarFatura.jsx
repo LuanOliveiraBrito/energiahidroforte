@@ -1,14 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import api from '../services/api';
-import { FiFileText, FiUpload, FiSend, FiFile, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
+import { FiFileText, FiUpload, FiSend, FiFile, FiCheckCircle, FiAlertCircle, FiEdit } from 'react-icons/fi';
 import SearchableSelect from '../components/SearchableSelect';
 
 export default function LancarFatura() {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const editId = searchParams.get('editId');
   const [unidades, setUnidades] = useState([]);
   const [centrosCusto, setCentrosCusto] = useState([]);
   const [naturezas, setNaturezas] = useState([]);
   const [contasContabeis, setContasContabeis] = useState([]);
+  const [editLoaded, setEditLoaded] = useState(false);
 
   const [form, setForm] = useState({
     ucId: '',
@@ -47,6 +52,82 @@ export default function LancarFatura() {
   useEffect(() => {
     loadSelects();
   }, []);
+
+  // Pré-preencher campos via URL params (vindo do Checkout Fatura)
+  useEffect(() => {
+    if (unidades.length === 0) return;
+    if (editId) return; // Não preencher via params se for edição
+    const paramUcId = searchParams.get('ucId');
+    const paramRef = searchParams.get('ref');
+    if (paramUcId) {
+      handleUCChange(paramUcId);
+    }
+    if (paramRef) {
+      setForm(prev => ({ ...prev, referencia: paramRef }));
+    }
+  }, [unidades]);
+
+  // Carregar dados da fatura para edição
+  useEffect(() => {
+    if (!editId || unidades.length === 0 || editLoaded) return;
+    loadFaturaParaEdicao(editId);
+  }, [editId, unidades]);
+
+  async function loadFaturaParaEdicao(id) {
+    try {
+      setLoading(true);
+      const res = await api.get(`/faturas/${id}`);
+      const f = res.data;
+
+      if (f.status !== 'PENDENTE') {
+        toast.error('Só é possível editar faturas com status PENDENTE');
+        navigate('/relatorios');
+        return;
+      }
+
+      // Carregar centros de custo da filial antes de setar o form
+      if (f.filialId) {
+        await loadCentrosCusto(f.filialId);
+      }
+
+      setForm({
+        ucId: f.ucId ? String(f.ucId) : '',
+        fornecedor: f.fornecedor?.nome || '',
+        fornecedorId: f.fornecedorId || '',
+        filial: f.filial?.razaoSocial || '',
+        filialId: f.filialId || '',
+        notaFiscal: f.notaFiscal || '',
+        valor: f.valor ? String(f.valor) : '',
+        leituraKwh: f.leituraKwh ? String(f.leituraKwh) : '',
+        vencimento: f.vencimento ? f.vencimento.substring(0, 10) : '',
+        referencia: f.referencia || '',
+        centroCustoId: f.centroCustoId ? String(f.centroCustoId) : '',
+        naturezaId: f.naturezaId ? String(f.naturezaId) : '',
+        contaContabilId: f.contaContabilId ? String(f.contaContabilId) : '',
+        pedidoCompras: f.pedidoCompras || '',
+        formaPagamento: f.formaPagamento || '',
+        aplicacao: f.aplicacao || '',
+        dataEmissao: f.dataEmissao ? f.dataEmissao.substring(0, 10) : '',
+      });
+
+      if (f.codigoBarras) {
+        setCodigoBarrasManual(f.codigoBarras);
+      }
+
+      // Mostrar que já tem anexo (sem precisar re-upload)
+      if (f.anexoFatura) {
+        setPdfPreviewUrl(`${api.defaults.baseURL}/uploads/${f.anexoFatura}`);
+      }
+
+      setEditLoaded(true);
+      toast.info('Fatura carregada para edição');
+    } catch (err) {
+      toast.error('Erro ao carregar fatura para edição');
+      navigate('/relatorios');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   // Drag & drop handlers
   function handleDragOver(e, setDragState) {
@@ -125,19 +206,19 @@ export default function LancarFatura() {
   function handleUCChange(ucId) {
     const uc = unidades.find((u) => u.id === parseInt(ucId));
     if (uc) {
-      setForm({
-        ...form,
+      setForm(prev => ({
+        ...prev,
         ucId,
         fornecedor: uc.fornecedor?.nome || '',
         fornecedorId: uc.fornecedorId,
         filial: uc.filial?.razaoSocial || '',
         filialId: uc.filialId,
         formaPagamento: uc.fornecedor?.tipoPagamento || '',
-        centroCustoId: '', // Reset ao trocar UC
-      });
+        centroCustoId: '',
+      }));
       loadCentrosCusto(uc.filialId);
     } else {
-      setForm({ ...form, ucId, fornecedor: '', fornecedorId: '', filial: '', filialId: '', formaPagamento: '', centroCustoId: '' });
+      setForm(prev => ({ ...prev, ucId, fornecedor: '', fornecedorId: '', filial: '', filialId: '', formaPagamento: '', centroCustoId: '' }));
       setCentrosCusto([]);
     }
   }
@@ -171,7 +252,7 @@ export default function LancarFatura() {
       });
 
       if (res.data.encontrado && res.data.valido) {
-        const { valor, vencimento, linhaDigitavel, banco, consumoKwh, concessionaria, dataEmissao, notaFiscal, referencia } = res.data;
+        const { valor, vencimento, linhaDigitavel, banco, consumoKwh, concessionaria, dataEmissao, notaFiscal, referencia, unidadeConsumidora, numInstalacao } = res.data;
 
         // Preencher campos automaticamente
         const updates = {};
@@ -182,6 +263,47 @@ export default function LancarFatura() {
         if (notaFiscal) updates.notaFiscal = notaFiscal;
         if (referencia) updates.referencia = referencia;
 
+        // Tentar identificar a UC automaticamente
+        let ucEncontrada = false;
+        if (unidadeConsumidora || numInstalacao) {
+          const ucMatch = unidades.find(u => {
+            if (unidadeConsumidora && u.uc) {
+              if (u.uc.trim() === unidadeConsumidora.trim()) return true;
+              const ucDigits = u.uc.replace(/\D/g, '');
+              const extractedDigits = unidadeConsumidora.replace(/\D/g, '');
+              if (ucDigits === extractedDigits) return true;
+              if (ucDigits.length > 4 && extractedDigits.length > 4) {
+                if (ucDigits.endsWith(extractedDigits) || extractedDigits.endsWith(ucDigits)) return true;
+              }
+            }
+            if (numInstalacao && u.numInstalacao) {
+              if (u.numInstalacao.trim() === numInstalacao.trim()) return true;
+              const instDigits = u.numInstalacao.replace(/\D/g, '');
+              const extractedInstDigits = numInstalacao.replace(/\D/g, '');
+              if (instDigits === extractedInstDigits) return true;
+            }
+            return false;
+          });
+
+          if (ucMatch) {
+            // Aplicar dados da UC + dados extraídos juntos num único setForm
+            // para não sobrescrever os campos extraídos do PDF
+            updates.ucId = String(ucMatch.id);
+            updates.fornecedor = ucMatch.fornecedor?.nome || '';
+            updates.fornecedorId = ucMatch.fornecedorId;
+            updates.filial = ucMatch.filial?.razaoSocial || '';
+            updates.filialId = ucMatch.filialId;
+            updates.formaPagamento = ucMatch.fornecedor?.tipoPagamento || '';
+            updates.centroCustoId = '';
+            loadCentrosCusto(ucMatch.filialId);
+            ucEncontrada = true;
+            console.log(`🏠 UC identificada automaticamente: ${ucMatch.uc} (ID: ${ucMatch.id})`);
+          } else {
+            console.log(`⚠️ UC não encontrada no cadastro: UC=${unidadeConsumidora}, Inst=${numInstalacao}`);
+          }
+        }
+
+        // Aplicar TODOS os updates de uma vez (dados extraídos + UC) para evitar race condition
         if (Object.keys(updates).length > 0) {
           setForm(prev => ({ ...prev, ...updates }));
         }
@@ -197,10 +319,11 @@ export default function LancarFatura() {
 
         const concLabel = concessionaria ? ` (${concessionaria})` : '';
         const kwhLabel = consumoKwh ? ` | Consumo: ${consumoKwh.toLocaleString('pt-BR')} kWh` : '';
+        const ucLabel = ucEncontrada ? ' | UC identificada ✓' : (unidadeConsumidora ? ` | UC: ${unidadeConsumidora} (não cadastrada)` : '');
         const ocrLabel = res.data.ocr ? ' 📷' : '';
         toast.success(
-          `✅ Fatura detectada${concLabel}${ocrLabel}! Valor: R$ ${valor.toFixed(2)}${vencimento ? ` | Venc: ${vencimento.split('-').reverse().join('/')}` : ''}${kwhLabel}`,
-          { autoClose: 5000 }
+          `✅ Fatura detectada${concLabel}${ocrLabel}! Valor: R$ ${valor.toFixed(2)}${vencimento ? ` | Venc: ${vencimento.split('-').reverse().join('/')}` : ''}${kwhLabel}${ucLabel}`,
+          { autoClose: 6000 }
         );
       } else {
         // Mostrar mensagem diferente se OCR foi utilizado
@@ -246,7 +369,7 @@ export default function LancarFatura() {
       return;
     }
 
-    if (!anexoFatura) {
+    if (!editId && !anexoFatura) {
       toast.warning('Anexe a fatura em PDF');
       return;
     }
@@ -286,6 +409,15 @@ export default function LancarFatura() {
       }
       if (anexoPedidoCompras) {
         formData.append('anexoPedidoCompras', anexoPedidoCompras);
+      }
+
+      if (editId) {
+        await api.put(`/faturas/${editId}`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        toast.success('Fatura atualizada com sucesso!');
+        navigate('/relatorios');
+        return;
       }
 
       await api.post('/faturas', formData, {
@@ -376,7 +508,7 @@ export default function LancarFatura() {
 
         {/* Painel do Formulário */}
         <div className="form-pane">
-          <h3><FiFileText size={18} /> Dados da Fatura</h3>
+          <h3>{editId ? <><FiEdit size={18} /> Editar Fatura #{editId}</> : <><FiFileText size={18} /> Dados da Fatura</>}</h3>
 
           <form onSubmit={handleSubmit}>
             <div className="f-group">
@@ -602,8 +734,8 @@ export default function LancarFatura() {
             </div>
 
             <button type="submit" className="btn btn-primary btn-block" disabled={loading} style={{ marginTop: 16 }}>
-              <FiSend size={14} />
-              {loading ? 'ENVIANDO...' : 'ENVIAR PARA APROVAÇÃO'}
+              {editId ? <FiEdit size={14} /> : <FiSend size={14} />}
+              {loading ? 'ENVIANDO...' : editId ? 'SALVAR ALTERAÇÕES' : 'ENVIAR PARA APROVAÇÃO'}
             </button>
           </form>
         </div>
