@@ -35,7 +35,7 @@ export default function Cadastros() {
   // Forms
   const [formFilial, setFormFilial] = useState({ razaoSocial: '', cnpj: '', estado: '', cidade: '' });
   const [formFornecedor, setFormFornecedor] = useState({ nome: '', cnpj: '', tipoPagamento: '', banco: '', agencia: '', conta: '', tipoConta: '', op: '', chavePix: '', tipoChavePix: '' });
-  const [formUnidade, setFormUnidade] = useState({ uc: '', numInstalacao: '', filialId: '', fornecedorId: '', diaVencimento: '' });
+  const [formUnidade, setFormUnidade] = useState({ uc: '', numInstalacao: '', filialId: '', fornecedorId: '', prazoVencimento: '', diaEmissao: '' });
   const [formCC, setFormCC] = useState({ numero: '', descricao: '', filialId: '' });
   const [formConta, setFormConta] = useState({ numero: '', descricao: '' });
   const [formNatureza, setFormNatureza] = useState({ descricao: '' });
@@ -104,7 +104,7 @@ export default function Cadastros() {
   function resetForms() {
     setFormFilial({ razaoSocial: '', cnpj: '', estado: '', cidade: '' });
     setFormFornecedor({ nome: '', cnpj: '', tipoPagamento: '', banco: '', agencia: '', conta: '', tipoConta: '', op: '', chavePix: '', tipoChavePix: '' });
-    setFormUnidade({ uc: '', numInstalacao: '', filialId: '', fornecedorId: '', diaVencimento: '' });
+    setFormUnidade({ uc: '', numInstalacao: '', filialId: '', fornecedorId: '', prazoVencimento: '', diaEmissao: '' });
     setFormCC({ numero: '', descricao: '', filialId: '' });
     setFormConta({ numero: '', descricao: '' });
     setFormNatureza({ descricao: '' });
@@ -186,7 +186,7 @@ export default function Cadastros() {
 
   async function saveUnidade(e) {
     e.preventDefault();
-    const { uc, numInstalacao, filialId, fornecedorId, diaVencimento } = formUnidade;
+    const { uc, numInstalacao, filialId, fornecedorId, prazoVencimento, diaEmissao } = formUnidade;
 
     if (!uc || !numInstalacao || !filialId || !fornecedorId) {
       toast.warning('Preencha todos os campos');
@@ -194,7 +194,7 @@ export default function Cadastros() {
     }
 
     try {
-      const payload = { uc, numInstalacao, filialId, fornecedorId, diaVencimento: diaVencimento || null };
+      const payload = { uc, numInstalacao, filialId, fornecedorId, prazoVencimento: prazoVencimento || null, diaEmissao: diaEmissao || null };
       await api.post('/cadastros/unidades', payload);
       toast.success('UC cadastrada!');
       resetForms();
@@ -443,19 +443,32 @@ export default function Cadastros() {
             </div>
             <div className="form-row">
               <div className="f-group">
-                <label>Dia Vencimento das Faturas</label>
+                <label>Dia Emissão das Faturas</label>
                 <input
                   type="number"
                   min="1"
                   max="31"
-                  value={formUnidade.diaVencimento}
-                  onChange={(e) => setFormUnidade({ ...formUnidade, diaVencimento: e.target.value })}
-                  placeholder="Ex: 15"
+                  value={formUnidade.diaEmissao}
+                  onChange={(e) => setFormUnidade({ ...formUnidade, diaEmissao: e.target.value })}
+                  placeholder="Ex: 5"
                 />
               </div>
+              <div className="f-group">
+                <label>Prazo até Vencimento (dias)</label>
+                <input
+                  type="number"
+                  min="1"
+                  max="120"
+                  value={formUnidade.prazoVencimento}
+                  onChange={(e) => setFormUnidade({ ...formUnidade, prazoVencimento: e.target.value })}
+                  placeholder="Ex: 25"
+                />
+              </div>
+            </div>
+            <div className="form-row">
               <div className="f-group" style={{ display: 'flex', alignItems: 'flex-end' }}>
                 <p style={{ fontSize: '0.78rem', color: 'var(--text-sub)', margin: 0, paddingBottom: 8 }}>
-                  💡 Dia do mês em que a fatura desta UC vence. Usado para alertar lançamentos pendentes.
+                  💡 Dia do mês em que a fatura é emitida + quantidade de dias até o vencimento. Ex: Emissão dia 5 + Prazo 25 dias = Vencimento dia 30.
                 </p>
               </div>
             </div>
@@ -692,7 +705,7 @@ export default function Cadastros() {
         const pagLabel = tp === 'TED' ? `TED (${item.banco || '?'})` : tp === 'PIX' ? `PIX (${item.tipoChavePix || '?'})` : tp === 'BOLETO' ? 'Boleto' : 'Não definido';
         return `CNPJ: ${formatCNPJ(item.cnpj)} | Pagamento: ${pagLabel}`;
       }
-      case 'unidades': return `Instalação: ${item.numInstalacao} | Filial: ${item.filial?.razaoSocial || '-'} | Fornecedor: ${item.fornecedor?.nome || '-'}${item.diaVencimento ? ` | Venc. dia ${item.diaVencimento}` : ''}`;
+      case 'unidades': return `Instalação: ${item.numInstalacao} | Filial: ${item.filial?.razaoSocial || '-'} | Fornecedor: ${item.fornecedor?.nome || '-'}${item.prazoVencimento ? ` | Prazo ${item.prazoVencimento}d` : ''}${item.diaEmissao ? ` | Emissão dia ${item.diaEmissao}` : ''}`;
       case 'centros-custo': return `Filial: ${item.filial?.razaoSocial || '-'}`;
       case 'contas-contabeis': return `Conta Contábil`;
       case 'naturezas': return `Natureza de Despesa`;
@@ -718,7 +731,8 @@ export default function Cadastros() {
         form = {
           uc: item.uc, numInstalacao: item.numInstalacao,
           filialId: item.filialId.toString(), fornecedorId: item.fornecedorId.toString(),
-          diaVencimento: item.diaVencimento ? item.diaVencimento.toString() : '',
+          prazoVencimento: item.prazoVencimento ? item.prazoVencimento.toString() : '',
+          diaEmissao: item.diaEmissao ? item.diaEmissao.toString() : '',
         };
         break;
       case 'centros-custo':
@@ -762,9 +776,9 @@ export default function Cadastros() {
           break;
         }
         case 'unidades': {
-          const { uc, numInstalacao, filialId, fornecedorId, diaVencimento } = form;
+          const { uc, numInstalacao, filialId, fornecedorId, prazoVencimento, diaEmissao } = form;
           if (!uc || !numInstalacao || !filialId || !fornecedorId) { toast.warning('Preencha todos os campos'); return; }
-          await api.put(`/cadastros/unidades/${id}`, { uc, numInstalacao, filialId, fornecedorId, diaVencimento: diaVencimento || null });
+          await api.put(`/cadastros/unidades/${id}`, { uc, numInstalacao, filialId, fornecedorId, prazoVencimento: prazoVencimento || null, diaEmissao: diaEmissao || null });
           toast.success('UC atualizada!');
           break;
         }
@@ -943,7 +957,8 @@ export default function Cadastros() {
                   </div>
                 </div>
                 <div className="form-row">
-                  <div className="f-group"><label>Dia Vencimento</label><input type="number" min="1" max="31" value={form.diaVencimento} onChange={e => updateEditForm('diaVencimento', e.target.value)} /></div>
+                  <div className="f-group"><label>Prazo Vencimento (dias)</label><input type="number" min="1" max="120" value={form.prazoVencimento} onChange={e => updateEditForm('prazoVencimento', e.target.value)} /></div>
+                  <div className="f-group"><label>Dia Emissão</label><input type="number" min="1" max="31" value={form.diaEmissao} onChange={e => updateEditForm('diaEmissao', e.target.value)} /></div>
                 </div>
               </>
             )}

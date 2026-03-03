@@ -24,6 +24,7 @@ const capaProcessoRoutes = require('./routes/capaProcesso.routes');
 const processoCompletoRoutes = require('./routes/processoCompleto.routes');
 const boletoRoutes = require('./routes/boleto.routes');
 const verificacaoRoutes = require('./routes/verificacao.routes');
+const checkoutRoutes = require('./routes/checkout.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -53,6 +54,7 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/relatorios', relatorioRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/boleto', boletoRoutes);
+app.use('/api/checkout', checkoutRoutes);
 
 // Rota de logs do sistema (só ADMINISTRADOR)
 const { authMiddleware, authorize } = require('./middlewares/auth.middleware');

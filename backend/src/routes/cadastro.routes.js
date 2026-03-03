@@ -318,16 +318,22 @@ router.get('/unidades', async (req, res) => {
 
 router.post('/unidades', authorize(...TODOS_PERFIS), async (req, res) => {
   try {
-    const { uc, numInstalacao, filialId, fornecedorId, diaVencimento } = req.body;
+    const { uc, numInstalacao, filialId, fornecedorId, prazoVencimento, diaEmissao } = req.body;
 
     if (!uc || !numInstalacao || !filialId || !fornecedorId) {
       return res.status(400).json({ error: true, message: 'Todos os campos são obrigatórios' });
     }
 
-    // Validar dia do vencimento
-    const diaVenc = diaVencimento ? parseInt(diaVencimento) : null;
-    if (diaVenc !== null && (diaVenc < 1 || diaVenc > 31)) {
-      return res.status(400).json({ error: true, message: 'Dia de vencimento deve ser entre 1 e 31' });
+    // Validar prazo de vencimento (dias da emissão até o vencimento)
+    const prazoVenc = prazoVencimento ? parseInt(prazoVencimento) : null;
+    if (prazoVenc !== null && (prazoVenc < 1 || prazoVenc > 120)) {
+      return res.status(400).json({ error: true, message: 'Prazo de vencimento deve ser entre 1 e 120 dias' });
+    }
+
+    // Validar dia de emissão
+    const diaEmis = diaEmissao ? parseInt(diaEmissao) : null;
+    if (diaEmis !== null && (diaEmis < 1 || diaEmis > 31)) {
+      return res.status(400).json({ error: true, message: 'Dia de emissão deve ser entre 1 e 31' });
     }
 
     // Verificar se existe UC inativa com o mesmo código
@@ -342,7 +348,8 @@ router.post('/unidades', authorize(...TODOS_PERFIS), async (req, res) => {
           numInstalacao,
           filialId: parseInt(filialId),
           fornecedorId: parseInt(fornecedorId),
-          diaVencimento: diaVenc,
+          prazoVencimento: prazoVenc,
+          diaEmissao: diaEmis,
           ativo: true,
         },
         include: {
@@ -357,7 +364,8 @@ router.post('/unidades', authorize(...TODOS_PERFIS), async (req, res) => {
           numInstalacao,
           filialId: parseInt(filialId),
           fornecedorId: parseInt(fornecedorId),
-          diaVencimento: diaVenc,
+          prazoVencimento: prazoVenc,
+          diaEmissao: diaEmis,
         },
         include: {
           filial: { select: { id: true, razaoSocial: true } },
@@ -385,12 +393,18 @@ router.post('/unidades', authorize(...TODOS_PERFIS), async (req, res) => {
 router.put('/unidades/:id', authorize(...TODOS_PERFIS), async (req, res) => {
   try {
     const { id } = req.params;
-    const { uc, numInstalacao, filialId, fornecedorId, diaVencimento } = req.body;
+    const { uc, numInstalacao, filialId, fornecedorId, prazoVencimento, diaEmissao } = req.body;
 
-    // Validar dia do vencimento se informado
-    const diaVenc = diaVencimento !== undefined && diaVencimento !== '' ? parseInt(diaVencimento) : undefined;
-    if (diaVenc !== undefined && diaVenc !== null && (isNaN(diaVenc) || diaVenc < 1 || diaVenc > 31)) {
-      return res.status(400).json({ error: true, message: 'Dia de vencimento deve ser entre 1 e 31' });
+    // Validar prazo de vencimento se informado
+    const prazoVenc = prazoVencimento !== undefined && prazoVencimento !== '' ? parseInt(prazoVencimento) : undefined;
+    if (prazoVenc !== undefined && prazoVenc !== null && (isNaN(prazoVenc) || prazoVenc < 1 || prazoVenc > 120)) {
+      return res.status(400).json({ error: true, message: 'Prazo de vencimento deve ser entre 1 e 120 dias' });
+    }
+
+    // Validar dia de emissão se informado
+    const diaEmis = diaEmissao !== undefined && diaEmissao !== '' ? parseInt(diaEmissao) : undefined;
+    if (diaEmis !== undefined && diaEmis !== null && (isNaN(diaEmis) || diaEmis < 1 || diaEmis > 31)) {
+      return res.status(400).json({ error: true, message: 'Dia de emissão deve ser entre 1 e 31' });
     }
 
     const unidade = await prisma.unidadeConsumidora.update({
@@ -400,7 +414,8 @@ router.put('/unidades/:id', authorize(...TODOS_PERFIS), async (req, res) => {
         ...(numInstalacao && { numInstalacao }),
         ...(filialId && { filialId: parseInt(filialId) }),
         ...(fornecedorId && { fornecedorId: parseInt(fornecedorId) }),
-        ...(diaVencimento !== undefined && { diaVencimento: diaVencimento === '' || diaVencimento === null ? null : parseInt(diaVencimento) }),
+        ...(prazoVencimento !== undefined && { prazoVencimento: prazoVencimento === '' || prazoVencimento === null ? null : parseInt(prazoVencimento) }),
+        ...(diaEmissao !== undefined && { diaEmissao: diaEmissao === '' || diaEmissao === null ? null : parseInt(diaEmissao) }),
       },
       include: {
         filial: { select: { id: true, razaoSocial: true } },

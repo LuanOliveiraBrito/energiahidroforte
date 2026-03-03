@@ -382,7 +382,7 @@ async function gerarCapaPDF(fatura, req) {
   }
 
   // PROTOCOLO
-  const protocoloLabel = fatura.numeroProtocolo || `FAT-${String(fatura.id).padStart(6, '0')}`;
+  const protocoloLabel = fatura.numeroProtocolo || 'NÃO DEFINIDO';
   y = drawRow('N. PROTOCOLO:', protocoloLabel, y);
   y = drawRow('DATA ENVIO:', formatDate(new Date()), y);
 

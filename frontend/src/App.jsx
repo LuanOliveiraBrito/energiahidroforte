@@ -11,6 +11,7 @@ import ConferenciaProtocolo from './pages/ConferenciaProtocolo';
 import Financeiro from './pages/Financeiro';
 import Relatorios from './pages/Relatorios';
 import Usuarios from './pages/Usuarios';
+import CheckoutFatura from './pages/CheckoutFatura';
 
 function PrivateRoute({ children, module }) {
   const { signed, loading, hasPermission } = useAuth();
@@ -65,6 +66,7 @@ export default function App() {
         <Route path="conferencia-protocolo" element={<PrivateRoute module="conferencia-protocolo"><ConferenciaProtocolo /></PrivateRoute>} />
         <Route path="financeiro" element={<PrivateRoute module="financeiro"><Financeiro /></PrivateRoute>} />
         <Route path="relatorios" element={<PrivateRoute module="relatorios"><Relatorios /></PrivateRoute>} />
+        <Route path="checkout-fatura" element={<PrivateRoute module="checkout-fatura"><CheckoutFatura /></PrivateRoute>} />
         <Route path="usuarios" element={<PrivateRoute module="usuarios"><Usuarios /></PrivateRoute>} />
       </Route>
 

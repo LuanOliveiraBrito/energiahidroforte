@@ -177,7 +177,7 @@ export default function CapaProcesso({ fatura }) {
         <div className="capa-section capa-protocolo">
           <div className="capa-row">
             <div className="capa-label">Nº PROTOCOLO:</div>
-            <div className="capa-value capa-protocol-field"></div>
+            <div className="capa-value capa-protocol-field">{fatura.numeroProtocolo || 'NÃO DEFINIDO'}</div>
           </div>
           <div className="capa-row">
             <div className="capa-label">DATA ENVIO:</div>

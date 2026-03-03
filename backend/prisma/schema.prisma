@@ -109,7 +109,8 @@ model UnidadeConsumidora {
   numInstalacao String   @map("num_instalacao")
   filialId      Int      @map("filial_id")
   fornecedorId  Int      @map("fornecedor_id")
-  diaVencimento Int?     @map("dia_vencimento") // Dia do mês em que vence a fatura (1-31)
+  diaEmissao    Int?     @map("dia_emissao")          // Dia do mês em que a fatura é emitida (1-31)
+  prazoVencimento Int?   @map("prazo_vencimento")     // Quantidade de dias da emissão até o vencimento
   ativo         Boolean  @default(true)
   createdAt     DateTime @default(now()) @map("created_at")
   updatedAt     DateTime @updatedAt @map("updated_at")

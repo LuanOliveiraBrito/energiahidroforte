@@ -14,6 +14,7 @@ import {
   FiLogOut,
   FiMenu,
   FiX,
+  FiGrid,
 } from 'react-icons/fi';
 
 const NAV_ITEMS = [
@@ -25,6 +26,7 @@ const NAV_ITEMS = [
   { path: '/conferencia-protocolo', label: 'Conferência e Protocolo', icon: FiClipboard, module: 'conferencia-protocolo' },
   { path: '/financeiro', label: 'Financeiro / Baixas', icon: FiDollarSign, module: 'financeiro' },
   { path: '/relatorios', label: 'Relatórios', icon: FiBarChart2, module: 'relatorios' },
+  { path: '/checkout-fatura', label: 'Checkout Fatura', icon: FiGrid, module: 'checkout-fatura' },
   { path: '/usuarios', label: 'Usuários', icon: FiUsers, module: 'usuarios' },
 ];
 
