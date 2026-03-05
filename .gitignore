@@ -4,6 +4,8 @@ uploads/
 logs/
 dist/
 backup.dump
+*.dump
+*.pdf
 voltaris.tar.gz
 voltaris-update.tar.gz
 *.log

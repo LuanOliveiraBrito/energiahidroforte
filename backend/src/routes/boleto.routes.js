@@ -993,4 +993,92 @@ router.post('/extrair', upload.single('arquivo'), async (req, res) => {
   }
 });
 
+// ==========================================
+// ROTA: POST /api/boleto/extrair-pedido
+// ==========================================
+// Extrai o número do Pedido de Compras a partir do PDF.
+// Formato esperado: "P E D I D O  D E  C O M P R A S - REAL 020503 /1"
+// O número extraído seria: 020503
+// ==========================================
+router.post('/extrair-pedido', upload.single('arquivo'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: true, message: 'Nenhum arquivo PDF enviado' });
+    }
+
+    console.log(`📄 Extraindo número do Pedido de Compras (${req.file.size} bytes)...`);
+
+    // 1) Extrair texto do PDF
+    let texto = await extrairTextoPDF(req.file.buffer);
+    let usouOCR = false;
+
+    const textoLimpo = texto.replace(/\s+/g, ' ').trim();
+
+    // 2) Se texto insuficiente, tentar OCR
+    if (textoLimpo.length < TEXTO_MINIMO_PDF) {
+      console.log(`📝 Texto do pedido insuficiente (${textoLimpo.length} chars), tentando OCR...`);
+      const textoOCR = await extrairTextoOCR(req.file.buffer);
+      if (textoOCR && textoOCR.trim().length > textoLimpo.length) {
+        texto = textoOCR;
+        usouOCR = true;
+      }
+    }
+
+    if (!texto || texto.trim().length === 0) {
+      return res.status(400).json({ error: true, message: 'Não foi possível extrair texto do PDF' });
+    }
+
+    // 3) Extrair número do pedido de compras
+    // O pdfjs-dist extrai com espaços entre letras: "P   E   D   I   D   O   D   E   C   O   M   P   R   A   S   -   REAL   020503   /1"
+    // Normalizar espaços múltiplos para facilitar o regex
+    const textoNorm = texto.replace(/\s+/g, ' ').trim();
+
+    let numeroPedido = null;
+
+    // Padrão 1: "P E D I D O D E C O M P R A S" (com espaços entre letras) seguido de "REAL XXXXXX /N"
+    const matchPedido1 = textoNorm.match(/P\s*E\s*D\s*I\s*D\s*O\s+D\s*E\s+C\s*O\s*M\s*P\s*R\s*A\s*S\s*[-–—]\s*REAL\s+(\d{4,10})\s*\//i);
+    if (matchPedido1) {
+      numeroPedido = matchPedido1[1];
+      console.log(`📋 [PEDIDO] Número extraído (padrão 1 - espaçado): ${numeroPedido}`);
+    }
+
+    // Padrão 2: "PEDIDO DE COMPRAS - REAL XXXXXX /N" (texto contínuo, pós-OCR)
+    if (!numeroPedido) {
+      const matchPedido2 = textoNorm.match(/PEDIDO\s+DE\s+COMPRAS?\s*[-–—]\s*REAL\s+(\d{4,10})\s*\//i);
+      if (matchPedido2) {
+        numeroPedido = matchPedido2[1];
+        console.log(`📋 [PEDIDO] Número extraído (padrão 2 - contínuo): ${numeroPedido}`);
+      }
+    }
+
+    // Padrão 3: Apenas "REAL XXXXXX /" em qualquer lugar do texto
+    if (!numeroPedido) {
+      const matchPedido3 = textoNorm.match(/REAL\s+(\d{4,10})\s*\//i);
+      if (matchPedido3) {
+        numeroPedido = matchPedido3[1];
+        console.log(`📋 [PEDIDO] Número extraído (padrão 3 - fallback REAL): ${numeroPedido}`);
+      }
+    }
+
+    if (numeroPedido) {
+      console.log(`✅ Pedido de Compras extraído: ${numeroPedido}${usouOCR ? ' (via OCR)' : ''}`);
+      return res.json({
+        encontrado: true,
+        numeroPedido,
+        ocr: usouOCR,
+      });
+    }
+
+    console.log(`⚠️ Número do Pedido de Compras não encontrado no PDF${usouOCR ? ' (mesmo com OCR)' : ''}`);
+    return res.json({
+      encontrado: false,
+      ocr: usouOCR,
+      message: 'Não foi possível extrair o número do Pedido de Compras. Preencha manualmente.',
+    });
+  } catch (err) {
+    logger.error('POST /api/boleto/extrair-pedido', err);
+    return res.status(500).json({ error: true, message: 'Erro ao processar PDF do Pedido de Compras' });
+  }
+});
+
 module.exports = router;

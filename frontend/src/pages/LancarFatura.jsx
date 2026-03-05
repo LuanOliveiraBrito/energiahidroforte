@@ -41,6 +41,7 @@ export default function LancarFatura() {
   const [loading, setLoading] = useState(false);
   const [boletoInfo, setBoletoInfo] = useState(null);
   const [extraindoBoleto, setExtraindoBoleto] = useState(false);
+  const [extraindoPedido, setExtraindoPedido] = useState(false);
   const [codigoBarrasManual, setCodigoBarrasManual] = useState('');
 
   const [dragOverFatura, setDragOverFatura] = useState(false);
@@ -171,7 +172,7 @@ export default function LancarFatura() {
       return;
     }
     setAnexoPedidoCompras(file);
-    toast.info(`Pedido de Compras anexado: ${file.name}`);
+    extrairNumeroPedido(file);
   }
 
   async function loadSelects() {
@@ -356,7 +357,31 @@ export default function LancarFatura() {
       return;
     }
     setAnexoPedidoCompras(file);
-    toast.info(`Pedido de Compras anexado: ${file.name}`);
+    extrairNumeroPedido(file);
+  }
+
+  async function extrairNumeroPedido(file) {
+    setExtraindoPedido(true);
+    try {
+      const formData = new FormData();
+      formData.append('arquivo', file);
+
+      const res = await api.post('/boleto/extrair-pedido', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      if (res.data.encontrado && res.data.numeroPedido) {
+        setForm(prev => ({ ...prev, pedidoCompras: res.data.numeroPedido }));
+        toast.success(`✅ Pedido de Compras detectado: ${res.data.numeroPedido}`, { autoClose: 4000 });
+      } else {
+        toast.info('Pedido de Compras anexado. Nº não detectado automaticamente — preencha manualmente.', { autoClose: 4000 });
+      }
+    } catch {
+      console.warn('Não foi possível extrair número do Pedido de Compras');
+      toast.info('Pedido de Compras anexado.', { autoClose: 3000 });
+    } finally {
+      setExtraindoPedido(false);
+    }
   }
 
   async function handleSubmit(e) {
@@ -690,7 +715,10 @@ export default function LancarFatura() {
             <hr style={{ border: 'none', borderTop: '1px solid var(--border)', margin: '16px 0' }} />
 
             <div className="f-group">
-              <label>Pedido de Compras (Nº) *</label>
+              <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                Pedido de Compras (Nº) *
+                {extraindoPedido && <span style={{ fontSize: '0.75rem', color: 'var(--primary)', fontWeight: 400 }}>⏳ Detectando...</span>}
+              </label>
               <input value={form.pedidoCompras} onChange={(e) => setForm({ ...form, pedidoCompras: e.target.value })} placeholder="Número do Pedido de Compras" />
             </div>
 
