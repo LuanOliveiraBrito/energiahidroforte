@@ -81,7 +81,7 @@ export default function Dashboard() {
     },
   };
 
-  const statusColors = { PENDENTE: '#f59e0b', APROVADA: '#3b82f6', LIBERADA: '#10b981', PAGA: '#64748b', REJEITADA: '#e11d48' };
+  const statusColors = { PENDENTE: '#f59e0b', APROVADA: '#3b82f6', PROTOCOLADA: '#10b981', PAGA: '#64748b', REJEITADA: '#e11d48' };
 
   const doughnutData = data ? {
     labels: (data.statusBreakdown || []).map((s) => s.status),

@@ -5,10 +5,10 @@ const AuthContext = createContext({});
 
 // Mapeamento de permissões por role
 const PERMISSIONS = {
-  ADMINISTRADOR: ['dashboard', 'cadastros', 'lancar-fatura', 'aprovacoes', 'pagamentos', 'conferencia-protocolo', 'financeiro', 'relatorios', 'checkout-fatura', 'usuarios'],
+  ADMINISTRADOR: ['dashboard', 'cadastros', 'lancar-fatura', 'aprovacoes', 'conferencia-protocolo', 'financeiro', 'relatorios', 'checkout-fatura', 'usuarios'],
   ADMINISTRATIVO: ['dashboard', 'cadastros', 'lancar-fatura', 'conferencia-protocolo', 'relatorios', 'checkout-fatura'],
   GERENTE_ADM: ['dashboard', 'cadastros', 'lancar-fatura', 'aprovacoes', 'relatorios', 'checkout-fatura'],
-  DIRETOR: ['dashboard', 'cadastros', 'lancar-fatura', 'aprovacoes', 'pagamentos', 'relatorios', 'checkout-fatura'],
+  DIRETOR: ['dashboard', 'cadastros', 'lancar-fatura', 'aprovacoes', 'relatorios', 'checkout-fatura'],
   FINANCEIRO: ['dashboard', 'cadastros', 'lancar-fatura', 'relatorios', 'financeiro', 'checkout-fatura'],
 };
 

@@ -46,6 +46,7 @@ export default function LancarFatura() {
 
   const [dragOverFatura, setDragOverFatura] = useState(false);
   const [dragOverPedido, setDragOverPedido] = useState(false);
+  const [ucNaoEncontrada, setUcNaoEncontrada] = useState(null);
 
   const fileInputFatura = useRef(null);
   const fileInputPedido = useRef(null);
@@ -185,6 +186,12 @@ export default function LancarFatura() {
       setUnidades(ucRes.data);
       setNaturezas(natRes.data);
       setContasContabeis(ctRes.data);
+
+      // Pré-selecionar natureza "Energia" se disponível e campo vazio
+      const energia = natRes.data.find((n) => n.descricao?.toLowerCase().includes('energia'));
+      if (energia) {
+        setForm((prev) => prev.naturezaId ? prev : { ...prev, naturezaId: String(energia.id) });
+      }
     } catch (err) {
       toast.error('Erro ao carregar dados auxiliares');
     }
@@ -301,6 +308,11 @@ export default function LancarFatura() {
             console.log(`🏠 UC identificada automaticamente: ${ucMatch.uc} (ID: ${ucMatch.id})`);
           } else {
             console.log(`⚠️ UC não encontrada no cadastro: UC=${unidadeConsumidora}, Inst=${numInstalacao}`);
+            setUcNaoEncontrada({
+              uc: unidadeConsumidora || '',
+              instalacao: numInstalacao || '',
+              concessionaria: concessionaria || '',
+            });
           }
         }
 
@@ -768,6 +780,67 @@ export default function LancarFatura() {
           </form>
         </div>
       </div>
+
+      {/* Modal UC não encontrada */}
+      {ucNaoEncontrada && (
+        <div className="modal-overlay" onClick={() => setUcNaoEncontrada(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: 500 }}>
+            <h3 style={{ marginBottom: 12, color: '#e65100' }}>
+              <FiAlertCircle size={20} style={{ verticalAlign: 'middle', marginRight: 8 }} />
+              Unidade Consumidora não cadastrada
+            </h3>
+
+            <div style={{
+              background: '#fff3e0',
+              border: '1px solid #ffcc80',
+              borderRadius: 8,
+              padding: '14px 16px',
+              marginBottom: 16,
+              fontSize: 14,
+              color: '#4e342e',
+            }}>
+              <p style={{ margin: '0 0 8px', fontWeight: 600 }}>
+                O sistema leu o documento e identificou uma UC que não existe no cadastro:
+              </p>
+              {ucNaoEncontrada.uc && (
+                <p style={{ margin: '4px 0' }}>
+                  <strong>UC:</strong> {ucNaoEncontrada.uc}
+                </p>
+              )}
+              {ucNaoEncontrada.instalacao && (
+                <p style={{ margin: '4px 0' }}>
+                  <strong>Nº Instalação:</strong> {ucNaoEncontrada.instalacao}
+                </p>
+              )}
+              {ucNaoEncontrada.concessionaria && (
+                <p style={{ margin: '4px 0' }}>
+                  <strong>Concessionária:</strong> {ucNaoEncontrada.concessionaria}
+                </p>
+              )}
+            </div>
+
+            <p style={{ fontSize: 13, color: '#666', marginBottom: 20 }}>
+              Para lançar esta fatura, é necessário primeiro cadastrar a Unidade Consumidora na tela de <strong>Cadastros</strong>. 
+              Você também pode selecionar a UC manualmente caso já esteja cadastrada com outro número.
+            </p>
+
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
+              <button
+                className="btn btn-secondary"
+                onClick={() => setUcNaoEncontrada(null)}
+              >
+                Selecionar manualmente
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate('/cadastros')}
+              >
+                Ir para Cadastros
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

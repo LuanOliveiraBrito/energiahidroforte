@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema em Manutenção | Voltaris Energy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      text-align: center;
+      max-width: 520px;
+      width: 100%;
+    }
+    .icon {
+      font-size: 64px;
+      margin-bottom: 24px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #f8fafc;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: #94a3b8;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 28px;
+      backdrop-filter: blur(10px);
+      margin-bottom: 24px;
+    }
+    .timer-label {
+      font-size: 13px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .timer {
+      font-size: 42px;
+      font-weight: 700;
+      color: #3b82f6;
+      font-variant-numeric: tabular-nums;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      border-radius: 2px;
+      animation: loading 3s ease-in-out infinite;
+    }
+    @keyframes loading {
+      0% { width: 0%; }
+      50% { width: 70%; }
+      100% { width: 100%; }
+    }
+    .footer {
+      font-size: 12px;
+      color: #475569;
+    }
+    .logo {
+      width: 180px;
+      margin-bottom: 32px;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="/img/logo.png" alt="Voltaris Energy" class="logo"
+         onerror="this.style.display='none'">
+    <div class="icon">🔧</div>
+    <h1>Sistema em Manutenção</h1>
+    <p class="subtitle">
+      Estamos realizando melhorias no sistema.<br>
+      Voltaremos em breve!
+    </p>
+    <div class="card">
+      <div class="timer-label">Previsão de retorno</div>
+      <div class="timer" id="timer">15:00</div>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+    <p class="footer">Voltaris Energy &copy; 2026</p>
+  </div>
+
+  <script>
+    // Salva o horário de início no localStorage para manter o countdown entre refreshes
+    const DURATION = 15 * 60 * 1000; // 15 minutos em ms
+    const KEY = 'voltaris_manutencao_inicio';
+
+    if (!localStorage.getItem(KEY)) {
+      localStorage.setItem(KEY, Date.now().toString());
+    }
+
+    const inicio = parseInt(localStorage.getItem(KEY));
+    const timerEl = document.getElementById('timer');
+
+    function tick() {
+      const elapsed = Date.now() - inicio;
+      const remaining = Math.max(0, Math.floor((DURATION - elapsed) / 1000));
+
+      if (remaining <= 0) {
+        timerEl.textContent = '00:00';
+        timerEl.style.color = '#10b981';
+        localStorage.removeItem(KEY);
+        setTimeout(() => location.reload(), 30000);
+        return;
+      }
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      timerEl.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      setTimeout(tick, 1000);
+    }
+    tick();
+  </script>
+</body>
+</html>

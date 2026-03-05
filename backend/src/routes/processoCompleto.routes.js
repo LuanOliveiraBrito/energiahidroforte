@@ -324,7 +324,6 @@ async function gerarCapaPDF(fatura, req) {
   const assinaturas = [
     { etapa: 'LANCADO POR:', nome: fatura.lancadoPor?.nome, data: fatura.dataLancamento },
     { etapa: 'APROVADO POR:', nome: fatura.aprovadoPor?.nome, data: fatura.dataAprovacao },
-    { etapa: 'LIBERADO POR:', nome: fatura.liberadoPor?.nome, data: fatura.dataLiberacao },
     { etapa: 'BAIXADO POR:', nome: fatura.baixadoPor?.nome, data: fatura.dataBaixa },
   ];
 

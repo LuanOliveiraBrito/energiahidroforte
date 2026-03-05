@@ -1,0 +1,3 @@
+sudo bash /opt/voltaris/manutencao-on.sh
+
+sudo bash /opt/voltaris/manutencao-off.sh

@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import api from '../services/api';
 import estadosCidades from '../data/estadosCidades';
 import { formatCNPJ, validarCNPJ } from '../utils/formatters';
-import { FiPlus, FiEdit2, FiTrash2, FiDatabase, FiSearch, FiChevronLeft, FiChevronRight, FiX, FiSave } from 'react-icons/fi';
+import { FiPlus, FiEdit2, FiTrash2, FiDatabase, FiSearch, FiChevronLeft, FiChevronRight, FiX, FiSave, FiDownload } from 'react-icons/fi';
 
 const TABS = [
   { id: 'filiais', label: 'Filiais' },
@@ -263,6 +263,15 @@ export default function Cadastros() {
 
   // === CIDADES ===
   const cidadesDoEstado = formFilial.estado ? estadosCidades[formFilial.estado]?.cidades || [] : [];
+
+  // === EXPORTAÇÃO EXCEL ===
+  const EXPORT_TABS = ['filiais', 'unidades', 'centros-custo', 'contas-contabeis'];
+
+  function handleExportExcel() {
+    const token = localStorage.getItem('@voltaris:token');
+    const url = `/api/cadastros/${activeTab}/export/excel?token=${encodeURIComponent(token)}`;
+    window.open(url, '_blank');
+  }
 
   // === RENDERS ===
 
@@ -582,11 +591,23 @@ export default function Cadastros() {
                 placeholder={activeTab === 'filiais' ? 'Buscar filial (razão social, CNPJ, cidade, UF)...' : activeTab === 'unidades' ? 'Buscar UC (código, instalação, filial, fornecedor)...' : activeTab === 'centros-custo' ? 'Buscar centro de custo...' : 'Buscar conta contábil...'}
               />
             </div>
-            {pagination && (
-              <span className="search-count">
-                {pagination.total} registro{pagination.total !== 1 ? 's' : ''}
-              </span>
-            )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              {pagination && (
+                <span className="search-count">
+                  {pagination.total} registro{pagination.total !== 1 ? 's' : ''}
+                </span>
+              )}
+              {EXPORT_TABS.includes(activeTab) && (
+                <button
+                  className="btn btn-outline btn-sm"
+                  onClick={handleExportExcel}
+                  title="Exportar todos os registros para Excel"
+                  style={{ whiteSpace: 'nowrap' }}
+                >
+                  <FiDownload size={14} /> Excel
+                </button>
+              )}
+            </div>
           </div>
         )}
 

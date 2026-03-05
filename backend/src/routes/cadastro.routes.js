@@ -1,6 +1,7 @@
 ﻿const express = require('express');
 const prisma = require('../config/database');
 const { authMiddleware, authorize } = require('../middlewares/auth.middleware');
+const ExcelJS = require('exceljs');
 
 // Todos os perfis com acesso a Cadastros
 const TODOS_PERFIS = ['ADMINISTRADOR', 'ADMINISTRATIVO', 'GERENTE_ADM', 'DIRETOR', 'FINANCEIRO'];
@@ -861,6 +862,184 @@ router.delete('/naturezas/:id', authorize('ADMINISTRADOR'), async (req, res) => 
     res.json({ message: 'Natureza desativada com sucesso' });
   } catch (err) {
     res.status(500).json({ error: true, message: 'Erro ao desativar natureza' });
+  }
+});
+
+// ========================
+// EXPORTAÇÃO EXCEL
+// ========================
+
+const HEADER_STYLE = {
+  font: { bold: true, color: { argb: 'FFFFFFFF' }, size: 11 },
+  fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF2563EB' } },
+  alignment: { horizontal: 'center', vertical: 'middle' },
+  border: { top: { style: 'thin' }, bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } },
+};
+
+function applyZebra(sheet, dataCount) {
+  sheet.eachRow((row, idx) => {
+    if (idx > 1 && idx <= dataCount + 1) {
+      row.eachCell(cell => {
+        cell.border = { top: { style: 'thin' }, bottom: { style: 'thin' }, left: { style: 'thin' }, right: { style: 'thin' } };
+        if (idx % 2 === 0) {
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF3F4F6' } };
+        }
+      });
+    }
+  });
+}
+
+// GET /api/cadastros/filiais/export/excel
+router.get('/filiais/export/excel', authorize(...TODOS_PERFIS), async (req, res) => {
+  try {
+    const filiais = await prisma.filial.findMany({ where: { ativo: true }, orderBy: { razaoSocial: 'asc' } });
+
+    const workbook = new ExcelJS.Workbook();
+    workbook.creator = 'Voltaris Energy';
+    const sheet = workbook.addWorksheet('Filiais');
+
+    sheet.columns = [
+      { header: 'Razão Social', key: 'razaoSocial', width: 40 },
+      { header: 'CNPJ', key: 'cnpj', width: 22 },
+      { header: 'Cidade', key: 'cidade', width: 25 },
+      { header: 'UF', key: 'estado', width: 8 },
+    ];
+    sheet.getRow(1).eachCell(cell => { Object.assign(cell, HEADER_STYLE); });
+
+    filiais.forEach(f => {
+      const cnpj = f.cnpj ? f.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5') : '';
+      sheet.addRow({ razaoSocial: f.razaoSocial, cnpj, cidade: f.cidade, estado: f.estado });
+    });
+
+    const totalRow = sheet.addRow({ razaoSocial: `Total: ${filiais.length} filiais`, cnpj: '', cidade: '', estado: '' });
+    totalRow.font = { bold: true };
+    applyZebra(sheet, filiais.length);
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', `attachment; filename=filiais_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    await workbook.xlsx.write(res);
+    res.end();
+  } catch (err) {
+    res.status(500).json({ error: true, message: 'Erro ao exportar filiais' });
+  }
+});
+
+// GET /api/cadastros/unidades/export/excel
+router.get('/unidades/export/excel', authorize(...TODOS_PERFIS), async (req, res) => {
+  try {
+    const unidades = await prisma.unidadeConsumidora.findMany({
+      where: { ativo: true },
+      include: {
+        filial: { select: { razaoSocial: true } },
+        fornecedor: { select: { nome: true } },
+      },
+      orderBy: { uc: 'asc' },
+    });
+
+    const workbook = new ExcelJS.Workbook();
+    workbook.creator = 'Voltaris Energy';
+    const sheet = workbook.addWorksheet('Unidades Consumidoras');
+
+    sheet.columns = [
+      { header: 'UC', key: 'uc', width: 20 },
+      { header: 'Nº Instalação', key: 'numInstalacao', width: 20 },
+      { header: 'Filial', key: 'filial', width: 35 },
+      { header: 'Fornecedor', key: 'fornecedor', width: 30 },
+      { header: 'Dia Emissão', key: 'diaEmissao', width: 14 },
+      { header: 'Prazo (dias)', key: 'prazo', width: 14 },
+    ];
+    sheet.getRow(1).eachCell(cell => { Object.assign(cell, HEADER_STYLE); });
+
+    unidades.forEach(u => {
+      sheet.addRow({
+        uc: u.uc,
+        numInstalacao: u.numInstalacao || '',
+        filial: u.filial?.razaoSocial || '',
+        fornecedor: u.fornecedor?.nome || '',
+        diaEmissao: u.diaEmissao || '',
+        prazo: u.prazoVencimento || '',
+      });
+    });
+
+    const totalRow = sheet.addRow({ uc: `Total: ${unidades.length} UCs`, numInstalacao: '', filial: '', fornecedor: '', diaEmissao: '', prazo: '' });
+    totalRow.font = { bold: true };
+    applyZebra(sheet, unidades.length);
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', `attachment; filename=unidades_consumidoras_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    await workbook.xlsx.write(res);
+    res.end();
+  } catch (err) {
+    res.status(500).json({ error: true, message: 'Erro ao exportar unidades' });
+  }
+});
+
+// GET /api/cadastros/centros-custo/export/excel
+router.get('/centros-custo/export/excel', authorize(...TODOS_PERFIS), async (req, res) => {
+  try {
+    const centros = await prisma.centroCusto.findMany({
+      where: { ativo: true },
+      include: { filial: { select: { razaoSocial: true } } },
+      orderBy: { numero: 'asc' },
+    });
+
+    const workbook = new ExcelJS.Workbook();
+    workbook.creator = 'Voltaris Energy';
+    const sheet = workbook.addWorksheet('Centros de Custo');
+
+    sheet.columns = [
+      { header: 'Número', key: 'numero', width: 20 },
+      { header: 'Descrição', key: 'descricao', width: 40 },
+      { header: 'Filial', key: 'filial', width: 35 },
+    ];
+    sheet.getRow(1).eachCell(cell => { Object.assign(cell, HEADER_STYLE); });
+
+    centros.forEach(c => {
+      sheet.addRow({ numero: c.numero, descricao: c.descricao, filial: c.filial?.razaoSocial || '' });
+    });
+
+    const totalRow = sheet.addRow({ numero: `Total: ${centros.length} centros de custo`, descricao: '', filial: '' });
+    totalRow.font = { bold: true };
+    applyZebra(sheet, centros.length);
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', `attachment; filename=centros_custo_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    await workbook.xlsx.write(res);
+    res.end();
+  } catch (err) {
+    res.status(500).json({ error: true, message: 'Erro ao exportar centros de custo' });
+  }
+});
+
+// GET /api/cadastros/contas-contabeis/export/excel
+router.get('/contas-contabeis/export/excel', authorize(...TODOS_PERFIS), async (req, res) => {
+  try {
+    const contas = await prisma.contaContabil.findMany({ where: { ativo: true }, orderBy: { numero: 'asc' } });
+
+    const workbook = new ExcelJS.Workbook();
+    workbook.creator = 'Voltaris Energy';
+    const sheet = workbook.addWorksheet('Contas Contábeis');
+
+    sheet.columns = [
+      { header: 'Número', key: 'numero', width: 20 },
+      { header: 'Descrição', key: 'descricao', width: 50 },
+    ];
+    sheet.getRow(1).eachCell(cell => { Object.assign(cell, HEADER_STYLE); });
+
+    contas.forEach(c => {
+      sheet.addRow({ numero: c.numero, descricao: c.descricao });
+    });
+
+    const totalRow = sheet.addRow({ numero: `Total: ${contas.length} contas`, descricao: '' });
+    totalRow.font = { bold: true };
+    applyZebra(sheet, contas.length);
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', `attachment; filename=contas_contabeis_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    await workbook.xlsx.write(res);
+    res.end();
+  } catch (err) {
+    res.status(500).json({ error: true, message: 'Erro ao exportar contas contábeis' });
   }
 });
 

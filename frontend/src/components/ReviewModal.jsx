@@ -97,12 +97,6 @@ export default function ReviewModal({ fatura, title, actions, onClose, extraInfo
               <span>{fatura.aprovadoPor.nome} ({formatDateTime(fatura.dataAprovacao)})</span>
             </div>
           )}
-          {fatura.liberadoPor && (
-            <div className="review-item">
-              <b>Liberado por</b>
-              <span>{fatura.liberadoPor.nome} ({formatDateTime(fatura.dataLiberacao)})</span>
-            </div>
-          )}
           {fatura.protocoladoPor && (
             <div className="review-item">
               <b>Protocolado por</b>

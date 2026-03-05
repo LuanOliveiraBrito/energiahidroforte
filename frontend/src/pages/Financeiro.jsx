@@ -18,6 +18,8 @@ export default function Financeiro() {
   const isAdmin = user?.role === 'ADMINISTRADOR';
   const [faturasLiberadas, setFaturasLiberadas] = useState([]);
   const [faturasPagas, setFaturasPagas] = useState([]);
+  const [paginationLib, setPaginationLib] = useState({ page: 1, totalPages: 1, total: 0 });
+  const [paginationPag, setPaginationPag] = useState({ page: 1, totalPages: 1, total: 0 });
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
   const [activeSubTab, setActiveSubTab] = useState('liberadas');
@@ -32,17 +34,36 @@ export default function Financeiro() {
   }, []);
 
   async function loadFaturas() {
+    setLoading(true);
     try {
       const [libRes, pagRes] = await Promise.all([
-        api.get('/faturas?status=PROTOCOLADA'),
-        api.get('/faturas?status=PAGA'),
+        api.get('/faturas', { params: { status: 'PROTOCOLADA', page: 1, limit: 50 } }),
+        api.get('/faturas', { params: { status: 'PAGA', page: 1, limit: 50 } }),
       ]);
       setFaturasLiberadas(libRes.data.data);
       setFaturasPagas(pagRes.data.data);
+      setPaginationLib(libRes.data.pagination || { page: 1, totalPages: 1, total: 0 });
+      setPaginationPag(pagRes.data.pagination || { page: 1, totalPages: 1, total: 0 });
     } catch (err) {
       toast.error('Erro ao carregar dados financeiros');
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function loadTab(tab, page = 1) {
+    try {
+      const status = tab === 'liberadas' ? 'PROTOCOLADA' : 'PAGA';
+      const res = await api.get('/faturas', { params: { status, page, limit: 50 } });
+      if (tab === 'liberadas') {
+        setFaturasLiberadas(res.data.data);
+        setPaginationLib(res.data.pagination || { page: 1, totalPages: 1, total: 0 });
+      } else {
+        setFaturasPagas(res.data.data);
+        setPaginationPag(res.data.pagination || { page: 1, totalPages: 1, total: 0 });
+      }
+    } catch (err) {
+      toast.error('Erro ao carregar faturas');
     }
   }
 
@@ -103,13 +124,13 @@ export default function Financeiro() {
             className={`tab-btn ${activeSubTab === 'liberadas' ? 'active' : ''}`}
             onClick={() => setActiveSubTab('liberadas')}
           >
-            Aguardando Baixa ({faturasLiberadas.length})
+            Aguardando Baixa ({paginationLib.total})
           </button>
           <button
             className={`tab-btn ${activeSubTab === 'pagas' ? 'active' : ''}`}
             onClick={() => setActiveSubTab('pagas')}
           >
-            Liquidados ({faturasPagas.length})
+            Liquidados ({paginationPag.total})
           </button>
         </div>
 
@@ -130,7 +151,7 @@ export default function Financeiro() {
                   <th>Fornecedor</th>
                   <th>Filial</th>
                   <th>Valor</th>
-                  <th>{activeSubTab === 'pagas' ? 'Baixado por' : 'Liberado por'}</th>
+                  <th>{activeSubTab === 'pagas' ? 'Baixado por' : 'Aprovado por'}</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -142,12 +163,23 @@ export default function Financeiro() {
                     <td>{f.fornecedor?.nome}</td>
                     <td>{f.filial?.razaoSocial}</td>
                     <td><strong>{formatCurrency(f.valor)}</strong></td>
-                    <td>{activeSubTab === 'pagas' ? (f.baixadoPor?.nome || '-') : (f.liberadoPor?.nome || '-')}</td>
+                    <td>{activeSubTab === 'pagas' ? (f.baixadoPor?.nome || '-') : (f.aprovadoPor?.nome || '-')}</td>
                     <td><span className={`badge badge-${f.status?.toLowerCase()}`}>{f.status}</span></td>
                   </tr>
                 ))}
               </tbody>
             </table>
+
+            {(() => {
+              const pg = activeSubTab === 'liberadas' ? paginationLib : paginationPag;
+              return pg.totalPages > 1 ? (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 12, marginTop: 16 }}>
+                  <button className="btn btn-outline btn-sm" disabled={pg.page <= 1} onClick={() => loadTab(activeSubTab, pg.page - 1)}>Anterior</button>
+                  <span style={{ padding: '6px 12px', fontSize: 13, color: '#64748b' }}>Página {pg.page} de {pg.totalPages} ({pg.total} registros)</span>
+                  <button className="btn btn-outline btn-sm" disabled={pg.page >= pg.totalPages} onClick={() => loadTab(activeSubTab, pg.page + 1)}>Próxima</button>
+                </div>
+              ) : null;
+            })()}
           </div>
         )}
       </div>

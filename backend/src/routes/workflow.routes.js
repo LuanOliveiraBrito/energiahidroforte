@@ -24,6 +24,64 @@ const faturaIncludes = {
   estornadoPor: { select: { id: true, nome: true } },
 };
 
+// POST /api/workflow/aprovar-lote - Aprovar várias faturas de uma vez
+router.post(
+  '/aprovar-lote',
+  authorize('ADMINISTRADOR', 'GERENTE_ADM', 'DIRETOR'),
+  async (req, res) => {
+    try {
+      const { ids } = req.body;
+      if (!ids || !Array.isArray(ids) || ids.length === 0) {
+        return res.status(400).json({ error: true, message: 'Informe os IDs das faturas' });
+      }
+
+      const faturaIds = ids.map(id => parseInt(id)).filter(id => !isNaN(id));
+
+      // Buscar faturas pendentes
+      const faturas = await prisma.fatura.findMany({
+        where: { id: { in: faturaIds }, status: 'PENDENTE' },
+      });
+
+      if (faturas.length === 0) {
+        return res.status(400).json({ error: true, message: 'Nenhuma fatura pendente encontrada para aprovar' });
+      }
+
+      const idsParaAprovar = faturas.map(f => f.id);
+
+      // Atualizar todas de uma vez
+      await prisma.fatura.updateMany({
+        where: { id: { in: idsParaAprovar } },
+        data: {
+          status: 'APROVADA',
+          aprovadoPorId: req.userId,
+          dataAprovacao: new Date(),
+        },
+      });
+
+      // Registrar logs e atualizar hashes individualmente
+      for (const fatura of faturas) {
+        await registrarLog({
+          userId: req.userId,
+          faturaId: fatura.id,
+          acao: 'APROVACAO',
+          descricao: `Fatura #${fatura.id} aprovada em lote por ${req.userName}`,
+          ip: req.ip,
+        });
+        await atualizarHashVerificacao(fatura.id);
+      }
+
+      res.json({
+        message: `${faturas.length} fatura(s) aprovada(s) com sucesso`,
+        aprovadas: faturas.length,
+        ids: idsParaAprovar,
+      });
+    } catch (err) {
+      logger.error('POST /api/workflow/aprovar-lote', err);
+      res.status(500).json({ error: true, message: 'Erro ao aprovar faturas em lote' });
+    }
+  }
+);
+
 // POST /api/workflow/aprovar/:id - Aprovar fatura (PENDENTE -> APROVADA)
 router.post(
   '/aprovar/:id',
@@ -135,61 +193,7 @@ router.post(
   }
 );
 
-// POST /api/workflow/liberar/:id - Liberar pagamento (APROVADA -> LIBERADA)
-router.post(
-  '/liberar/:id',
-  authorize('ADMINISTRADOR', 'DIRETOR'),
-  async (req, res) => {
-    try {
-      const { id } = req.params;
-
-      const faturaId = parseInt(id);
-      if (isNaN(faturaId)) {
-        return res.status(400).json({ error: true, message: 'ID inválido' });
-      }
-
-      const fatura = await prisma.fatura.findUnique({ where: { id: faturaId } });
-
-      if (!fatura) {
-        return res.status(404).json({ error: true, message: 'Fatura não encontrada' });
-      }
-
-      if (fatura.status !== 'APROVADA') {
-        return res.status(400).json({
-          error: true,
-          message: `Fatura não pode ser liberada. Status atual: ${fatura.status}`,
-        });
-      }
-
-      const atualizada = await prisma.fatura.update({
-        where: { id: faturaId },
-        data: {
-          status: 'LIBERADA',
-          liberadoPorId: req.userId,
-          dataLiberacao: new Date(),
-        },
-        include: faturaIncludes,
-      });
-
-      await registrarLog({
-        userId: req.userId,
-        faturaId,
-        acao: 'LIBERACAO',
-        descricao: `Fatura #${id} liberada para pagamento por ${req.userName}`,
-        ip: req.ip,
-      });
-
-      // Gerar/atualizar hash de verificação criptográfica
-      await atualizarHashVerificacao(faturaId);
-
-      res.json(atualizada);
-    } catch (err) {
-      res.status(500).json({ error: true, message: 'Erro ao liberar fatura' });
-    }
-  }
-);
-
-// POST /api/workflow/protocolar/:id - Registrar protocolo (LIBERADA -> PROTOCOLADA)
+// POST /api/workflow/protocolar/:id - Registrar protocolo (APROVADA -> PROTOCOLADA)
 router.post(
   '/protocolar/:id',
   authorize('ADMINISTRADOR', 'ADMINISTRATIVO'),
@@ -213,7 +217,7 @@ router.post(
         return res.status(404).json({ error: true, message: 'Fatura não encontrada' });
       }
 
-      if (fatura.status !== 'LIBERADA') {
+      if (fatura.status !== 'APROVADA') {
         return res.status(400).json({
           error: true,
           message: `Fatura não pode ser protocolada. Status atual: ${fatura.status}`,
@@ -308,7 +312,7 @@ router.post(
   }
 );
 
-// POST /api/workflow/estornar/:id - Estornar fatura paga (PAGA -> LIBERADA)
+// POST /api/workflow/estornar/:id - Estornar fatura paga (PAGA -> PROTOCOLADA)
 router.post(
   '/estornar/:id',
   authorize('ADMINISTRADOR', 'FINANCEIRO'),
@@ -372,7 +376,7 @@ router.post(
         ip: req.ip,
       });
 
-      // Atualizar hash (novo hash com status LIBERADA)
+      // Atualizar hash (novo hash com status PROTOCOLADA)
       await atualizarHashVerificacao(faturaId);
 
       res.json(atualizada);

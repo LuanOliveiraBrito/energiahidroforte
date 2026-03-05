@@ -6,7 +6,7 @@ import { FiFilter, FiSearch, FiDollarSign, FiHash, FiTrendingUp, FiZap, FiDownlo
 import ReviewModal from '../components/ReviewModal';
 import { useAuth } from '../contexts/AuthContext';
 
-const STATUS_OPTIONS = ['PENDENTE', 'APROVADA', 'LIBERADA', 'PAGA', 'REJEITADA'];
+const STATUS_OPTIONS = ['PENDENTE', 'APROVADA', 'PROTOCOLADA', 'PAGA', 'REJEITADA'];
 
 function formatCurrency(v) {
   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v || 0);
@@ -212,7 +212,7 @@ export default function Relatorios() {
   };
 
   const statusClass = (s) => {
-    const map = { PENDENTE: 'warning', APROVADA: 'info', LIBERADA: 'success', PAGA: 'neutral', REJEITADA: 'danger' };
+    const map = { PENDENTE: 'warning', APROVADA: 'info', PROTOCOLADA: 'success', PAGA: 'neutral', REJEITADA: 'danger' };
     return map[s] || '';
   };
 

@@ -8,36 +8,49 @@ import { FiClipboard, FiDownload, FiSend, FiX } from 'react-icons/fi';
 
 export default function ConferenciaProtocolo() {
   const { user } = useAuth();
-  const [faturas, setFaturas] = useState([]);
+  const [faturas, setFaturas] = useState({ aprovadas: [], protocoladas: [], rejeitadas: [] });
+  const [pagination, setPagination] = useState({
+    aprovadas: { page: 1, totalPages: 1, total: 0 },
+    protocoladas: { page: 1, totalPages: 1, total: 0 },
+    rejeitadas: { page: 1, totalPages: 1, total: 0 },
+  });
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
   const [showProtocoloModal, setShowProtocoloModal] = useState(false);
   const [numeroProtocolo, setNumeroProtocolo] = useState('');
   const [enviando, setEnviando] = useState(false);
-  const [activeTab, setActiveTab] = useState('liberadas'); // liberadas | protocoladas | rejeitadas
+  const [activeTab, setActiveTab] = useState('aprovadas'); // aprovadas | protocoladas | rejeitadas
+
+  const isAdmin = user?.role === 'ADMINISTRADOR';
 
   useEffect(() => {
-    loadFaturas();
+    loadAllTabs();
   }, []);
 
-  async function loadFaturas() {
+  function buildParams(status, page = 1) {
+    const params = { status, page, limit: 50 };
+    if (!isAdmin) params.lancadoPorId = user?.id;
+    return params;
+  }
+
+  async function loadAllTabs() {
+    setLoading(true);
     try {
-      // Busca faturas lançadas pelo usuário em todos os status relevantes
       const [libRes, protRes, rejRes] = await Promise.all([
-        api.get('/faturas?status=LIBERADA'),
-        api.get('/faturas?status=PROTOCOLADA'),
-        api.get('/faturas?status=REJEITADA'),
+        api.get('/faturas', { params: buildParams('APROVADA') }),
+        api.get('/faturas', { params: buildParams('PROTOCOLADA') }),
+        api.get('/faturas', { params: buildParams('REJEITADA') }),
       ]);
 
-      // Filtrar apenas as que o usuário lançou (exceto ADMIN que vê todas)
-      const isAdmin = user?.role === 'ADMINISTRADOR';
-      const filterByUser = (list) =>
-        isAdmin ? list : list.filter((f) => f.lancadoPorId === user?.id);
-
       setFaturas({
-        liberadas: filterByUser(libRes.data.data),
-        protocoladas: filterByUser(protRes.data.data),
-        rejeitadas: filterByUser(rejRes.data.data),
+        aprovadas: libRes.data.data,
+        protocoladas: protRes.data.data,
+        rejeitadas: rejRes.data.data,
+      });
+      setPagination({
+        aprovadas: libRes.data.pagination || { page: 1, totalPages: 1, total: 0 },
+        protocoladas: protRes.data.pagination || { page: 1, totalPages: 1, total: 0 },
+        rejeitadas: rejRes.data.pagination || { page: 1, totalPages: 1, total: 0 },
       });
     } catch (err) {
       toast.error('Erro ao carregar faturas');
@@ -46,11 +59,33 @@ export default function ConferenciaProtocolo() {
     }
   }
 
+  async function loadTab(tab, page = 1) {
+    const statusMap = { aprovadas: 'APROVADA', protocoladas: 'PROTOCOLADA', rejeitadas: 'REJEITADA' };
+    try {
+      const res = await api.get('/faturas', { params: buildParams(statusMap[tab], page) });
+      setFaturas(prev => ({ ...prev, [tab]: res.data.data }));
+      setPagination(prev => ({ ...prev, [tab]: res.data.pagination || { page: 1, totalPages: 1, total: 0 } }));
+    } catch (err) {
+      toast.error('Erro ao carregar faturas');
+    }
+  }
+
   async function handleDownloadProcesso() {
     if (!selected) return;
     try {
-      const res = await api.get(`/faturas/${selected.id}/processo-completo`, { responseType: 'blob' });
-      const url = URL.createObjectURL(res.data);
+      const res = await api.get(`/faturas/${selected.id}/processo-completo`);
+      const { pdf } = res.data;
+
+      // Decodificar base64 para bytes
+      const byteCharacters = atob(pdf);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: 'application/pdf' });
+
+      const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = `processo-fatura-${selected.id}.pdf`;
@@ -78,7 +113,7 @@ export default function ConferenciaProtocolo() {
       setShowProtocoloModal(false);
       setSelected(null);
       setNumeroProtocolo('');
-      loadFaturas();
+      loadAllTabs();
     } catch (err) {
       toast.error(err.response?.data?.message || 'Erro ao protocolar');
     } finally {
@@ -90,7 +125,7 @@ export default function ConferenciaProtocolo() {
 
   const getBadgeClass = (status) => {
     const map = {
-      LIBERADA: 'badge-liberada',
+      APROVADA: 'badge-aprovada',
       PROTOCOLADA: 'badge-protocolada',
       REJEITADA: 'badge-rejeitada',
     };
@@ -107,22 +142,22 @@ export default function ConferenciaProtocolo() {
         {/* Tabs */}
         <div className="tabs mb-4">
           <button
-            className={`tab-btn ${activeTab === 'liberadas' ? 'active' : ''}`}
-            onClick={() => setActiveTab('liberadas')}
+            className={`tab-btn ${activeTab === 'aprovadas' ? 'active' : ''}`}
+            onClick={() => setActiveTab('aprovadas')}
           >
-            Aguardando Protocolo ({faturas.liberadas?.length || 0})
+            Aguardando Protocolo ({pagination.aprovadas.total})
           </button>
           <button
             className={`tab-btn ${activeTab === 'protocoladas' ? 'active' : ''}`}
             onClick={() => setActiveTab('protocoladas')}
           >
-            Protocoladas ({faturas.protocoladas?.length || 0})
+            Protocoladas ({pagination.protocoladas.total})
           </button>
           <button
             className={`tab-btn ${activeTab === 'rejeitadas' ? 'active' : ''}`}
             onClick={() => setActiveTab('rejeitadas')}
           >
-            Rejeitadas ({faturas.rejeitadas?.length || 0})
+            Rejeitadas ({pagination.rejeitadas.total})
           </button>
         </div>
 
@@ -131,10 +166,10 @@ export default function ConferenciaProtocolo() {
         ) : currentList.length === 0 ? (
           <div className="empty-state">
             <div className="empty-icon">
-              {activeTab === 'liberadas' ? '📋' : activeTab === 'protocoladas' ? '✅' : '❌'}
+              {activeTab === 'aprovadas' ? '📋' : activeTab === 'protocoladas' ? '✅' : '❌'}
             </div>
             <p>
-              {activeTab === 'liberadas'
+              {activeTab === 'aprovadas'
                 ? 'Nenhuma fatura aguardando protocolo'
                 : activeTab === 'protocoladas'
                 ? 'Nenhuma fatura protocolada'
@@ -179,6 +214,14 @@ export default function ConferenciaProtocolo() {
                 ))}
               </tbody>
             </table>
+
+            {pagination[activeTab].totalPages > 1 && (
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 12, marginTop: 16 }}>
+                <button className="btn btn-outline btn-sm" disabled={pagination[activeTab].page <= 1} onClick={() => loadTab(activeTab, pagination[activeTab].page - 1)}>Anterior</button>
+                <span style={{ padding: '6px 12px', fontSize: 13, color: '#64748b' }}>Página {pagination[activeTab].page} de {pagination[activeTab].totalPages} ({pagination[activeTab].total} registros)</span>
+                <button className="btn btn-outline btn-sm" disabled={pagination[activeTab].page >= pagination[activeTab].totalPages} onClick={() => loadTab(activeTab, pagination[activeTab].page + 1)}>Próxima</button>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -194,7 +237,7 @@ export default function ConferenciaProtocolo() {
               <button className="btn btn-secondary" onClick={handleDownloadProcesso}>
                 <FiDownload size={14} /> Baixar Processo Digital
               </button>
-              {selected.status === 'LIBERADA' && (
+              {selected.status === 'APROVADA' && (
                 <button className="btn btn-primary" onClick={() => setShowProtocoloModal(true)}>
                   <FiClipboard size={14} /> Gerar Protocolo
                 </button>

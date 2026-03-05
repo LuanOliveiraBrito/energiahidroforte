@@ -7,7 +7,6 @@ const ROLES = [
   { value: 'ADMINISTRADOR', label: 'Administrador - Acesso Total' },
   { value: 'ADMINISTRATIVO', label: 'Administrativo - Dashboard, Cadastros, Lançamentos, Relatórios' },
   { value: 'GERENTE_ADM', label: 'Gerente ADM - Administrativo + Aprovações' },
-  { value: 'DIRETOR', label: 'Diretor - Aprovações, Pagamentos, Relatórios' },
   { value: 'FINANCEIRO', label: 'Financeiro - Cadastros, Lançamentos, Baixas, Relatórios' },
 ];
 

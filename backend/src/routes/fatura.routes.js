@@ -31,7 +31,7 @@ const faturaIncludes = {
 // GET /api/faturas - Listar faturas com filtros
 router.get('/', async (req, res) => {
   try {
-    const { status, ucId, fornecedorId, filialId, referencia, page = 1, limit = 50 } = req.query;
+    const { status, ucId, fornecedorId, filialId, referencia, lancadoPorId, page = 1, limit = 50 } = req.query;
 
     const where = {};
     if (status) where.status = status;
@@ -39,6 +39,7 @@ router.get('/', async (req, res) => {
     if (fornecedorId) where.fornecedorId = parseInt(fornecedorId);
     if (filialId) where.filialId = parseInt(filialId);
     if (referencia) where.referencia = referencia;
+    if (lancadoPorId) where.lancadoPorId = parseInt(lancadoPorId);
 
     const [faturas, total] = await Promise.all([
       prisma.fatura.findMany({
