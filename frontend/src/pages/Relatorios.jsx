@@ -17,6 +17,41 @@ function formatDate(d) {
   return new Date(d).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 }
 
+// Helper de ordenação genérico
+function getNestedValue(obj, path) {
+  return path.split('.').reduce((o, k) => o?.[k], obj);
+}
+
+function sortData(data, field, dir) {
+  if (!field) return data;
+  return [...data].sort((a, b) => {
+    let va = getNestedValue(a, field);
+    let vb = getNestedValue(b, field);
+    if (va == null) va = '';
+    if (vb == null) vb = '';
+    if (typeof va === 'number' && typeof vb === 'number') return dir === 'asc' ? va - vb : vb - va;
+    if (typeof va === 'string' && typeof vb === 'string') {
+      // Tenta comparar como data ISO
+      if (/^\d{4}-\d{2}/.test(va) && /^\d{4}-\d{2}/.test(vb)) return dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+      return dir === 'asc' ? va.localeCompare(vb, 'pt-BR', { sensitivity: 'base' }) : vb.localeCompare(va, 'pt-BR', { sensitivity: 'base' });
+    }
+    return 0;
+  });
+}
+
+function SortHeader({ label, field, sortField, sortDir, onSort }) {
+  const active = sortField === field;
+  return (
+    <th
+      className={`sortable${active ? ' active' : ''}`}
+      onClick={() => onSort(field)}
+    >
+      {label}
+      <span className="sort-icon">{active ? (sortDir === 'asc' ? '▲' : '▼') : '⇅'}</span>
+    </th>
+  );
+}
+
 export default function Relatorios() {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -32,6 +67,8 @@ export default function Relatorios() {
   const [loadingLogFatura, setLoadingLogFatura] = useState(false);
   const [paginationFat, setPaginationFat] = useState({ page: 1, totalPages: 1, total: 0 });
   const [paginationLog, setPaginationLog] = useState({ page: 1, totalPages: 1, total: 0 });
+  const [sortField, setSortField] = useState('');
+  const [sortDir, setSortDir] = useState('asc');
 
   const [filiais, setFiliais] = useState([]);
   const [fornecedores, setFornecedores] = useState([]);
@@ -257,6 +294,17 @@ export default function Relatorios() {
     window.open(url, '_blank');
   }
 
+  function handleSort(field) {
+    if (sortField === field) {
+      setSortDir(prev => prev === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDir('asc');
+    }
+  }
+
+  const sortedFaturas = sortData(faturas, sortField, sortDir);
+
   return (
     <div className="page-enter">
       <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
@@ -364,23 +412,23 @@ export default function Relatorios() {
                   <table>
                     <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>Referência</th>
-                        <th>Filial</th>
-                        <th>Fornecedor</th>
-                        <th>UC</th>
-                        <th>NF</th>
-                        <th>Valor</th>
-                        <th>kWh</th>
-                        <th>Vencimento</th>
-                        <th>Status</th>
-                        <th>Lançado por</th>
+                        <SortHeader label="ID" field="id" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                        <SortHeader label="Referência" field="referencia" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                        <SortHeader label="Filial" field="filial.razaoSocial" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                        <SortHeader label="Fornecedor" field="fornecedor.nome" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                        <SortHeader label="UC" field="uc.uc" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                        <SortHeader label="NF" field="notaFiscal" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                        <SortHeader label="Valor" field="valor" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                        <SortHeader label="kWh" field="leituraKwh" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                        <SortHeader label="Vencimento" field="vencimento" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                        <SortHeader label="Status" field="status" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                        <SortHeader label="Lançado por" field="lancadoPor.nome" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
                       </tr>
                     </thead>
                     <tbody>
-                      {faturas.length === 0 ? (
+                      {sortedFaturas.length === 0 ? (
                         <tr><td colSpan="11" style={{ textAlign: 'center' }}>Nenhuma fatura encontrada. Use os filtros e clique em Buscar.</td></tr>
-                      ) : faturas.map(f => {
+                      ) : sortedFaturas.map(f => {
                         const isMine = f.lancadoPorId === user?.id;
                         return (
                         <tr

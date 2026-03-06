@@ -5,6 +5,34 @@ import ReviewModal from '../components/ReviewModal';
 import { formatCurrency, formatDate } from '../utils/formatters';
 import { FiCheckSquare, FiCheck, FiX, FiSquare } from 'react-icons/fi';
 
+// Helper de ordenação genérico
+function getNestedValue(obj, path) {
+  return path.split('.').reduce((o, k) => o?.[k], obj);
+}
+function sortData(data, field, dir) {
+  if (!field) return data;
+  return [...data].sort((a, b) => {
+    let va = getNestedValue(a, field);
+    let vb = getNestedValue(b, field);
+    if (va == null) va = '';
+    if (vb == null) vb = '';
+    if (typeof va === 'number' && typeof vb === 'number') return dir === 'asc' ? va - vb : vb - va;
+    if (typeof va === 'string' && typeof vb === 'string') {
+      if (/^\d{4}-\d{2}/.test(va) && /^\d{4}-\d{2}/.test(vb)) return dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+      return dir === 'asc' ? va.localeCompare(vb, 'pt-BR', { sensitivity: 'base' }) : vb.localeCompare(va, 'pt-BR', { sensitivity: 'base' });
+    }
+    return 0;
+  });
+}
+function SortHeader({ label, field, sortField, sortDir, onSort }) {
+  const active = sortField === field;
+  return (
+    <th className={`sortable${active ? ' active' : ''}`} onClick={() => onSort(field)}>
+      {label}<span className="sort-icon">{active ? (sortDir === 'asc' ? '▲' : '▼') : '⇅'}</span>
+    </th>
+  );
+}
+
 export default function Aprovacoes() {
   const [faturas, setFaturas] = useState([]);
   const [pagination, setPagination] = useState({ page: 1, totalPages: 1, total: 0 });
@@ -15,6 +43,8 @@ export default function Aprovacoes() {
   const [selecionadas, setSelecionadas] = useState([]);
   const [confirmLote, setConfirmLote] = useState(false);
   const [aprovandoLote, setAprovandoLote] = useState(false);
+  const [sortField, setSortField] = useState('');
+  const [sortDir, setSortDir] = useState('asc');
 
   useEffect(() => {
     loadFaturas();
@@ -92,6 +122,17 @@ export default function Aprovacoes() {
     }
   }
 
+  function handleSort(field) {
+    if (sortField === field) {
+      setSortDir(prev => prev === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDir('asc');
+    }
+  }
+
+  const sortedFaturas = sortData(faturas, sortField, sortDir);
+
   return (
     <div className="page-enter">
       <div className="page-title"><FiCheckSquare size={20} /> Aprovações Pendentes ({pagination.total})</div>
@@ -158,18 +199,18 @@ export default function Aprovacoes() {
                       }
                     </span>
                   </th>
-                  <th>#</th>
-                  <th>Vencimento</th>
-                  <th>Fornecedor</th>
-                  <th>Filial</th>
-                  <th>UC</th>
-                  <th>Valor</th>
-                  <th>Referência</th>
+                  <SortHeader label="#" field="id" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Vencimento" field="vencimento" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Fornecedor" field="fornecedor.nome" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Filial" field="filial.razaoSocial" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="UC" field="uc.uc" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Valor" field="valor" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Referência" field="referencia" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
                   <th>Status</th>
                 </tr>
               </thead>
               <tbody>
-                {faturas.map((f) => (
+                {sortedFaturas.map((f) => (
                   <tr
                     key={f.id}
                     className="clickable"

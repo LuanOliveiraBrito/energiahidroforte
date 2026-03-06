@@ -6,6 +6,34 @@ import ReviewModal from '../components/ReviewModal';
 import { formatCurrency, formatDate } from '../utils/formatters';
 import { FiDollarSign, FiCheck, FiTrash2, FiCalendar, FiRotateCcw } from 'react-icons/fi';
 
+// Helper de ordenação genérico
+function getNestedValue(obj, path) {
+  return path.split('.').reduce((o, k) => o?.[k], obj);
+}
+function sortData(data, field, dir) {
+  if (!field) return data;
+  return [...data].sort((a, b) => {
+    let va = getNestedValue(a, field);
+    let vb = getNestedValue(b, field);
+    if (va == null) va = '';
+    if (vb == null) vb = '';
+    if (typeof va === 'number' && typeof vb === 'number') return dir === 'asc' ? va - vb : vb - va;
+    if (typeof va === 'string' && typeof vb === 'string') {
+      if (/^\d{4}-\d{2}/.test(va) && /^\d{4}-\d{2}/.test(vb)) return dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+      return dir === 'asc' ? va.localeCompare(vb, 'pt-BR', { sensitivity: 'base' }) : vb.localeCompare(va, 'pt-BR', { sensitivity: 'base' });
+    }
+    return 0;
+  });
+}
+function SortHeader({ label, field, sortField, sortDir, onSort }) {
+  const active = sortField === field;
+  return (
+    <th className={`sortable${active ? ' active' : ''}`} onClick={() => onSort(field)}>
+      {label}<span className="sort-icon">{active ? (sortDir === 'asc' ? '▲' : '▼') : '⇅'}</span>
+    </th>
+  );
+}
+
 // Retorna data de ontem no formato YYYY-MM-DD
 function getYesterday() {
   const d = new Date();
@@ -28,6 +56,8 @@ export default function Financeiro() {
   const [confirmEstorno, setConfirmEstorno] = useState(null);
   const [motivoEstorno, setMotivoEstorno] = useState('');
   const [dataPagamento, setDataPagamento] = useState(getYesterday());
+  const [sortField, setSortField] = useState('');
+  const [sortDir, setSortDir] = useState('asc');
 
   useEffect(() => {
     loadFaturas();
@@ -114,6 +144,17 @@ export default function Financeiro() {
 
   const faturas = activeSubTab === 'liberadas' ? faturasLiberadas : faturasPagas;
 
+  function handleSort(field) {
+    if (sortField === field) {
+      setSortDir(prev => prev === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDir('asc');
+    }
+  }
+
+  const sortedFaturas = sortData(faturas, sortField, sortDir);
+
   return (
     <div className="page-enter">
       <div className="page-title"><FiDollarSign size={20} /> Financeiro / Baixas</div>
@@ -146,17 +187,17 @@ export default function Financeiro() {
             <table>
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Vencimento</th>
-                  <th>Fornecedor</th>
-                  <th>Filial</th>
-                  <th>Valor</th>
+                  <SortHeader label="#" field="id" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Vencimento" field="vencimento" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Fornecedor" field="fornecedor.nome" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Filial" field="filial.razaoSocial" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Valor" field="valor" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
                   <th>{activeSubTab === 'pagas' ? 'Baixado por' : 'Aprovado por'}</th>
                   <th>Status</th>
                 </tr>
               </thead>
               <tbody>
-                {faturas.map((f) => (
+                {sortedFaturas.map((f) => (
                   <tr key={f.id} className="clickable" onClick={() => setSelected(f)}>
                     <td>{f.id}</td>
                     <td>{formatDate(f.vencimento)}</td>

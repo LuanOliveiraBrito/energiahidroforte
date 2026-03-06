@@ -6,6 +6,34 @@ import ReviewModal from '../components/ReviewModal';
 import { formatCurrency, formatDate } from '../utils/formatters';
 import { FiClipboard, FiDownload, FiSend, FiX } from 'react-icons/fi';
 
+// Helper de ordenação genérico
+function getNestedValue(obj, path) {
+  return path.split('.').reduce((o, k) => o?.[k], obj);
+}
+function sortData(data, field, dir) {
+  if (!field) return data;
+  return [...data].sort((a, b) => {
+    let va = getNestedValue(a, field);
+    let vb = getNestedValue(b, field);
+    if (va == null) va = '';
+    if (vb == null) vb = '';
+    if (typeof va === 'number' && typeof vb === 'number') return dir === 'asc' ? va - vb : vb - va;
+    if (typeof va === 'string' && typeof vb === 'string') {
+      if (/^\d{4}-\d{2}/.test(va) && /^\d{4}-\d{2}/.test(vb)) return dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+      return dir === 'asc' ? va.localeCompare(vb, 'pt-BR', { sensitivity: 'base' }) : vb.localeCompare(va, 'pt-BR', { sensitivity: 'base' });
+    }
+    return 0;
+  });
+}
+function SortHeader({ label, field, sortField, sortDir, onSort }) {
+  const active = sortField === field;
+  return (
+    <th className={`sortable${active ? ' active' : ''}`} onClick={() => onSort(field)}>
+      {label}<span className="sort-icon">{active ? (sortDir === 'asc' ? '▲' : '▼') : '⇅'}</span>
+    </th>
+  );
+}
+
 export default function ConferenciaProtocolo() {
   const { user } = useAuth();
   const [faturas, setFaturas] = useState({ aprovadas: [], protocoladas: [], rejeitadas: [] });
@@ -20,6 +48,8 @@ export default function ConferenciaProtocolo() {
   const [numeroProtocolo, setNumeroProtocolo] = useState('');
   const [enviando, setEnviando] = useState(false);
   const [activeTab, setActiveTab] = useState('aprovadas'); // aprovadas | protocoladas | rejeitadas
+  const [sortField, setSortField] = useState('');
+  const [sortDir, setSortDir] = useState('asc');
 
   const isAdmin = user?.role === 'ADMINISTRADOR';
 
@@ -123,6 +153,17 @@ export default function ConferenciaProtocolo() {
 
   const currentList = faturas[activeTab] || [];
 
+  function handleSort(field) {
+    if (sortField === field) {
+      setSortDir(prev => prev === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDir('asc');
+    }
+  }
+
+  const sortedList = sortData(currentList, sortField, sortDir);
+
   const getBadgeClass = (status) => {
     const map = {
       APROVADA: 'badge-aprovada',
@@ -181,19 +222,19 @@ export default function ConferenciaProtocolo() {
             <table>
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Vencimento</th>
-                  <th>Fornecedor</th>
-                  <th>Filial</th>
-                  <th>NF</th>
-                  <th>Valor</th>
+                  <SortHeader label="#" field="id" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Vencimento" field="vencimento" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Fornecedor" field="fornecedor.nome" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Filial" field="filial.razaoSocial" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="NF" field="notaFiscal" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
+                  <SortHeader label="Valor" field="valor" sortField={sortField} sortDir={sortDir} onSort={handleSort} />
                   <th>Status</th>
                   {activeTab === 'protocoladas' && <th>Protocolo</th>}
                   {activeTab === 'rejeitadas' && <th>Motivo</th>}
                 </tr>
               </thead>
               <tbody>
-                {currentList.map((f) => (
+                {sortedList.map((f) => (
                   <tr key={f.id} className="clickable" onClick={() => setSelected(f)}>
                     <td>{f.id}</td>
                     <td>{formatDate(f.vencimento)}</td>
