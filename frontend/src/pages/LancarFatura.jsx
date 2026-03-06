@@ -119,6 +119,22 @@ export default function LancarFatura() {
       // Mostrar que já tem anexo (sem precisar re-upload)
       if (f.anexoFatura) {
         setPdfPreviewUrl(`${api.defaults.baseURL}/uploads/${f.anexoFatura}`);
+        // Preencher estado para que a UI mostre o nome do arquivo mesmo sem re-upload
+        try {
+          setAnexoFatura({ name: f.anexoFatura });
+        } catch (err) {
+          // fallback silencioso
+          setAnexoFatura(null);
+        }
+      }
+
+      // Se existir anexo do pedido de compras, ajustar estado para exibir o nome do arquivo
+      if (f.anexoPedidoCompras) {
+        try {
+          setAnexoPedidoCompras({ name: f.anexoPedidoCompras });
+        } catch (err) {
+          setAnexoPedidoCompras(null);
+        }
       }
 
       setEditLoaded(true);
